@@ -25,13 +25,16 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
                                 onChange={updateAvatarId}
                                 value={i + 1}
                             ></input>
-                            <img
-                                src={`${avatar.imageUrl}`}
-                                id="radio__icon"
-                                className="avatar__selector"
-                                alt="avatar"
-                                style={{ backgroundColor: +avatarId === i + 1 ? 'var(--selected-color)' : '' }}
-                            />
+                            <div
+                                className="mouse__change__avatars"
+                                style={{ backgroundColor: +avatarId === i + 1 ? 'var(--selected-color)' : '' }}>
+                                <img
+                                    src={`${avatar.imageUrl}`}
+                                    id="radio__icon"
+                                    className="avatar__selector"
+                                    alt="avatar"
+                                />
+                            </div>
                         </label>
                     </div>
                 ))}

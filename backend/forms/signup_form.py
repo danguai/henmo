@@ -3,6 +3,17 @@ from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError
 from backend.models import User
 
+# import re
+
+# regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+
+
+# def isValid(email):
+#     if re.fullmatch(regex, email):
+#         print("Valid email")
+#     else:
+#         raise ValidationError('Invalid Email')
+
 
 def user_exists(form, field):
     # Checking if user exists
@@ -23,6 +34,6 @@ def user_exists(form, field):
 class SignUpForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired()])
     last_name = StringField('Last Name', validators=[DataRequired()])
-    avatar_id = IntegerField('avatar_id', validators=[DataRequired()])
+    avatar_id = IntegerField('Avatar ID', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), user_exists])
     password = StringField('Password', validators=[DataRequired()])

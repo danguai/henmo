@@ -1,0 +1,54 @@
+#splashpage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* position: absolute; */
+    width: 100%;
+    height: 100%;
+}
+
+.splash__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 450px;
+    height: auto;
+
+    margin-top: 140px;
+}
+
+
+.henmo__logo__splash {
+    position: absolute;
+    top: 185px;
+}
+
+.henmo__logo__splash>img {
+    width: 600px;
+    height: auto;
+}
+
+.one__liner {
+    position: relative;
+    top: 250px;
+    font-size: 28px;
+    color: var(--blue-texts);
+}
+
+.splash__btns__container {
+    position: relative;
+    top: 230px;
+}
+
+#image_splash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 20%;
+
+    max-width: 100%;
+    max-height: 100%;
+}
