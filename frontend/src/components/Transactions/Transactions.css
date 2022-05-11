@@ -1,0 +1,17 @@
+.transactions__container {
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.transaction__title {
+    font-weight: 800;
+    font-size: 40px;
+    letter-spacing: 8px;
+    color: var(--blue-texts);
+
+    margin-top: 40px;
+    margin-bottom: 10px;
+}

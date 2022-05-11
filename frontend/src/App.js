@@ -56,6 +56,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <Transactions />
         </ProtectedRoute>
+        <ProtectedRoute path='/transactions/:approved_id' exact={true} >
+          <ApprovedTran />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

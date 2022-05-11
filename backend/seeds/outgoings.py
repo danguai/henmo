@@ -5,18 +5,21 @@ from backend.models import db, Outgoing
 def seed_outgoings():
 
     outgoing_01 = Outgoing(
+        payer_id=1,
         receiver_id=2,
         pay_funds=4,
         message='This chickens are very quiet',
         paid=True
     )
     outgoing_02 = Outgoing(
+        payer_id=1,
         receiver_id=3,
         pay_funds=12,
         message='The crazy chickens all around',
         paid=False
     )
     outgoing_03 = Outgoing(
+        payer_id=1,
         receiver_id=2,
         pay_funds=7,
         message='I want to have so many chickens',

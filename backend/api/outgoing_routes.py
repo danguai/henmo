@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify,session, request, redirect
 from flask_login import login_required, current_user
-
-from backend.models import User, db
 from backend.forms import OutgoingForm
+from backend.models import db, User, Outgoing
 from backend.api.auth_routes import validation_errors_to_error_messages
 
 outgoing_routes = Blueprint('outgoings', __name__)
@@ -17,6 +16,7 @@ def create_outgoing():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         outgoing = Outgoing(
+            payer_id=form.data['payer_id'],
             receiver_id=form.data['receiver_id'],
             pay_funds=form.data['pay_funds'],
             message=form.data['message'],
@@ -30,11 +30,12 @@ def create_outgoing():
 
 # R E A D   A L L   O U T G O I N G S
 @outgoing_routes.route('/', methods = [ 'GET' ])
-@login_required
+# @login_required
 def read_all_outgoings():
-    outgoings = Outgoing.query.filter(Outgoing.payer_id == current_user.id).all()
+    # outgoings = Outgoing.query.filter(Outgoing.payer_id == current_user.id).all()
+    outgoings = Outgoing.query.all()
 
-    outgoings_list = [out.to_dict() for out in outgoings]
+    outgoings_list = [outgoing.to_dict() for outgoing in outgoings]
 
     return { 'outgoings': outgoings_list }
 
