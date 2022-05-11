@@ -27,6 +27,14 @@ button {
     color: var(--white);
     background-color: var(--main-red);
     border: none;
+    transition: .2s;
+}
+
+.red__button__basic:hover {
+    letter-spacing: 10px;
+    color: var(--main-red);
+    background-color: var(--white);
+    border: var(--main-red) 1px solid;
 }
 
 #invalid {

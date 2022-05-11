@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 
 import './LoginForm.css';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [errors, setErrors] = useState([]);
+  const [customError, setCustomError] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -20,6 +23,12 @@ const LoginForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (errors.length > 0) {
+      setCustomError('Email or password is incorrect')
+    }
+  }, [errors.length])
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -28,16 +37,21 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  // const demoLogin = async () => {
+  //   await dispatch(login('demoone@aa.io', 'password'));
+  //   // history.push('/');
+  // };
+
   if (user) {
     return <Redirect to='/' />;
   }
 
   return (
     <div id='login__page'>
-      <div className='henmo__logo__login'>
-        <img src='/static/henmo-logo.png' alt='henmo-logo' />
-      </div>
       <div className='login__form__container'>
+        <div className='henmo__logo__login'>
+          <img src='/static/henmo-logo.png' alt='henmo-logo' />
+        </div>
         <div className='forms__name'>
           LOGIN
         </div>
@@ -62,13 +76,17 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
           </div>
-          <div className='errors__login'>
+          {/* <div className='errors__login'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
+          </div> */}
+          <div className='errors__login'>
+            <span>{customError}</span>
           </div>
           <div className='login__or__signup'>
             <button className='red__button__basic login__btn__size' type='submit'>LOG IN</button>
+            {/* <button className='white__button__basic login__btn__size' onClick={demoLogin}>DEMO USER</button> */}
             <div className='or__signup'>
               <div className='or'>
                 OR
