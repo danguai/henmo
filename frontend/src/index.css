@@ -6,6 +6,8 @@
     --white: #ffffff;
     --blue-texts: #2E4A63;
     --main-red: #DC0022;
+    --rollover-color: #3DA0A5;
+    --selected-color: #227C00;
 }
 
 body {
@@ -17,8 +19,28 @@ input {
     padding: 0 10px;
 }
 
+button {
+    cursor: pointer;
+}
+
 .red__button__basic {
     color: var(--white);
     background-color: var(--main-red);
     border: none;
+}
+
+#invalid {
+    color: lightgray;
+    transition: .3s;
+}
+
+#valid {
+    color: #6CAC45;
+    transition: .3s;
+}
+
+#disabled {
+    color: #2b6f0064;
+    background-color: #6dac455b;
+    border-color: rgba(6, 132, 6, 0.254);
 }

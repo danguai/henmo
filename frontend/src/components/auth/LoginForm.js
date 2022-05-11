@@ -34,7 +34,7 @@ const LoginForm = () => {
 
   return (
     <div id='login__page'>
-      <div className='henmo__logo'>
+      <div className='henmo__logo__login'>
         <img src='/static/henmo-logo.png' alt='henmo-logo' />
       </div>
       <div className='login__form__container'>

@@ -1,4 +1,4 @@
-#login__page {
+#signup__page {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,7 +9,7 @@
     height: 100%;
 }
 
-.login__form__container {
+.signup__form__container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,49 +20,66 @@
     height: auto;
 }
 
-.henmo__logo__login {
+.henmo__logo__signup {
     position: absolute;
-    top: 110px;
+    top: 10px;
 }
 
-.henmo__logo__login>img {
+.henmo__logo__signup>img {
     width: 400px;
     height: auto;
 }
 
-/*   in SIGNUP.CSS
 .forms__inputs__format {
     display: flex;
-    flex-direction: column;
-} */
+    flex-direction: row;
 
-/*  in SIGNUP.CSS
+}
+
+.forms__inputs__special__format {
+    display: flex;
+    border: purple 1px solid;
+}
+
+.forms__inputs__name {
+    display: flex;
+    flex-direction: row;
+    /* align-items: space-around; */
+}
+
 .forms__name {
     font-weight: 800;
     font-size: 40px;
     letter-spacing: 8px;
     color: var(--blue-texts);
-
     margin-top: 40px;
     margin-bottom: 10px;
-} */
+}
 
-/*   in SIGNUP.CSS
 .forms__label {
     font-size: 12px;
     letter-spacing: 1.2px;
     color: var(--blue-texts);
-    margin: 10px;
-} */
+    margin: 15px 5px;
+    white-space: nowrap;
+}
 
-/*   in SIGNUP.CSS
+
 .forms__inputs__format>input {
     height: 40px;
+    width: 100%;
     border: none;
     border-bottom: 1px var(--blue-texts) solid;
-} */
+}
 
-.login__btn__size {
+.forms__inputs__special__format>input {
+    height: 40px;
+    width: auto;
+    border: none;
+    border-bottom: 1px var(--blue-texts) solid;
+}
+
+.signup__btn__size {
     width: 500px;
     height: 50px;
     font-weight: bold;
@@ -78,27 +95,25 @@
     margin-top: 80px;
 }
 
-.or__signup {
+.or__login {
     display: flex;
     align-items: center;
     margin: 10px;
 }
 
-/*   in SIGNUP.CSS
 .or {
     font-size: 10px;
     margin-right: 5px;
     margin-top: 4px
-} */
+}
 
-/*   in SIGNUP.CSS
 .link__to__other__auth {
     font-weight: 800;
     font-size: 14px;
     text-decoration: none;
     color: var(--blue-texts)
-} */
+}
 
-.errors__login {
+.errors__signup {
     color: var(--main-red)
 }
