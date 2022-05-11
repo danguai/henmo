@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
 
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     height: 100%;
 }
@@ -16,29 +16,31 @@
 
     background-color: var(--white);
     border: 1px var(--blue-texts) solid;
-    width: 550px;
+    width: 450px;
     height: auto;
+
+    margin-top: 140px;
 }
 
 .henmo__logo__signup {
     position: absolute;
-    top: 10px;
+    top: 60px;
 }
 
 .henmo__logo__signup>img {
-    width: 400px;
+    width: 300px;
     height: auto;
+    top: -70px;
 }
 
 .forms__inputs__format {
     display: flex;
     flex-direction: row;
-
+    margin: 15px 0;
 }
 
 .forms__inputs__special__format {
     display: flex;
-    border: purple 1px solid;
 }
 
 .forms__inputs__name {
@@ -49,21 +51,20 @@
 
 .forms__name {
     font-weight: 800;
-    font-size: 40px;
-    letter-spacing: 8px;
+    font-size: 35px;
+    letter-spacing: 10px;
     color: var(--blue-texts);
-    margin-top: 40px;
-    margin-bottom: 10px;
+    margin: 25px 0;
+
 }
 
 .forms__label {
     font-size: 12px;
     letter-spacing: 1.2px;
     color: var(--blue-texts);
-    margin: 15px 5px;
+    margin: 15px 0px;
     white-space: nowrap;
 }
-
 
 .forms__inputs__format>input {
     height: 40px;
@@ -80,10 +81,11 @@
 }
 
 .signup__btn__size {
-    width: 500px;
-    height: 50px;
+    width: 400px;
+    height: 40px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
+    margin: 5px;
     letter-spacing: 2px;
 }
 
@@ -92,7 +94,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
 .or__login {
@@ -111,9 +113,20 @@
     font-weight: 800;
     font-size: 14px;
     text-decoration: none;
-    color: var(--blue-texts)
+    color: var(--blue-texts);
+    transition: .3s;
+}
+
+.link__to__other__auth:hover {
+    color: var(--rollover-color)
 }
 
 .errors__signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 14px;
+    font-weight: 700;
     color: var(--main-red)
 }
