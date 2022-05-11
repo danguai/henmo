@@ -17,7 +17,6 @@ def create_outgoing():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         outgoing = Outgoing(
-            payer_id=form.data['payer_id'],
             receiver_id=form.data['receiver_id'],
             pay_funds=form.data['pay_funds'],
             message=form.data['message'],
