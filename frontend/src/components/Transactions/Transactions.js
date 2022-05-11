@@ -4,7 +4,7 @@ import React from 'react';
 
 const Transactions = () => {
     return (
-        <div>
+        <div className='transactions__container'>
             <h1>Transactions</h1>
         </div>
     );

@@ -16,6 +16,24 @@ const Splashpage = () => {
 
     return (
         <div id='splashpage'>
+            <div>
+                <img
+                    id='chicken__4__light__gray'
+                    src='static/chicken-4-light-gray.png'
+                    alt='chicken__4__light__gray' />
+            </div>
+            <div>
+                <img
+                    id='chicken__3__brown'
+                    src='static/chicken-3-brown.png'
+                    alt='chicken__3__brown' />
+            </div>
+            <div>
+                <img
+                    id='chicken__8__dark__gray'
+                    src='static/chicken-8-dark-gray.png'
+                    alt='chicken__8__dark__gray' />
+            </div>
             <div className='splash__container'>
                 <div className="henmo__logo__splash">
                     <img src='static/henmo-logo.png' alt='henmo-logo' />

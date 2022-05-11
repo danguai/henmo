@@ -52,3 +52,36 @@
     max-width: 100%;
     max-height: 100%;
 }
+
+.bold__chickens {
+    font-weight: 700;
+}
+
+#chicken__4__light__gray {
+    position: fixed;
+    width: 210px;
+    height: auto;
+    bottom: 70px;
+    left: 50px;
+
+}
+
+#chicken__3__brown {
+    position: fixed;
+    width: 210px;
+    height: auto;
+    top: 190px;
+    left: -140px;
+    transform: rotate(45deg);
+
+}
+
+#chicken__8__dark__gray {
+    position: fixed;
+    width: 350px;
+    height: auto;
+    top: -150px;
+    right: -200px;
+    transform: rotate(180deg);
+
+}

@@ -24,6 +24,10 @@ button {
     cursor: pointer;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .red__button__basic {
     color: var(--white);
     background-color: var(--main-red);
@@ -64,6 +68,20 @@ button {
     color: var(--main-orange);
     background-color: var(--white);
     border: var(--main-orange) 1px solid;
+}
+
+.white__button__basic {
+    color: var(--main-red);
+    background-color: var(--white);
+    border: var(--main-red) 1px solid;
+    transition: .2s;
+}
+
+.white__button__basic:hover {
+    letter-spacing: 10px;
+    color: var(--white);
+    background-color: var(--main-red);
+    border: var(--white) 1px solid;
 }
 
 .splash__btn {
