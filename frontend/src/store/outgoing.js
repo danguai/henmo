@@ -79,7 +79,7 @@ export const readOneOutgoing = id => async dispatch => {
 };
 
 // U P D A T E
-export const updateOutgoing = outgoing => async dispatch => {
+export const updateOutgoing = (outgoing, id) => async dispatch => {
     const response = await fetch(`/api/outgoings/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
