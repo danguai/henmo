@@ -1,0 +1,16 @@
+.user__icon {
+    height: 30px;
+    width: 30px;
+
+    border: 1px solid black;
+
+    box-sizing: border-box;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.share__icon {
+    cursor: pointer;
+}
