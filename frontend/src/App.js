@@ -7,6 +7,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import Splashpage from './components/Splashpage/Splashpage';
 import NavBar from './components/NavBar/NavBar';
 import Transactions from './components/Transactions/Transactions';
+import Pending from './components/Pending/Pending';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -49,9 +50,12 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
-        {/* <ProtectedRoute path='/' exact={true} >
+        <ProtectedRoute path='/pending' exact={true} >
+          <Pending />
+        </ProtectedRoute>
+        <ProtectedRoute path='/' exact={true} >
           <Transactions />
-        </ProtectedRoute> */}
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

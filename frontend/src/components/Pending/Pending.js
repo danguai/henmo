@@ -2,12 +2,12 @@ import React from 'react';
 // import { NavLink } from 'react-router-dom';
 // import LogoutButton from './auth/LogoutButton';
 
-const Transactions = () => {
+const Pending = () => {
     return (
-        <div className='transactions__container'>
-            <div>All Transactions</div>
+        <div className='pending__container'>
+            <div>Pending Transactions</div>
         </div>
     );
 }
 
-export default Transactions;
+export default Pending;

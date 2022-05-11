@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import UserIcon from '../UserIcons/UserIcons';
 import LogoutButton from '../auth/LogoutButton';
@@ -37,8 +37,14 @@ const NavBar = () => {
             </div>
           </button>
         </li>
-        <li>
-          <div></div>
+        <li className='pending__transactions'>
+          <div className='pending__label'>
+            PENDING
+          </div>
+          <div className='line__division' />
+          <Link className='outgoing__link' to='/pending'>
+            OUTGOING (4)
+          </Link>
         </li>
         <li className='logout__button__placement'>
           <LogoutButton />
