@@ -110,3 +110,33 @@ export const deleteOutgoing = outgoing => async dispatch => {
         console.log(data.errors);
     }
 };
+
+
+
+// R E D U C E R
+let initialState = {};
+
+const outgoingReducer = (state = initialState, action) => {
+    let newState = { ...state };
+    switch (action.type) {
+        case CREATE_OUTGOING:
+            newState[action.outgoing.id] = action.outgoing;
+            return newState;
+        case READ_ALL_OUTGOINGS:
+            action.outgoing.forEach(out => newState[out.id] = out);
+            return newState;
+        case READ_ONE_OUTGOING:
+            newState[action.outgoing.id] = action.outgoing;
+            return newState;
+        case UPDATE_OUTGOING:
+            newState[action.outgoing.id] = action.outgoing;
+            return newState;
+        case DELETE_OUTGOING:
+            delete newState[action.outgoing.id];
+            return newState;
+        default:
+            return state;
+    }
+};
+
+export default outgoingReducer;
