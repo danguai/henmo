@@ -5,13 +5,15 @@ import { AvatarContext } from '../../context/Avatar';
 
 import './UserIcons.css';
 
-export const UserIcon = ({ givenUser, size, isShareIcon }) => {
+const UserIcon = ({ givenUser, size, isShareIcon }) => {
     const { avatars } = useContext(AvatarContext);
+
+    console.log('AVATARS: ', avatars);
     const sessionUser = useSelector(state => state.session?.user);
 
     const user = givenUser || sessionUser;
 
-    const avatar = avatars[user?.avartar_id];
+    const avatar = avatars[user?.avatar_id];
 
     const styleObj = {
         backgroundImage: `url(${avatar?.imageUrl})`,
@@ -24,7 +26,10 @@ export const UserIcon = ({ givenUser, size, isShareIcon }) => {
 
     return (
         <div className={`user__icon ${isShareIcon ? 'share__icon' : ''}`}
-            style={styleObj}
-            title={givenUser ? givenUser.email : ''} />
+        // style={styleObj}
+        // title={givenUser ? givenUser.email : ''}
+        />
     )
 };
+
+export default UserIcon;

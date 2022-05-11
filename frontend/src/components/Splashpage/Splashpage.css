@@ -1,0 +1,87 @@
+#splashpage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* position: absolute; */
+    width: 100%;
+    height: 100%;
+}
+
+.splash__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 450px;
+    height: auto;
+
+    margin-top: 140px;
+}
+
+
+.henmo__logo__splash {
+    position: absolute;
+    top: 185px;
+}
+
+.henmo__logo__splash>img {
+    width: 600px;
+    height: auto;
+}
+
+.one__liner {
+    position: relative;
+    top: 250px;
+    font-size: 28px;
+    color: var(--blue-texts);
+}
+
+.splash__btns__container {
+    position: relative;
+    top: 230px;
+}
+
+#image_splash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 20%;
+
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.bold__chickens {
+    font-weight: 700;
+}
+
+#chicken__4__light__gray {
+    position: fixed;
+    width: 210px;
+    height: auto;
+    bottom: 70px;
+    left: 50px;
+
+}
+
+#chicken__3__brown {
+    position: fixed;
+    width: 210px;
+    height: auto;
+    top: 190px;
+    left: -140px;
+    transform: rotate(45deg);
+
+}
+
+#chicken__8__dark__gray {
+    position: fixed;
+    width: 350px;
+    height: auto;
+    top: -150px;
+    right: -200px;
+    transform: rotate(180deg);
+
+}

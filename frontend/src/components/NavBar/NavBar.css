@@ -1,0 +1,95 @@
+#nav__bar {
+    display: block;
+    width: 300px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: var(--white);
+    border: 1px var(--blue-texts) solid;
+    position: fixed;
+
+}
+
+.navbar__elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+
+}
+
+.henmo__logo__navbar>img {
+    width: 120px;
+    height: auto;
+}
+
+.avatar__and__name {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.temp__box__user {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    border: 1px black solid;
+}
+
+.pay__btn__size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 260px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px;
+    letter-spacing: 2px;
+}
+
+.h__in__button>img {
+    width: 20px;
+    height: auto;
+    margin-right: 10px
+}
+
+.pending__transactions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 50px;
+}
+
+.pending__label {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-texts)
+}
+
+.line__division {
+    width: 100px;
+    height: 1px;
+    background-color: var(--blue-texts);
+}
+
+.outgoing__link {
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    color: var(--blue-texts);
+    transition: .3s;
+}
+
+.outgoing__link:hover {
+    letter-spacing: 9px;
+    color: var(--rollover-color)
+}
+
+.logout__button__placement {
+    position: absolute;
+    bottom: 20px;
+}
