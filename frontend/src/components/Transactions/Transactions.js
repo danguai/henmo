@@ -35,7 +35,7 @@ const Transactions = () => {
 
     return (
         <div className='transactions__container' >
-            <div className='transaction__title'>TRANSACTIONS</div>
+            <div className='transaction__title'>APPROVED</div>
             <div>
                 {approved.map((paid, i) =>
                     <div key={i}>
