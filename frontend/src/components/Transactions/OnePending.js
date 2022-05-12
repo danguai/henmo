@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 
+import User from '../Users/User';
+
 import { readOneOutgoing, updateOutgoing, deleteOutgoing } from '../../store/outgoing';
 import { UserIcon } from '../UserIcons/UserIcons';
 
@@ -131,27 +133,42 @@ const OnePending = () => {
             onMouseDown={stopTheProp}
         >
             <div className='approved__tran__container' >
-                <div>
-                    Transaction Number {pendingTran.id}
+                <div className='pending__tran__text'>
+                    Transaction #
+                    <span className='pending__tran__number'>
+                        {pendingTran?.id}
+                    </span>
                 </div>
                 <div>
-                    From {sessionUser.last_name}, {sessionUser.first_name}
+                    <span>
+                        From
+                    </span>
+                    {sessionUser.last_name}, {sessionUser.first_name}
                 </div>
-                <div>
-                    To (RECEIVER NAME)
-                    {/* {pendingTran.receiver_id} */}
+                <div className='to__user'>
+                    <span>
+                        To
+                    </span>
+                    <User id={pendingTran?.receiver_id} />
                 </div>
                 <div>
                     <div className={`${payFundsDisplay}`}>
-                        <div
-                            onClick={payFundsAndInputDisplay}>
-                            Chickens {pendingTran.pay_funds}
+                        <div className='edit__amount' onClick={payFundsAndInputDisplay}>
+                            <div>
+                                Chickens
+                            </div>
+                            <div>
+                                {pendingTran?.pay_funds}
+                            </div>
+                            <div>
+                                <button
+                                    onClick={payFundsAndInputDisplay}
+                                    className=''>
+                                    Edit
+                                </button>
+
+                            </div>
                         </div>
-                        <button
-                            onClick={payFundsAndInputDisplay}
-                            className=''>
-                            Edit
-                        </button>
                     </div>
                     <div className={`${payFundsInputDisplay}`}>
                         <div className='edit__content__position'>
@@ -180,15 +197,21 @@ const OnePending = () => {
                 </div>
                 <div>
                     <div className={`${messageDisplay}`}>
-                        <div
-                            onClick={messageAndInputDisplay}>
-                            Message {pendingTran.message}
+                        <div className='edit__message' onClick={messageAndInputDisplay}>
+                            <div>
+                                Message
+                            </div>
+                            <div>
+                                {pendingTran?.message}
+                            </div>
+                            <div>
+                                <button
+                                    onClick={messageAndInputDisplay}
+                                    className=''>
+                                    Edit
+                                </button>
+                            </div>
                         </div>
-                        <button
-                            onClick={messageAndInputDisplay}
-                            className=''>
-                            Edit
-                        </button>
                     </div>
                     <div className={`${messageInputDisplay}`}>
                         <div className='edit__content__position'>

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 
+import User from '../Users/User';
+
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 import { UserIcon } from '../UserIcons/UserIcons';
 
@@ -26,38 +28,42 @@ const OneApproved = ({ closeModal }) => {
 
     if (!approvedTran) return null;
 
-    const stopTheProp = e => e.stopPropagation();
-
     return (
         <div
-            onClick={stopTheProp}
-            onMouseDown={stopTheProp}
             className='transactions__container' >
-            <div className='approved__tran__container' >
-                <div>
-                    Transaction Number {approvedTran.id}
-                </div>
-                <div>
-                    From {sessionUser.last_name}, {sessionUser.first_name}
-                </div>
-                <div>
-                    To
-                    <span>
-                        (Need to Add Logic)
+            <div className='pending__tran__container' >
+                <div className='pending__tran__text'>
+                    Transaction #
+                    <span className='pending__tran__number'>
+                        {approvedTran.id}
                     </span>
-                    {approvedTran.receiver_id}
                 </div>
                 <div>
-                    Chickens {approvedTran.pay_funds}
+                    <span>
+                        From
+                    </span>
+                    {sessionUser.last_name}, {sessionUser.first_name}
+                </div>
+                <div className='to__user'>
+                    <span>
+                        To
+                    </span>
+                    <User id={approvedTran?.receiver_id} />
                 </div>
                 <div>
-                    Message {approvedTran.message}
+                    <span>
+                        Chickens
+                    </span>
+                    {approvedTran.pay_funds}
                 </div>
                 <div>
-                    (TEMP) APPROVED
+                    <span>
+                        Message
+                    </span>
+                    {approvedTran.message}
                 </div>
             </div>
-        </div>
+        </div >
     )
 };
 
