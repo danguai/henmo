@@ -49,9 +49,11 @@ const AllApproved = () => {
             <div className='transactions__list__container'>
                 {approved.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>
-                        <div
+                        <Link
                             className='each__transaction'
-                            onClick={showModal}>
+                            to={`/transactions/${paid.id}`}
+                        // onClick={showModal}
+                        >
                             <div className='icon__with__message'>
                                 <div className='temp__box__transactions'>
                                     {/* <UserIcon size={30} isNavIcon={true} /> */}
@@ -76,17 +78,17 @@ const AllApproved = () => {
                                     {paid.pay_funds}
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     </div>
                 )}
 
             </div>
-            {modal && (
+            {/* {modal && (
                 <Modal closeModal={closeModal}>
                     <OneApproved closeModal={closeModal} />
                 </Modal>
-            )}
-        </div>
+            )} */}
+        </div >
     );
 }
 

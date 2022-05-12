@@ -63,9 +63,9 @@ function App() {
         <ProtectedRoute path='/new-payment' exact={true} >
           <OnePaymentNew />
         </ProtectedRoute>
-        {/* <ProtectedRoute path='/transactions/:approved_id' exact={true} >
+        <ProtectedRoute path='/transactions/:approved_id' exact={true} >
           <OneApproved />
-        </ProtectedRoute> */}
+        </ProtectedRoute>
         <ProtectedRoute path='/pending/:pending_id' exact={true} >
           <OnePending />
         </ProtectedRoute>
