@@ -39,6 +39,10 @@ const Comments = ({ approvedTran }) => {
         setMessage('');
     };
 
+    const removeComment = async (comment) => {
+        await dispatch(deleteComment(comment));
+    }
+
     useEffect(() => {
         dispatch(readAllComments());
     }, [dispatch]);
@@ -80,6 +84,13 @@ const Comments = ({ approvedTran }) => {
                         <div>
                             {comment.message}
                         </div>
+                        {comment.user_id === sessionUser?.id &&
+                            <button
+                                onClick={() => removeComment(comment)}
+                            >
+                                DELETE
+                            </button>
+                        }
                     </div>
                 )}
             </div>
