@@ -123,7 +123,7 @@ const outgoingReducer = (state = initialState, action) => {
             newState[action.outgoing.id] = action.outgoing;
             return newState;
         case READ_ALL_OUTGOINGS:
-            action.outgoings.forEach(out => newState[out.id] = out);
+            action.outgoings.forEach(outgoing => newState[outgoing.id] = outgoing);
             return newState;
         case READ_ONE_OUTGOING:
             newState[action.outgoing.id] = action.outgoing;
