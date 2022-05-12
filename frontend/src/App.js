@@ -12,7 +12,6 @@ import AllPending from './components/Transactions/AllPending';
 import OnePending from './components/Transactions/OnePending';
 
 import OnePaymentNew from './components/OnePayment/OnePaymentNew';
-import OnePaymentWithEdit from './components/OnePayment/OneApprovedWithEdit';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';

@@ -19,13 +19,11 @@ const OnePending = () => {
     const sessionUser = useSelector(state => state.session?.user);
     const pendingTran = useSelector(state => state.outgoing[pending_id]);
 
-    console.log(pending_id);
-    console.log(pendingTran);
     const [newPayFunds, setNewPayFunds] = useState(pendingTran?.pay_funds);
     const [newMessage, setNewMessage] = useState(pendingTran?.message);
+    const [newPaid, setNewPaid] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    // const [paid, setPaid] = useState(false);
 
     const [payFundsDisplay, setPayFundsDisplay] = useState('displayed__pay__funds');
     const [payFundsInputDisplay, setPayFundsInputDisplay] = useState('not__displayed__pay__funds');
@@ -49,7 +47,7 @@ const OnePending = () => {
         let oneTran = {
             id: pendingTran.id,
             message: newMessage,
-            paid: pendingTran.paid,
+            paid: newPaid,
             pay_funds: newPayFunds,
             payer_id: pendingTran.payer_id,
             receiver_id: pendingTran.receiver_id
@@ -59,8 +57,10 @@ const OnePending = () => {
         console.log('UPDATED TRANSACTION: ', updatedTran);
         setMessageDisplay('displayed__message');
         setMessageInputDisplay('not__displayed__message');
+        setPayFundsDisplay('displayed__pay__funds');
+        setPayFundsInputDisplay('not__displayed__pay__funds');
         // history.push('/pending');
-        setNewMessage('');
+        // setNewMessage('');
     };
 
     const deletePending = async () => {
@@ -106,7 +106,15 @@ const OnePending = () => {
         setNewMessage(pendingTran.message);
     };
 
-    // const approvePayment = () => { };
+    const approvePayment = () => {
+        setNewPaid(!newPaid);
+        updatePending();
+        // history.push('/');
+
+    };
+
+    console.log('APPROVED PAYMENT: ', newPaid);
+
 
     if (!pendingTran) {
         if (isLoaded) {
@@ -131,47 +139,80 @@ const OnePending = () => {
                     From {sessionUser.last_name}, {sessionUser.first_name}
                 </div>
                 <div>
-                    To
-                    <span>
-                        (IT WILL BE NAME)
-                    </span>
-                    {pendingTran.receiver_id}
+                    To (RECEIVER NAME)
+                    {/* {pendingTran.receiver_id} */}
                 </div>
                 <div>
-                    Chickens {pendingTran.pay_funds}
-                </div>
-                <div className={`${messageDisplay}`}>
-                    <button
-                        onClick={messageAndInputDisplay}
-                        className=''>
-                        Edit
-                    </button>
-                </div>
-                <div
-                    onClick={messageAndInputDisplay}>
-                    Message {pendingTran.message}
-                </div>
-                <div className={`${messageInputDisplay}`}>
-                    <div className='edit__content__position'>
-                        <div>
-                            <input
-                                type="text"
-                                value={newMessage}
-                                onChange={(e) => setNewMessage(e.target.value)}
-                                className="content__input"
-                            ></input>
+                    <div className={`${payFundsDisplay}`}>
+                        <div
+                            onClick={payFundsAndInputDisplay}>
+                            Chickens {pendingTran.pay_funds}
                         </div>
-                        <div>
-                            <button
-                                onClick={updatePending}
-                                className=''>
-                                Update
-                            </button>
-                            <button
-                                onClick={messageAndInputDisplay}
-                                className=''>
-                                Cancel
-                            </button>
+                        <button
+                            onClick={payFundsAndInputDisplay}
+                            className=''>
+                            Edit
+                        </button>
+                    </div>
+                    <div className={`${payFundsInputDisplay}`}>
+                        <div className='edit__content__position'>
+                            <div>
+                                <input
+                                    type="number"
+                                    value={newPayFunds}
+                                    onChange={(e) => setNewPayFunds(e.target.value)}
+                                    className="content__input"
+                                ></input>
+                            </div>
+                            <div>
+                                <button
+                                    onClick={updatePending}
+                                    className=''>
+                                    Update
+                                </button>
+                                <button
+                                    onClick={payFundsAndInputDisplay}
+                                    className=''>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className={`${messageDisplay}`}>
+                        <div
+                            onClick={messageAndInputDisplay}>
+                            Message {pendingTran.message}
+                        </div>
+                        <button
+                            onClick={messageAndInputDisplay}
+                            className=''>
+                            Edit
+                        </button>
+                    </div>
+                    <div className={`${messageInputDisplay}`}>
+                        <div className='edit__content__position'>
+                            <div>
+                                <input
+                                    type="text"
+                                    value={newMessage}
+                                    onChange={(e) => setNewMessage(e.target.value)}
+                                    className="content__input"
+                                ></input>
+                            </div>
+                            <div>
+                                <button
+                                    onClick={updatePending}
+                                    className=''>
+                                    Update
+                                </button>
+                                <button
+                                    onClick={messageAndInputDisplay}
+                                    className=''>
+                                    Cancel
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -179,13 +220,13 @@ const OnePending = () => {
                 {/* <div>
                     (TEMP) PENDING
                 </div> */}
-                {/* <div className=''>
+                <div className=''>
                     <button
                         id=''
                         className=''
                         onClick={approvePayment}
                     >Approve Payment</button>
-                </div> */}
+                </div>
                 <div className=''>
                     <button
                         id=''
