@@ -59,8 +59,10 @@ const OnePending = () => {
         setMessageInputDisplay('not__displayed__message');
         setPayFundsDisplay('displayed__pay__funds');
         setPayFundsInputDisplay('not__displayed__pay__funds');
-        // history.push('/pending');
-        // setNewMessage('');
+
+        if (newPaid) {
+            history.push('/');
+        }
     };
 
     const deletePending = async () => {
@@ -108,9 +110,6 @@ const OnePending = () => {
 
     const approvePayment = () => {
         setNewPaid(!newPaid);
-        updatePending();
-        // history.push('/');
-
     };
 
     console.log('APPROVED PAYMENT: ', newPaid);
@@ -217,24 +216,12 @@ const OnePending = () => {
                     </div>
                 </div>
 
-                {/* <div>
-                    (TEMP) PENDING
-                </div> */}
-                {/* <div>PAID?
-                    <input
-                        className=''
-                        name='paid'
-                        type='checkbox'
-                        value={paid}
-                        // checked={paid}
-                        onChange={switchPaid}
-                    />
-                </div> */}
                 <div className=''>
                     <button
                         id=''
                         className=''
-                        onClick={approvePayment}
+                        onMouseDown={approvePayment}
+                        onMouseUp={updatePending}
                     >Approve Payment</button>
                 </div>
                 <div className=''>
