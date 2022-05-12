@@ -52,11 +52,11 @@ const AllApproved = () => {
                         <Link
                             className='each__transaction'
                             to={`/transactions/${paid.id}`}
-                        // onClick={showModal}
+
                         >
                             <div className='icon__with__message'>
-                                <div className='temp__box__transactions'>
-                                    {/* <UserIcon size={30} isNavIcon={true} /> */}
+                                <div className='avatar__box__transactions'>
+                                    <UserIcon size={40} />
                                 </div>
                                 <div>
                                     <div className='you__paid'>

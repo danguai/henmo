@@ -14,8 +14,8 @@ import OnePending from './components/Transactions/OnePending';
 import OnePaymentNew from './components/OnePayment/OnePaymentNew';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import UsersList from './components/Users/UsersList';
+import User from './components/Users/User';
 import { authenticate } from './store/session';
 
 function App() {

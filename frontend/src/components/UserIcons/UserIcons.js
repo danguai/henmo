@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { useSelector } from "react-redux";
-import { AvatarContext } from '../../context/Avatar';
+import { avatars } from '../../context/Avatar';
+// import { AvatarContext } from '../../context/Avatar';
 
 import './UserIcons.css';
 
 export const UserIcon = ({ isNavIcon, givenUser, size, isShareIcon }) => {
-    const { avatars } = useContext(AvatarContext);
+    // const { avatars } = useContext(AvatarContext);
 
-    // console.log('AVATARS: ', avatars);
     const sessionUser = useSelector(state => state.session?.user);
 
     const user = givenUser || sessionUser;
@@ -16,8 +16,8 @@ export const UserIcon = ({ isNavIcon, givenUser, size, isShareIcon }) => {
 
     const styleObj = {
         backgroundImage: `url(${avatar?.imageUrl})`,
-        backgroundColor: isNavIcon ? 'white' : avatar?.color,
-        borderColor: isNavIcon ? avatar?.fontColor : 'var(--white)'
+        // backgroundColor: 'var(--white)',
+        // borderColor: 'var(--blue-texts)'
     };
 
     if (size) {

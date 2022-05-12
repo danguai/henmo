@@ -1,3 +1,64 @@
+.pending__tran__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 40px;
+    align-items: center;
+    width: 500px;
+    height: 600px;
+    background-color: var(--white);
+    border: 1px var(--blue-texts) solid;
+}
+
+.pending__tran__text {
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.pending__tran__number {
+    font-weight: 800;
+    font-size: 40px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.to__user {
+    display: flex;
+}
+
+.edit__amount {
+    display: flex;
+}
+
+.edit__message {
+    display: flex;
+}
+
+.pending__approve__delete {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.approve__btn__size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px;
+    letter-spacing: 0px;
+}
+
 .displayed__pay__funds {
     display: block;
 }

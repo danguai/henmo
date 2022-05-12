@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 
+import { UserIcon } from '../UserIcons/UserIcons';
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 // import { NavLink } from 'react-router-dom';
 
@@ -45,8 +46,8 @@ const AllPending = () => {
                             className='each__transaction'
                             to={`/pending/${paid.id}`}>
                             <div className='icon__with__message'>
-                                <div className='temp__box__transactions'>
-                                    {/* <UserIcon size={30} isNavIcon={true} /> */}
+                                <div className='avatar__box__transactions'>
+                                    <UserIcon size={40} />
                                 </div>
                                 <div>
                                     <div className='you__paid'>

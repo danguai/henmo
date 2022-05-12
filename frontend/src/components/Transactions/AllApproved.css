@@ -43,10 +43,10 @@
 }
 
 
-.temp__box__transactions {
+.avatar__box__transactions {
     width: 40px;
     height: 40px;
-    border: 1px black solid;
+    /* border: 1px black solid; */
     background-color: var(--white);
     margin-right: 10px
 }
