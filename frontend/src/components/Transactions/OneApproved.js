@@ -7,6 +7,7 @@ import User from '../Users/User';
 
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 import { UserIcon } from '../UserIcons/UserIcons';
+import Comments from '../Comments/Comments';
 
 // import { NavLink } from 'react-router-dom';
 
@@ -70,6 +71,9 @@ const OneApproved = ({ closeModal }) => {
                         {approvedTran.message}
                     </div>
                 </div>
+            </div>
+            <div className='comments__container' >
+                <Comments approvedTran={approvedTran} />
             </div>
         </div >
     )

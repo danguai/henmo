@@ -1,7 +1,6 @@
 // COMMENTS CONSTANTS
 const CREATE_COMMENT = 'comments/CREATE_COMMENT';
 const READ_ALL_COMMENTS = 'comments/READ_ALL_COMMENTS';
-const READ_ONE_COMMENT = 'comments/READ_ONE_COMMENT';
 const UPDATE_COMMENT = 'comments/UPDATE_COMMENT';
 const DELETE_COMMENT = 'comments/DELETE_COMMENT';
 
@@ -17,11 +16,6 @@ const readAllCommentsAction = comments => ({
     comments
 });
 
-const readOneCommentAction = comment => ({
-    type: READ_ONE_COMMENT,
-    comment
-});
-
 const updateCommentAction = comment => ({
     type: UPDATE_COMMENT,
     comment
@@ -35,7 +29,7 @@ const deleteCommentAction = comment => ({
 // COMMENTS THUNKS
 // C R E A T E
 export const createComment = comment => async dispatch => {
-    const response = await fetch('api/comments/new-comment', {
+    const response = await fetch('/api/comments/new-comment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(comment)
@@ -53,7 +47,7 @@ export const createComment = comment => async dispatch => {
 
 // R E A D   A L L
 export const readAllComments = () => async dispatch => {
-    const response = await fetch('api/comments/');
+    const response = await fetch('/api/comments/');
 
     const data = await response.json();
 
@@ -65,19 +59,6 @@ export const readAllComments = () => async dispatch => {
     }
 };
 
-// R E A D   O N E
-export const readOneComment = id => async dispatch => {
-    const response = await fetch(`/api/comments/${id}`);
-
-    const data = await response.json();
-
-    if (response.ok) {
-        await dispatch(readOneCommentAction(data));
-        return data;
-    } else {
-        console.log(data.errors);
-    }
-};
 
 // U P D A T E
 export const updateComment = (comment, id) => async dispatch => {
@@ -123,9 +104,6 @@ const commentReducer = (state = initialState, action) => {
             return newState;
         case READ_ALL_COMMENTS:
             action.comments.forEach(comment => newState[comment.id] = comment);
-            return newState;
-        case READ_ONE_COMMENT:
-            newState[action.comment.id] = action.comment;
             return newState;
         case UPDATE_COMMENT:
             newState[action.comment.id] = action.comment;

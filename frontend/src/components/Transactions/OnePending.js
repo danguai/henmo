@@ -1,12 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 import User from '../Users/User';
 
-import { readOneOutgoing, updateOutgoing, deleteOutgoing } from '../../store/outgoing';
-import { UserIcon } from '../UserIcons/UserIcons';
+import { updateOutgoing, deleteOutgoing } from '../../store/outgoing';
+// import { UserIcon } from '../UserIcons/UserIcons';
 
 // import { NavLink } from 'react-router-dom';
 

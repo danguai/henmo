@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from backend.forms import CommentForm
-# from backend.models import db, User, Comment
+from backend.models import db, User, Comment
 from backend.api.auth_routes import validation_errors_to_error_messages
 
 comment_routes = Blueprint('comments', __name__)
@@ -31,20 +31,12 @@ def create_comment():
 @comment_routes.route('/', methods = [ 'GET' ])
 # @login_required
 def read_all_comments():
-    comments = Comment.query.filter(Comment.user_id == current_user.id).all()
+    comments = Comment.query.all()
+    # comments = Comment.query.filter(Comment.user_id == current_user.id).all()
 
     comments_list = [comment.to_dict() for comment in comments]
 
     return { 'comments': comments_list }
-
-
-# R E A D   O N E   C O M M E N T
-@comment_routes.route('/<int:id>', methods = [ 'GET' ])
-# @login_required
-def read_one_comment(id):
-    comment = Comment.query.get(id)
-
-    return comment.to_dict()
 
 
 # U P D A T E   C O M M E N T

@@ -52,7 +52,7 @@ def read_one_outgoing(id):
 
 # U P D A T E   O U T G O I N G
 @outgoing_routes.route('/<int:id>', methods = [ 'PUT' ])
-@login_required
+# @login_required
 def update_outgoing(id):
     outgoing = Outgoing.query.get(id)
 

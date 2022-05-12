@@ -34,7 +34,7 @@ const deleteOutgoingAction = outgoing => ({
 // OUTGOING THUNKS
 // C R E A T E
 export const createOutgoing = outgoing => async dispatch => {
-    const response = await fetch('api/outgoings/new-outgoing', {
+    const response = await fetch('/api/outgoings/new-outgoing', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(outgoing)
