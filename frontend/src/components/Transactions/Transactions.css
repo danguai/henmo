@@ -15,3 +15,68 @@
     margin-top: 40px;
     margin-bottom: 10px;
 }
+
+.transactions__list__container {}
+
+.each__transaction {
+    border-bottom: var(--blue-texts) 1px solid;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 800px;
+    height: 70px;
+    margin: 0 10px;
+    padding: 0 10px;
+    color: var(--blue-texts);
+    transition: 0.25s;
+}
+
+.each__transaction:hover {
+    background-color: var(--white);
+
+}
+
+.icon__with__message {
+    display: flex;
+    align-items: center;
+}
+
+
+.temp__box__transactions {
+    width: 40px;
+    height: 40px;
+    border: 1px black solid;
+    background-color: var(--white);
+    margin-right: 10px
+}
+
+.you__paid {
+    font-size: 14px;
+}
+
+.receiver__name {
+    margin: 0 10px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.number__of__chickens {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: var(--selected-color);
+}
+
+.chickens__label {
+    position: relative;
+    top: 4px;
+    /* padding: -15px; */
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.chickens__number {
+    font-size: 30px;
+    font-weight: 800;
+}

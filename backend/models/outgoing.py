@@ -16,14 +16,12 @@ class Outgoing(db.Model):
     payer = db.relationship('User', foreign_keys=[payer_id], back_populates='outgoing_payer')
     receiver = db.relationship('User', foreign_keys=[receiver_id], back_populates='outgoing_receiver')
 
-    # user = db.relationship('User', back_populates='outgoings')
-
     # comments = db.relationship('Comment', cascade="all, delete")
 
     def to_dict(self):
         return {
             'id': self.id,
-            'payer_id': self.receiver_id,
+            'payer_id': self.payer_id,
             'receiver_id': self.receiver_id,
             'pay_funds': self.pay_funds,
             'message': self.message,

@@ -11,21 +11,23 @@ import './Pending.css';
 
 const Pending = () => {
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
 
-    // const sessionUser = useSelector(state => state.session?.user);
+    const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
     const approved = [];
-    const pendingList = [];
+    const pending = [];
 
     Object.values(outgoings).forEach(outgoing => {
         if (outgoing.paid === true) {
             approved.push(outgoing);
         } else {
-            pendingList.push(outgoing);
+            pending.push(outgoing);
         }
     });
+
+    console.log(approved);
 
     useEffect(() => {
         dispatch(readAllOutgoings());
@@ -34,14 +36,38 @@ const Pending = () => {
     if (!outgoings) return null;
 
     return (
-        <div className='pending__container' >
-            <div className='pending__title'>PENDING</div>
-            <div>
-                {pendingList.map((pending, i) =>
-                    <div key={i}>
-                        <Link to={`/pending/${pending.id}`}>
-                            <div>{pending.message}</div>
-                            <div>{pending.pay_funds}</div>
+        <div className='transactions__container' >
+            <div className='transaction__title'>PENDING</div>
+            <div className='transactions__list__container'>
+                {pending.map((paid, i) =>
+                    <div className='transactions__list__container' key={i}>
+                        <Link
+                            className='each__transaction'
+                            to={`/pending/${paid.id}`}>
+                            <div className='icon__with__message'>
+                                <div className='temp__box__transactions'>
+                                    {/* <UserIcon size={30} isNavIcon={true} /> */}
+                                </div>
+                                <div>
+                                    <div className='you__paid'>
+                                        You paid
+                                        <span className='receiver__name'>
+                                            RECEIVER: {paid.receiver_id}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        {paid.message}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='number__of__chickens'>
+                                <div className='chickens__label'>
+                                    CHICKENS
+                                </div>
+                                <div className='chickens__number'>
+                                    {paid.pay_funds}
+                                </div>
+                            </div>
                         </Link>
                     </div>
                 )}

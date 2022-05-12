@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
+import { UserIcon } from '../UserIcons/UserIcons';
+
 // import { NavLink } from 'react-router-dom';
 
 
@@ -27,6 +29,8 @@ const Transactions = () => {
         }
     });
 
+    console.log(approved);
+
     useEffect(() => {
         dispatch(readAllOutgoings());
     }, [dispatch]);
@@ -36,12 +40,36 @@ const Transactions = () => {
     return (
         <div className='transactions__container' >
             <div className='transaction__title'>APPROVED</div>
-            <div>
+            <div className='transactions__list__container'>
                 {approved.map((paid, i) =>
-                    <div key={i}>
-                        <Link to={`/transactions/${paid.id}`}>
-                            <div>{paid.message}</div>
-                            <div>{paid.pay_funds}</div>
+                    <div className='transactions__list__container' key={i}>
+                        <Link
+                            className='each__transaction'
+                            to={`/transactions/${paid.id}`}>
+                            <div className='icon__with__message'>
+                                <div className='temp__box__transactions'>
+                                    {/* <UserIcon size={30} isNavIcon={true} /> */}
+                                </div>
+                                <div>
+                                    <div className='you__paid'>
+                                        You paid
+                                        <span className='receiver__name'>
+                                            RECEIVER: {paid.receiver_id}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        {paid.message}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='number__of__chickens'>
+                                <div className='chickens__label'>
+                                    CHICKENS
+                                </div>
+                                <div className='chickens__number'>
+                                    {paid.pay_funds}
+                                </div>
+                            </div>
                         </Link>
                     </div>
                 )}

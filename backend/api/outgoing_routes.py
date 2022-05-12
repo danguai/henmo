@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify,session, request, redirect
+from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from backend.forms import OutgoingForm
 from backend.models import db, User, Outgoing
@@ -32,8 +32,7 @@ def create_outgoing():
 @outgoing_routes.route('/', methods = [ 'GET' ])
 # @login_required
 def read_all_outgoings():
-    # outgoings = Outgoing.query.filter(Outgoing.payer_id == current_user.id).all()
-    outgoings = Outgoing.query.all()
+    outgoings = Outgoing.query.filter(Outgoing.payer_id == current_user.id).all()
 
     outgoings_list = [outgoing.to_dict() for outgoing in outgoings]
 
@@ -50,7 +49,7 @@ def read_one_outgoing(id):
 
 
 # U P D A T E   O U T G O I N G
-@outgoing_routes.route('/<int:id>', methods = [ 'PUt' ])
+@outgoing_routes.route('/<int:id>', methods = [ 'PUT' ])
 def update_outgoing(id):
     outgoing = Outgoing.query.get(id)
 
