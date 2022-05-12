@@ -21,6 +21,8 @@ def create_outgoing():
             pay_funds=form.data['pay_funds'],
             message=form.data['message'],
             paid=form.data['paid']
+            # created_at = db.Column(db.DateTime(timezone = True), server_default = func.now())
+            # updated_at = db.Column(db.DateTime(timezone = True), onupdate = func.now())
         )
         db.session.add(outgoing)
         db.session.commit()

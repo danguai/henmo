@@ -6,23 +6,22 @@ import { Link, NavLink, useHistory } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 import { UserIcon } from '../UserIcons/UserIcons';
+import User from '../Users/User';
+
 
 // import { NavLink } from 'react-router-dom';
-
-
 import './AllApproved.css';
-import OneApproved from './OneApproved';
 
 const AllApproved = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
-    const sessionUser = useSelector(state => state.session?.user);
+    // const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
-    const [modal, setModal] = useState(false);
-    const closeModal = () => setModal(false);
-    const showModal = () => setModal(true);
+    // const [modal, setModal] = useState(false);
+    // const closeModal = () => setModal(false);
+    // const showModal = () => setModal(true);
 
     const approved = [];
     const pending = [];
@@ -36,6 +35,7 @@ const AllApproved = () => {
     });
 
     approved.sort((a, b) => b.id - a.id);
+    // missing update date to sortthem by update
 
     useEffect(() => {
         dispatch(readAllOutgoings());
@@ -52,7 +52,6 @@ const AllApproved = () => {
                         <Link
                             className='each__transaction'
                             to={`/transactions/${paid.id}`}
-
                         >
                             <div className='icon__with__message'>
                                 <div className='avatar__box__transactions'>
@@ -62,7 +61,7 @@ const AllApproved = () => {
                                     <div className='you__paid'>
                                         You paid
                                         <span className='receiver__name'>
-                                            RECEIVER: {paid.receiver_id}
+                                            {/* <User id={paid.receiver_id} */}
                                         </span>
                                     </div>
                                     <div>
