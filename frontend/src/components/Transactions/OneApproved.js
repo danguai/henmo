@@ -11,7 +11,7 @@ import { UserIcon } from '../UserIcons/UserIcons';
 
 import './OneApproved.css';
 
-const OneApproved = () => {
+const OneApproved = ({ closeModal }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { approved_id } = useParams();
@@ -26,8 +26,13 @@ const OneApproved = () => {
 
     if (!approvedTran) return null;
 
+    const stopTheProp = e => e.stopPropagation();
+
     return (
-        <div className='transactions__container' >
+        <div
+            onClick={stopTheProp}
+            onMouseDown={stopTheProp}
+            className='transactions__container' >
             <div className='approved__tran__container' >
                 <div>
                     Transaction Number {approvedTran.id}

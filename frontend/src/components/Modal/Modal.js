@@ -1,9 +1,9 @@
 import './Modal.css';
 
-const Modal = ({ children, closeModalFunc }) => {
+const Modal = ({ children, closeModal }) => {
 
     return (
-        <div className="modal-background" onMouseDown={closeModalFunc}>
+        <div className="modal-background" onMouseDown={closeModal}>
             {children}
         </div>
     );

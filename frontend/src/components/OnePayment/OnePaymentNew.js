@@ -27,7 +27,7 @@ const OnePaymentNew = () => {
             receiver_id: receiverId,
             pay_funds: payFunds,
             message,
-            paid: paid
+            paid: false
         };
 
         console.log('NEW PAYMENT: ', newPayment);
@@ -46,13 +46,14 @@ const OnePaymentNew = () => {
     console.log('PAID VALUE: ', paid);
 
 
-    const stopTheProp = e => e.stopPropagation();
+    // const stopTheProp = e => e.stopPropagation();
 
     return (
         <div
             className='transactions__container'
-            onClick={stopTheProp}
-            onMouseDown={stopTheProp}>
+        // onClick={stopTheProp}
+        // onMouseDown={stopTheProp}
+        >
             <div className='approved__payment__container' >
                 <form onSubmit={handleSubmit}>
                     <div>WHO
@@ -92,7 +93,7 @@ const OnePaymentNew = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </div >
     )
 };
 

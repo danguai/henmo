@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 
+import Modal from '../Modal/Modal';
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 import { UserIcon } from '../UserIcons/UserIcons';
 
@@ -10,6 +11,7 @@ import { UserIcon } from '../UserIcons/UserIcons';
 
 
 import './AllApproved.css';
+import OneApproved from './OneApproved';
 
 const AllApproved = () => {
     const dispatch = useDispatch();
@@ -17,6 +19,10 @@ const AllApproved = () => {
 
     const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
+
+    const [modal, setModal] = useState(false);
+    const closeModal = () => setModal(false);
+    const showModal = () => setModal(true);
 
     const approved = [];
     const pending = [];
@@ -45,7 +51,9 @@ const AllApproved = () => {
                     <div className='transactions__list__container' key={i}>
                         <Link
                             className='each__transaction'
-                            to={`/transactions/${paid.id}`}>
+                            to={`/transactions/${paid.id}`}
+                        // onClick={showModal}
+                        >
                             <div className='icon__with__message'>
                                 <div className='temp__box__transactions'>
                                     {/* <UserIcon size={30} isNavIcon={true} /> */}
@@ -75,7 +83,12 @@ const AllApproved = () => {
                 )}
 
             </div>
-        </div>
+            {/* {modal && (
+                <Modal closeModal={closeModal}>
+                    <OneApproved closeModal={closeModal} />
+                </Modal>
+            )} */}
+        </div >
     );
 }
 
