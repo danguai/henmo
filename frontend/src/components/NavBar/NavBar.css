@@ -10,6 +10,7 @@
 
 }
 
+
 .navbar__elements {
     display: flex;
     flex-direction: column;
@@ -69,8 +70,14 @@
     color: var(--blue-texts)
 }
 
-.line__division {
-    width: 100px;
+.line__division__approved {
+    width: 120px;
+    height: 1px;
+    background-color: var(--blue-texts);
+}
+
+.line__division__pending {
+    width: 120px;
     height: 1px;
     background-color: var(--blue-texts);
 }

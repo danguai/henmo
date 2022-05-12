@@ -6,8 +6,13 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Splashpage from './components/Splashpage/Splashpage';
 import NavBar from './components/NavBar/NavBar';
-import Transactions from './components/Transactions/Transactions';
-import Pending from './components/Pending/Pending';
+import AllApproved from './components/Transactions/AllApproved';
+import OneApproved from './components/Transactions/OneApproved';
+import AllPending from './components/Transactions/AllPending';
+import OnePending from './components/Transactions/OnePending';
+
+import OnePaymentNew from './components/OnePayment/OnePaymentNew';
+import OnePaymentWithEdit from './components/OnePayment/OneApprovedWithEdit';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -44,17 +49,26 @@ function App() {
         <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/' exact={true} >
+          <AllApproved />
+        </ProtectedRoute>
+        <ProtectedRoute path='/pending' exact={true} >
+          <AllPending />
+        </ProtectedRoute>
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        </ProtectedRoute> */}
+        { /*<ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
-        <ProtectedRoute path='/pending' exact={true} >
-          <Pending />
+        <ProtectedRoute path='/new-payment' exact={true} >
+          <OnePaymentNew />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <Transactions />
+        <ProtectedRoute path='/transactions/:approved_id' exact={true} >
+          <OneApproved />
+        </ProtectedRoute>
+        <ProtectedRoute path='/pending/:pending_id' exact={true} >
+          <OnePending />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -4,22 +4,22 @@ from backend.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        first_name='DemoOne',
-        last_name='DemoOne',
+        first_name='Demo',
+        last_name='User',
         avatar_id=1,
         email='demoone@aa.io',
         password='password')
     user1 = User(
-        first_name='DemoTwo',
-        last_name='DemoTwo',
+        first_name='Daniel',
+        last_name='Blanco',
         avatar_id=2,
-        email='demotwo@aa.io',
+        email='daniel@aa.io',
         password='password')
     user2 = User(
-        first_name='DemoThree',
-        last_name='DemoThree',
+        first_name='Brad',
+        last_name='Simpson',
         avatar_id=3,
-        email='demothree@aa.io',
+        email='simpson@aa.io',
         password='password')
 
 

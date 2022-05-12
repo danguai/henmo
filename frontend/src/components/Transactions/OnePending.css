@@ -1,0 +1,15 @@
+.displayed__pay__funds {
+    display: block;
+}
+
+.not__displayed__pay__funds {
+    display: none;
+}
+
+.displayed__message {
+    display: block;
+}
+
+.not__displayed__message {
+    display: none;
+}
