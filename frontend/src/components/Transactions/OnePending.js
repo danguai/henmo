@@ -57,8 +57,8 @@ const OnePending = () => {
 
         const updatedTran = await dispatch(updateOutgoing(oneTran, pending_id));
         console.log('UPDATED TRANSACTION: ', updatedTran);
-        // setMessageDisplay('displayed__message');
-        // setMessageInputDisplay('not__displayed__message');
+        setMessageDisplay('displayed__message');
+        setMessageInputDisplay('not__displayed__message');
         // history.push('/pending');
         setNewMessage('');
     };
@@ -106,7 +106,7 @@ const OnePending = () => {
         setNewMessage(pendingTran.message);
     };
 
-    const approvePayment = () => { };
+    // const approvePayment = () => { };
 
     if (!pendingTran) {
         if (isLoaded) {
@@ -133,17 +133,25 @@ const OnePending = () => {
                 <div>
                     To
                     <span>
-                        (Need to Add Logic)
+                        (IT WILL BE NAME)
                     </span>
                     {pendingTran.receiver_id}
                 </div>
                 <div>
                     Chickens {pendingTran.pay_funds}
                 </div>
-                <div>
+                <div className={`${messageDisplay}`}>
+                    <button
+                        onClick={messageAndInputDisplay}
+                        className=''>
+                        Edit
+                    </button>
+                </div>
+                <div
+                    onClick={messageAndInputDisplay}>
                     Message {pendingTran.message}
                 </div>
-                <div>
+                <div className={`${messageInputDisplay}`}>
                     <div className='edit__content__position'>
                         <div>
                             <input
@@ -167,16 +175,17 @@ const OnePending = () => {
                         </div>
                     </div>
                 </div>
+
                 {/* <div>
                     (TEMP) PENDING
                 </div> */}
-                <div className=''>
+                {/* <div className=''>
                     <button
                         id=''
                         className=''
                         onClick={approvePayment}
                     >Approve Payment</button>
-                </div>
+                </div> */}
                 <div className=''>
                     <button
                         id=''
