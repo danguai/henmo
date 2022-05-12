@@ -220,6 +220,16 @@ const OnePending = () => {
                 {/* <div>
                     (TEMP) PENDING
                 </div> */}
+                {/* <div>PAID?
+                    <input
+                        className=''
+                        name='paid'
+                        type='checkbox'
+                        value={paid}
+                        // checked={paid}
+                        onChange={switchPaid}
+                    />
+                </div> */}
                 <div className=''>
                     <button
                         id=''

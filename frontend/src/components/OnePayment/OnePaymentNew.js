@@ -82,16 +82,6 @@ const OnePaymentNew = () => {
                             onChange={addFunds}
                         />
                     </div>
-                    <div>PAID?
-                        <input
-                            className=''
-                            name='paid'
-                            type='checkbox'
-                            value={paid}
-                            // checked={paid}
-                            onChange={switchPaid}
-                        />
-                    </div>
                     <div className="result">
                         {/* Above checkbox is {paid ? "true" : "false"}. */}
                     </div>
