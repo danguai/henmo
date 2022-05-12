@@ -29,7 +29,7 @@ const AllApproved = () => {
         }
     });
 
-    console.log(approved);
+    approved.sort((a, b) => b.id - a.id);
 
     useEffect(() => {
         dispatch(readAllOutgoings());

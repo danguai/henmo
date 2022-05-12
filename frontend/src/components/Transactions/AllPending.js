@@ -27,7 +27,7 @@ const AllPending = () => {
         }
     });
 
-    console.log(approved);
+    pending.sort((a, b) => b.id - a.id);
 
     useEffect(() => {
         dispatch(readAllOutgoings());
