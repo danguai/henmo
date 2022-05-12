@@ -31,11 +31,10 @@
     align-items: center;
 }
 
-.temp__box__user {
+.avatar__box__user {
     margin: 10px;
     width: 100px;
     height: 100px;
-    border: 1px black solid;
 }
 
 .pay__btn__size {

@@ -1,10 +1,60 @@
 .approved__tran__container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin: 40px;
     align-items: center;
     width: 500px;
     height: 600px;
     background-color: var(--white);
     border: 1px var(--blue-texts) solid;
+}
+
+.approved__tran__text {
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.approved__tran__number {
+    font-weight: 800;
+    font-size: 40px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.to__user {
+    display: flex;
+}
+
+.back__btn {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blue-texts);
+    position: relative;
+    left: -220px;
+    margin-top: 40px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back__btn:hover {
+    color: var(--rollover-color);
+    cursor: pointer;
+}
+
+.approved__amount {
+    display: flex;
+}
+
+.approved__message {
+    display: flex;
+    margin-bottom: 40px;
 }

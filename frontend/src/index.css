@@ -70,6 +70,20 @@ ul {
     border: var(--main-orange) 1px solid;
 }
 
+.blue__button__basic {
+    color: var(--white);
+    background-color: var(--blue-texts);
+    border: none;
+    transition: .2s;
+}
+
+.blue__button__basic:hover {
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+    background-color: var(--white);
+    border: var(--blue-texts) 1px solid;
+}
+
 .white__button__basic {
     color: var(--main-red);
     background-color: var(--white);

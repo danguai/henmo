@@ -29,12 +29,16 @@ const OneApproved = ({ closeModal }) => {
     if (!approvedTran) return null;
 
     return (
-        <div
-            className='transactions__container' >
-            <div className='pending__tran__container' >
-                <div className='pending__tran__text'>
+        <div className='transactions__container' >
+            <Link to='/'
+                className='back__btn'
+            >
+                BACK
+            </Link>
+            <div className='approved__tran__container' >
+                <div className='approved__tran__text'>
                     Transaction #
-                    <span className='pending__tran__number'>
+                    <span className='approved__tran__number'>
                         {approvedTran.id}
                     </span>
                 </div>
@@ -50,17 +54,21 @@ const OneApproved = ({ closeModal }) => {
                     </span>
                     <User id={approvedTran?.receiver_id} />
                 </div>
-                <div>
-                    <span>
+                <div className='approved__amount'>
+                    <div>
                         Chickens
-                    </span>
-                    {approvedTran.pay_funds}
+                    </div>
+                    <div>
+                        {approvedTran.pay_funds}
+                    </div>
                 </div>
-                <div>
-                    <span>
+                <div className='approved__message'>
+                    <div>
                         Message
-                    </span>
-                    {approvedTran.message}
+                    </div>
+                    <div>
+                        {approvedTran.message}
+                    </div>
                 </div>
             </div>
         </div >

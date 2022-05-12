@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
-import UserIcon from '../UserIcons/UserIcons';
+import { UserIcon } from '../UserIcons/UserIcons';
 import LogoutButton from '../auth/LogoutButton';
 
 import './NavBar.css';
@@ -38,8 +38,8 @@ const NavBar = () => {
           <img src='/static/henmo-logo.png' alt='henmo-logo' />
         </li>
         <li className='avatar__and__name'>
-          <div className='temp__box__user'>
-            {/* <UserIcon /> */}
+          <div className='avatar__box__user'>
+            <UserIcon size={100} />
           </div>
           <div className='user__name__display'>
             Hi, {sessionUser.first_name}

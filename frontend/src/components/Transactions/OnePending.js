@@ -132,7 +132,12 @@ const OnePending = () => {
             onClick={stopTheProp}
             onMouseDown={stopTheProp}
         >
-            <div className='approved__tran__container' >
+            <Link to='/pending'
+                className='back__btn'
+            >
+                BACK
+            </Link>
+            <div className='pending__tran__container' >
                 <div className='pending__tran__text'>
                     Transaction #
                     <span className='pending__tran__number'>
@@ -238,21 +243,21 @@ const OnePending = () => {
                         </div>
                     </div>
                 </div>
+                <div className='pending__approve__delete'>
+                    <div className=''>
+                        <button
 
-                <div className=''>
-                    <button
-                        id=''
-                        className=''
-                        onMouseDown={approvePayment}
-                        onMouseUp={updatePending}
-                    >Approve Payment</button>
-                </div>
-                <div className=''>
-                    <button
-                        id=''
-                        className=''
-                        onClick={() => deletePending(pendingTran)}
-                    >Delete Payment</button>
+                            className='red__button__basic approve__btn__size'
+                            onMouseDown={approvePayment}
+                            onMouseUp={updatePending}
+                        >Approve</button>
+                    </div>
+                    <div className='pending__approve__delete'>
+                        <button
+                            className='blue__button__basic approve__btn__size'
+                            onClick={() => deletePending(pendingTran)}
+                        >Delete</button>
+                    </div>
                 </div>
             </div>
         </div>
