@@ -6,10 +6,10 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Splashpage from './components/Splashpage/Splashpage';
 import NavBar from './components/NavBar/NavBar';
-import Transactions from './components/Transactions/Transactions';
-import ApprovedTran from './components/Transactions/ApprovedTran';
-import Pending from './components/Pending/Pending';
-import PendingTran from './components/Pending/PendingTran';
+import AllApproved from './components/Transactions/AllApproved';
+import OneApproved from './components/Transactions/OneApproved';
+import AllPending from './components/Transactions/AllPending';
+import OnePending from './components/Transactions/OnePending';
 
 import OnePaymentNew from './components/OnePayment/OnePaymentNew';
 import OnePaymentWithEdit from './components/OnePayment/OneApprovedWithEdit';
@@ -50,10 +50,10 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/' exact={true} >
-          <Transactions />
+          <AllApproved />
         </ProtectedRoute>
         <ProtectedRoute path='/pending' exact={true} >
-          <Pending />
+          <AllPending />
         </ProtectedRoute>
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList />
@@ -65,10 +65,10 @@ function App() {
           <OnePaymentNew />
         </ProtectedRoute>
         <ProtectedRoute path='/transactions/:approved_id' exact={true} >
-          <ApprovedTran />
+          <OneApproved />
         </ProtectedRoute>
         <ProtectedRoute path='/pending/:pending_id' exact={true} >
-          <PendingTran />
+          <OnePending />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

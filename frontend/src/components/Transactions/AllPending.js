@@ -7,9 +7,9 @@ import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 // import { NavLink } from 'react-router-dom';
 
 
-import './Pending.css';
+import './AllPending.css';
 
-const Pending = () => {
+const AllPending = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -77,4 +77,4 @@ const Pending = () => {
     );
 }
 
-export default Pending;
+export default AllPending;

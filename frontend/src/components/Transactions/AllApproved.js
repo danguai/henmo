@@ -9,9 +9,9 @@ import { UserIcon } from '../UserIcons/UserIcons';
 // import { NavLink } from 'react-router-dom';
 
 
-import './Transactions.css';
+import './AllApproved.css';
 
-const Transactions = () => {
+const AllApproved = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -79,4 +79,4 @@ const Transactions = () => {
     );
 }
 
-export default Transactions;
+export default AllApproved;

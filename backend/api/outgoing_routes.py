@@ -41,7 +41,7 @@ def read_all_outgoings():
 
 # R E A D   O N E   O U T G O I N G
 @outgoing_routes.route('/<int:id>', methods = [ 'GET' ])
-@login_required
+# @login_required
 def read_one_outgoing(id):
     outgoing = Outgoing.query.get(id)
 
@@ -50,18 +50,15 @@ def read_one_outgoing(id):
 
 # U P D A T E   O U T G O I N G
 @outgoing_routes.route('/<int:id>', methods = [ 'PUT' ])
+@login_required
 def update_outgoing(id):
     outgoing = Outgoing.query.get(id)
 
-    receiver_id = request.json['receiver_id']
-    pay_funds = request.json['pay_funds']
-    message = request.json['message']
-    paid = request.json['paid']
-
-    outgoing.receiver_id = receiver_id
-    outgoing.pay_funds = pay_funds
-    outgoing.message = message
-    outgoing.paid = paid
+    outgoing.payer_id = request.json['payer_id']
+    outgoing.receiver_id = request.json['receiver_id']
+    outgoing.pay_funds = request.json['pay_funds']
+    outgoing.message = request.json['message']
+    outgoing.paid = request.json['paid']
 
     db.session.commit()
     return outgoing.to_dict()
