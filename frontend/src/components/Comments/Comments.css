@@ -17,7 +17,22 @@
     height: 40px;
     margin: 5px;
     border: 1px var(--blue-texts) solid;
+}
 
+.next__comment {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 490px;
+    height: auto;
+    margin: 5px;
+    border: 1px var(--blue-texts) solid;
+}
+
+textarea {
+    width: 100%;
+    height: 30px;
+    resize: vertical;
 }
 
 .approved__comment__title {
@@ -32,6 +47,6 @@
     margin-bottom: 10px;
 }
 
-.user__comment {
+.comments__image__users {
     margin: 5px;
 }
