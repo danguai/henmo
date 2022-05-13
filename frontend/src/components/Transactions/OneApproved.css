@@ -1,13 +1,20 @@
 .approved__tran__container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: flex-start;
     margin-top: 40px;
-    align-items: center;
-    width: 500px;
-    height: 500px;
+    padding: 40px;
+    width: 420px;
+    height: auto;
     background-color: var(--white);
     border: 1px var(--blue-texts) solid;
+}
+
+.approved__tran__text__and__number {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
 }
 
 .approved__tran__text {
@@ -15,8 +22,6 @@
     font-size: 30px;
     letter-spacing: 4px;
     color: var(--blue-texts);
-
-    margin-top: 40px;
     margin-bottom: 10px;
 }
 
@@ -24,14 +29,98 @@
     font-weight: 800;
     font-size: 40px;
     letter-spacing: 4px;
-    color: var(--blue-texts);
+    color: var(--main-red);
+    margin-left: 20px;
+    margin-bottom: 7px;
+}
 
-    margin-top: 40px;
+.approved__tran__from__and__name {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 10px;
 }
 
-.to__user {
+.approved__tran__from {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+}
+
+.approved__tran__name {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+}
+
+.approved__tran__to__and__user {
     display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.approved__tran__to {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+}
+
+.approved__tran__user__name {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+}
+
+.approved__tran__user__email {
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+}
+
+.approved__tran__chickens__and__amount {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.approved__tran__chickens {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--selected-color);
+    margin-bottom: 8px;
+}
+
+.approved__tran__amount {
+    font-weight: 800;
+    font-size: 36px;
+    letter-spacing: 4px;
+    color: var(--selected-color);
+    margin-left: 10px;
+    margin-bottom: 4px;
+}
+
+.approved__tran__message__and__message {
+    display: flex;
+    flex-direction: column;
+}
+
+.approved__tran__message__title {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--blue-texts);
+}
+
+.approved__tran__message__content {
+    font-weight: 800;
+    font-size: 16px;
+    /* letter-spacing: 4px; */
+    color: var(--blue-texts);
 }
 
 .back__btn {

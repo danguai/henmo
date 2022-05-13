@@ -103,7 +103,7 @@ const CommentWithEdit = ({ comment }) => {
                     <div className='comment__edit__del'>
                         <button
                             onClick={commentsAndInputDisplay}
-                            className='red__button__v2 comment__E__D__btn__size'>
+                            className='white__button__v2 comment__E__D__btn__size'>
                             EDIT
                         </button>
                         <button

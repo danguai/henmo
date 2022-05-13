@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-function User({ id }) {
+function User_Name_Email({ id }) {
   const [user, setUser] = useState({});
-  const { userId } = useParams();
 
   useEffect(() => {
     if (!id) {
@@ -16,19 +15,17 @@ function User({ id }) {
     })();
   }, [id]);
 
-  if (!user) {
-    return null;
-  }
+  if (!user) return null;
 
   return (
     <div className='user__first__last__name__email'>
-      <div>
-        {user.last_name} {user.first_name}
+      <div className='approved__tran__user__name'>
+        {`${user?.last_name}, ${user?.first_name}`}
       </div>
-      <div>
-        {user.email}
+      <div className='approved__tran__user__email'>
+        {user?.email}
       </div>
     </div >
   );
 }
-export default User;
+export default User_Name_Email;

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 
-import User from '../Users/User';
+import User_Name_Email from '../Users/User_Name_and_Email';
 
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 import Comments from '../Comments/Comments';
@@ -33,39 +33,43 @@ const OneApproved = () => {
             >
                 BACK
             </Link>
-            <div className='approved__tran__container' >
-                <div className='approved__tran__text'>
-                    Transaction #
-                    <span className='approved__tran__number'>
-                        {approvedTran.id}
-                    </span>
+            <div className='approved__tran__container'>
+                <div className='approved__tran__text__and__number'>
+                    <div className='approved__tran__text'>
+                        Transaction
+                    </div>
+                    <div className='approved__tran__number'>
+                        {`#${approvedTran.id}`}
+                    </div>
                 </div>
-                <div>
-                    <span>
+                <div className='approved__tran__from__and__name'>
+                    <div className='approved__tran__from'>
                         From
-                    </span>
-                    {sessionUser.last_name}, {sessionUser.first_name}
+                    </div>
+                    <div className='approved__tran__name'>
+                        {`${sessionUser.last_name}, ${sessionUser.first_name}`}
+                    </div>
                 </div>
-                <div className='to__user'>
-                    <span>
+                <div className='approved__tran__to__and__user'>
+                    <div className='approved__tran__to'>
                         To
-                    </span>
-                    <User id={approvedTran?.receiver_id} />
+                    </div>
+                    <User_Name_Email id={approvedTran?.receiver_id} />
                 </div>
-                <div className='approved__amount'>
-                    <div>
+                <div className='approved__tran__chickens__and__amount'>
+                    <div className='approved__tran__chickens'>
                         Chickens
                     </div>
-                    <div>
-                        {approvedTran.pay_funds}
+                    <div className='approved__tran__amount'>
+                        {approvedTran?.pay_funds}
                     </div>
                 </div>
-                <div className='approved__message'>
-                    <div>
+                <div className='approved__tran__message__and__message'>
+                    <div className='approved__tran__message__title'>
                         Message
                     </div>
-                    <div>
-                        {approvedTran.message}
+                    <div className='approved__tran__message__content'>
+                        {approvedTran?.message}
                     </div>
                 </div>
             </div>

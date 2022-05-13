@@ -6,7 +6,6 @@ import { Link, NavLink, useHistory } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 import { UserIcon } from '../UserIcons/UserIcons';
-import User from '../Users/User';
 
 
 // import { NavLink } from 'react-router-dom';
@@ -57,7 +56,7 @@ const AllApproved = () => {
                                         <span className='receiver__name'>
                                         </span>
                                     </div>
-                                    <div>
+                                    <div className='message__preview'>
                                         {paid.message}
                                     </div>
                                 </div>
