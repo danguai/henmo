@@ -13,6 +13,8 @@ import OnePending from './components/Transactions/OnePending';
 
 import OnePaymentNew from './components/OnePayment/OnePaymentNew';
 
+// import AddComments from './components/Comments/AddComment';
+
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/Users/UsersList';
 import User from './components/Users/User';

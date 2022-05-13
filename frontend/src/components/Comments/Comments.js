@@ -8,6 +8,9 @@ import { createComment, readAllComments, updateComment, deleteComment } from '..
 import { UserIcon } from '../UserIcons/UserIcons';
 import User from '../Users/User';
 
+import AddComment from './NewComment';
+import EditComment from './EditComment';
+
 
 // import { NavLink } from 'react-router-dom';
 import './Comments.css';
@@ -25,6 +28,7 @@ const Comments = ({ approvedTran }) => {
     const [commentsInputDisplay, setCommentsInputDisplay] = useState('not__displayed__comments');
 
     const theseComments = [];
+
     Object.values(allComments).forEach(comment => {
         if (comment?.outgoing_id === approvedTran?.id) {
             theseComments.push(comment)
@@ -40,45 +44,13 @@ const Comments = ({ approvedTran }) => {
             message
         };
         createdComment = await dispatch(createComment(newComment));
-        setMessage('');
-    };
-
-    const [editMessage, setEditMessage] = useState(createComment.message);
-
-
-    const editedComment = async () => {
-        let editComment = {
-            id: createdComment?.id,
-            user_id: createdComment?.user_id,
-            outgoing_id: createdComment?.outgoing_id,
-            message: editMessage
-        };
-        const updatedComment = await dispatch(updateComment(editComment, editComment.id));
-
+        // setMessage('');
     };
 
     const removeComment = async (comment) => {
         await dispatch(deleteComment(comment));
-    }
+    };
 
-    const commentsAndInputDisplay = () => {
-        if (commentsDisplay === 'displayed__comments') {
-            setCommentsDisplay('not__displayed__comments');
-            setCommentsInputDisplay('displayed__comments');
-        } else {
-            setCommentsDisplay('displayed__comments');
-            setCommentsInputDisplay('not__displayed__comments');
-        }
-
-        if (commentsInputDisplay === 'not__displayed__comments') {
-            setCommentsDisplay('not__displayed__comments');
-            setCommentsInputDisplay('displayed__comments');
-        } else {
-            setCommentsDisplay('displayed__comments');
-            setCommentsInputDisplay('not__displayed__comments');
-        }
-        setEditMessage(createdComment.message);
-    }
     useEffect(() => {
         dispatch(readAllComments());
     }, [dispatch]);
@@ -96,70 +68,49 @@ const Comments = ({ approvedTran }) => {
             >
                 COMMENTS
             </div>
-            <div className='next__comment'>
-                <div className='comments__image__users'>
-                    <UserIcon size={30} isNavIcon={true} />
-                </div>
-                <textarea
-                    className='textarea__input__comments'
-                    type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                // placeholder='Add a comment...'
-                />
-                <div className='add__cancel__comments'>
-                    {/* {cardOwner && */}
-                    <button
-                        onClick={addComment}
-                        className=''>
-                        Add Comment
-                    </button>
-
-                </div>
+            <div>
+                <AddComment approvedTran={approvedTran} />
             </div>
             <div>
                 {theseComments.map((comment, i) =>
-                    <div className='comment__box' key={i}>
-                        <div className='comments__image__users'>
-                            <UserIcon id={comment.user_id} />
-                        </div>
-                        <div className={`${commentsDisplay}`}>
-                            <div>
-                                {comment.message}
-                            </div>
-
-                            <div className='por__ahora' >
-                                {comment.user_id === sessionUser?.id &&
-                                    <div>
-                                        {/* <div>
-                                            <input
-                                                type="text"
-                                                value={editMessage}
-                                                onChange={(e) => setEditMessage(e.target.value)}
-                                            // className="content__input"
-                                            ></input>
-                                        </div>
-                                        <div className='comment__edit'>
-                                            <button
-                                                className='red__button__basic comment__btn__size'
-                                                onClick={() => editedComment(comment)}
-                                            >
-                                                SAVE
-                                            </button>
-                                        </div> */}
-                                        <div className='comment__delete'>
-                                            <button
-                                                className='blue__button__basic comment__btn__size'
-                                                onClick={() => removeComment(comment)}
-                                            >
-                                                DELETE
-                                            </button>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                    <div>
+                        <EditComment comment={comment} />
                     </div>
+
+                    // <div className='comment__box' key={i}>
+                    //     <div>
+                    //         <div className=''>
+                    //             <div>
+                    //                 <div className='comment__user__message'>
+                    //                     <div className='comments__image__users'>
+                    //                         <UserIcon id={comment.user_id} />
+                    //                     </div>
+                    //                     <div
+                    //                         className='comment__display'
+                    //                     // onClick={commentsAndInputDisplay}
+                    //                     >
+                    //                         {comment.message}
+                    //                     </div>
+                    //                 </div>
+                    //             </div>
+                    //             <div >
+                    //                 <div className='comment__edit__del'>
+                    //                     <button
+                    //                         // onClick={commentsAndInputDisplay}
+                    //                         className='red__button__basic comment__btn__size'>
+                    //                         EDIT
+                    //                     </button>
+                    //                     <button
+                    //                         className='blue__button__basic comment__btn__size'
+                    //                         onClick={() => removeComment(comment)}
+                    //                     >
+                    //                         DELETE
+                    //                     </button>
+                    //                 </div>
+                    //             </div>
+                    //         </div>
+                    //     </div>
+                    // </div>
                 )}
             </div>
         </div>

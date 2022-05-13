@@ -13,9 +13,9 @@
 .comment__box {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     width: 490px;
-    height: 100px;
+    height: auto;
     margin: 5px;
     border: 1px var(--blue-texts) solid;
 }
@@ -30,8 +30,35 @@
     border: 1px var(--blue-texts) solid;
 }
 
+.comment__horizontal {
+    display: flex;
+    /* justify-content: space-between;
+    align-items: flex-start; */
+}
+
+.comment__display {
+    /* width: 370px; */
+}
+
+.comment__user__message {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.comment__edit__del {
+    display: flex;
+    /* flex-direction: column; */
+    margin: 5px 0;
+}
+
+.comment__btn__size {
+    width: 100px;
+    margin-left: 5px;
+}
+
 .por__ahora {
     display: flex;
+
 }
 
 textarea {
