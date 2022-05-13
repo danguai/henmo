@@ -42,13 +42,11 @@ const AddComment = ({ approvedTran }) => {
                 // placeholder='Add a comment...'
                 />
                 <div className='add__cancel__comments'>
-                    {/* {cardOwner && */}
                     <button
                         onClick={addComment}
-                        className=''>
-                        Add Comment
+                        className='red__button__v2 comment__add__btn__size'>
+                        ADD
                     </button>
-
                 </div>
             </div>
 

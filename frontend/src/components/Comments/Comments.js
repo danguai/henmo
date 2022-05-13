@@ -9,7 +9,7 @@ import { UserIcon } from '../UserIcons/UserIcons';
 import User from '../Users/User';
 
 import AddComment from './NewComment';
-import EditComment from './EditComment';
+import CommentWithEdit from './CommentWithEdit';
 
 
 // import { NavLink } from 'react-router-dom';
@@ -73,44 +73,9 @@ const Comments = ({ approvedTran }) => {
             </div>
             <div>
                 {theseComments.map((comment, i) =>
-                    <div>
-                        <EditComment comment={comment} />
+                    <div key={i}>
+                        <CommentWithEdit comment={comment} />
                     </div>
-
-                    // <div className='comment__box' key={i}>
-                    //     <div>
-                    //         <div className=''>
-                    //             <div>
-                    //                 <div className='comment__user__message'>
-                    //                     <div className='comments__image__users'>
-                    //                         <UserIcon id={comment.user_id} />
-                    //                     </div>
-                    //                     <div
-                    //                         className='comment__display'
-                    //                     // onClick={commentsAndInputDisplay}
-                    //                     >
-                    //                         {comment.message}
-                    //                     </div>
-                    //                 </div>
-                    //             </div>
-                    //             <div >
-                    //                 <div className='comment__edit__del'>
-                    //                     <button
-                    //                         // onClick={commentsAndInputDisplay}
-                    //                         className='red__button__basic comment__btn__size'>
-                    //                         EDIT
-                    //                     </button>
-                    //                     <button
-                    //                         className='blue__button__basic comment__btn__size'
-                    //                         onClick={() => removeComment(comment)}
-                    //                     >
-                    //                         DELETE
-                    //                     </button>
-                    //                 </div>
-                    //             </div>
-                    //         </div>
-                    //     </div>
-                    // </div>
                 )}
             </div>
         </div>

@@ -8,7 +8,7 @@ import { UserIcon } from '../UserIcons/UserIcons';
 import './Comments.css';
 
 
-const EditComment = ({ comment }) => {
+const CommentWithEdit = ({ comment }) => {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector(state => state.session?.user);
@@ -57,10 +57,12 @@ const EditComment = ({ comment }) => {
         dispatch(readAllComments());
     }, [dispatch]);
 
+    const isOwnerOfComment = comment.user_id === sessionUser?.id;
+
     const stopTheProp = e => e.stopPropagation();
 
     return (
-        <div>
+        <div className='comment__box'>
             <div className='comment__user__message'>
                 <div className='comments__image__users'>
                     <UserIcon id={comment.user_id} />
@@ -73,54 +75,54 @@ const EditComment = ({ comment }) => {
                         {comment.message}
                     </div>
                 </div>
-            </div>
-            <div className={`${commentsDisplay}`} >
-                <div className='comment__edit__del'>
-                    <button
-                        onClick={commentsAndInputDisplay}
-                        className='red__button__basic comment__btn__size'>
-                        EDIT
-                    </button>
-                    <button
-                        className='blue__button__basic comment__btn__size'
-                        onClick={() => removeComment(comment)}
-                    >
-                        DELETE
-                    </button>
-                </div>
-            </div>
-            <div>
-                {comment.user_id === sessionUser?.id &&
-                    <div className='por__ahora' >
-                        <div className={`${commentsInputDisplay}`}>
+                <div>
+                    {isOwnerOfComment &&
+                        <div>
                             <div>
-                                <input
-                                    type="text"
-                                    value={editMessage}
-                                    onChange={(e) => setEditMessage(e.target.value)}
-                                // className="content__input"
-                                ></input>
+                                <div className={`${commentsInputDisplay}`}>
+                                    <input
+                                        type="text"
+                                        value={editMessage}
+                                        onChange={(e) => setEditMessage(e.target.value)}
+                                        className="content__input"
+                                    ></input>
+                                    <div className='comment__edit__del'>
+                                        <button
+                                            className='red__button__v2 comment__btn__size'
+                                            onClick={() => editedComment(comment)}
+                                        >
+                                            UPDATE
+                                        </button>
+                                        <button
+                                            className='white__button__v2 comment__btn__size'
+                                            onClick={commentsAndInputDisplay}
+                                        >
+                                            CANCEL
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div className='comment__edit__del'>
-                                <button
-                                    className='red__button__basic comment__btn__size'
-                                    onClick={() => editedComment(comment)}
-                                >
-                                    UPDATE
-                                </button>
-                                <button
-                                    className='red__button__basic comment__btn__size'
-                                    onClick={commentsAndInputDisplay}
-                                >
-                                    CANCEL
-                                </button>
+                            <div className={`${commentsDisplay}`} >
+                                <div className='comment__edit__del'>
+                                    <button
+                                        onClick={commentsAndInputDisplay}
+                                        className='red__button__v2 comment__btn__size'>
+                                        EDIT
+                                    </button>
+                                    <button
+                                        className='blue__button__v2 comment__btn__size'
+                                        onClick={() => removeComment(comment)}
+                                    >
+                                        DELETE
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
     )
 };
 
-export default EditComment;
+export default CommentWithEdit;

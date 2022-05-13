@@ -56,6 +56,11 @@
     margin-left: 5px;
 }
 
+.comment__add__btn__size {
+    width: 70px;
+    margin: 5px;
+}
+
 .por__ahora {
     display: flex;
 
