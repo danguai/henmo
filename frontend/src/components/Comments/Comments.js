@@ -20,7 +20,7 @@ const Comments = ({ approvedTran }) => {
     const allComments = useSelector(state => state.comment);
 
     const [message, setMessage] = useState('');
-    // const [editMessage, setEditMessage] = useState(message);
+    const [editMessage, setEditMessage] = useState(message);
 
     const theseComments = [];
     Object.values(allComments).forEach(comment => {
@@ -29,14 +29,27 @@ const Comments = ({ approvedTran }) => {
         }
     });
 
+    let createdComment;
+
     const addComment = async () => {
         const newComment = {
             user_id: sessionUser.id,
             outgoing_id: approvedTran.id,
             message
         };
-        await dispatch(createComment(newComment));
+        createdComment = await dispatch(createComment(newComment));
         setMessage('');
+    };
+
+    const updateComment = async () => {
+        let editComment = {
+            id: createdComment?.id,
+            user_id: createdComment?.user_id,
+            outgoing_id: createdComment?.outgoing_id,
+            message: editMessage
+        };
+        const updatedComment = await dispatch(updateComment(editComment));
+
     };
 
     const removeComment = async (comment) => {
@@ -63,7 +76,7 @@ const Comments = ({ approvedTran }) => {
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder='Add a comment...'
+                // placeholder='Add a comment...'
                 />
                 <div className='add__cancel__comments'>
                     {/* {cardOwner && */}
@@ -84,13 +97,30 @@ const Comments = ({ approvedTran }) => {
                         <div>
                             {comment.message}
                         </div>
-                        {comment.user_id === sessionUser?.id &&
-                            <button
-                                onClick={() => removeComment(comment)}
-                            >
-                                DELETE
-                            </button>
-                        }
+                        <div className='por__ahora' >
+                            {/* <div>
+                                <input
+                                    type="text"
+                                    value={editMessage}
+                                    onChange={(e) => setEditMessage(e.target.value)}
+                                // className="content__input"
+                                ></input>
+                            </div> */}
+                            {comment.user_id === sessionUser?.id &&
+                                <div>
+                                    <button
+                                        onClick={() => updateComment(comment)}
+                                    >
+                                        EDIT
+                                    </button>
+                                    <button
+                                        onClick={() => removeComment(comment)}
+                                    >
+                                        DELETE
+                                    </button>
+                                </div>
+                            }
+                        </div>
                     </div>
                 )}
             </div>

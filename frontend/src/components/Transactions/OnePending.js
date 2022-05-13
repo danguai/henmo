@@ -56,7 +56,7 @@ const OnePending = () => {
         };
 
         const updatedTran = await dispatch(updateOutgoing(oneTran, pending_id));
-        console.log('UPDATED TRANSACTION: ', updatedTran);
+        // console.log('UPDATED TRANSACTION: ', updatedTran);
         setMessageDisplay('displayed__message');
         setMessageInputDisplay('not__displayed__message');
         setPayFundsDisplay('displayed__pay__funds');
