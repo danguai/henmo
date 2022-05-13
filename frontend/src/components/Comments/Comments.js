@@ -20,7 +20,9 @@ const Comments = ({ approvedTran }) => {
     const allComments = useSelector(state => state.comment);
 
     const [message, setMessage] = useState('');
-    const [editMessage, setEditMessage] = useState(message);
+
+    const [commentsDisplay, setCommentsDisplay] = useState('displayed__comments');
+    const [commentsInputDisplay, setCommentsInputDisplay] = useState('not__displayed__comments');
 
     const theseComments = [];
     Object.values(allComments).forEach(comment => {
@@ -41,14 +43,17 @@ const Comments = ({ approvedTran }) => {
         setMessage('');
     };
 
-    const updateComment = async () => {
+    const [editMessage, setEditMessage] = useState(createComment.message);
+
+
+    const editedComment = async () => {
         let editComment = {
             id: createdComment?.id,
             user_id: createdComment?.user_id,
             outgoing_id: createdComment?.outgoing_id,
             message: editMessage
         };
-        const updatedComment = await dispatch(updateComment(editComment));
+        const updatedComment = await dispatch(updateComment(editComment, editComment.id));
 
     };
 
@@ -56,15 +61,39 @@ const Comments = ({ approvedTran }) => {
         await dispatch(deleteComment(comment));
     }
 
+    const commentsAndInputDisplay = () => {
+        if (commentsDisplay === 'displayed__comments') {
+            setCommentsDisplay('not__displayed__comments');
+            setCommentsInputDisplay('displayed__comments');
+        } else {
+            setCommentsDisplay('displayed__comments');
+            setCommentsInputDisplay('not__displayed__comments');
+        }
+
+        if (commentsInputDisplay === 'not__displayed__comments') {
+            setCommentsDisplay('not__displayed__comments');
+            setCommentsInputDisplay('displayed__comments');
+        } else {
+            setCommentsDisplay('displayed__comments');
+            setCommentsInputDisplay('not__displayed__comments');
+        }
+        setEditMessage(createdComment.message);
+    }
     useEffect(() => {
         dispatch(readAllComments());
     }, [dispatch]);
 
     if (!theseComments) return;
 
+    const stopTheProp = e => e.stopPropagation();
+
     return (
         <div>
-            <div className='approved__comment__title'>
+            <div
+                className='approved__comment__title'
+                onClick={stopTheProp}
+                onMouseDown={stopTheProp}
+            >
                 COMMENTS
             </div>
             <div className='next__comment'>
@@ -94,32 +123,41 @@ const Comments = ({ approvedTran }) => {
                         <div className='comments__image__users'>
                             <UserIcon id={comment.user_id} />
                         </div>
-                        <div>
-                            {comment.message}
-                        </div>
-                        <div className='por__ahora' >
-                            {/* <div>
-                                <input
-                                    type="text"
-                                    value={editMessage}
-                                    onChange={(e) => setEditMessage(e.target.value)}
-                                // className="content__input"
-                                ></input>
-                            </div> */}
-                            {comment.user_id === sessionUser?.id &&
-                                <div>
-                                    <button
-                                        onClick={() => updateComment(comment)}
-                                    >
-                                        EDIT
-                                    </button>
-                                    <button
-                                        onClick={() => removeComment(comment)}
-                                    >
-                                        DELETE
-                                    </button>
-                                </div>
-                            }
+                        <div className={`${commentsDisplay}`}>
+                            <div>
+                                {comment.message}
+                            </div>
+
+                            <div className='por__ahora' >
+                                {comment.user_id === sessionUser?.id &&
+                                    <div>
+                                        <div>
+                                            <input
+                                                type="text"
+                                                value={editMessage}
+                                                onChange={(e) => setEditMessage(e.target.value)}
+                                            // className="content__input"
+                                            ></input>
+                                        </div>
+                                        <div className='comment__edit'>
+                                            <button
+                                                className='red__button__basic comment__btn__size'
+                                                onClick={() => editedComment(comment)}
+                                            >
+                                                SAVE
+                                            </button>
+                                        </div>
+                                        <div className='comment__delete'>
+                                            <button
+                                                className='blue__button__basic comment__btn__size'
+                                                onClick={() => removeComment(comment)}
+                                            >
+                                                DELETE
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 )}

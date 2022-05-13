@@ -55,3 +55,11 @@ textarea {
 .comments__image__users {
     margin: 5px;
 }
+
+.displayed__comments {
+    display: block;
+}
+
+.not__displayed__comments {
+    display: none;
+}
