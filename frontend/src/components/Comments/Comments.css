@@ -23,11 +23,20 @@
 .next__comment {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     width: 490px;
     height: auto;
     margin: 5px;
     border: 1px var(--blue-texts) solid;
+}
+
+.edit__comment {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 445px;
+    height: auto;
+    margin-top: 5px;
 }
 
 .comment__horizontal {
@@ -37,7 +46,8 @@
 }
 
 .comment__display {
-    /* width: 370px; */
+    font-size: 14px;
+    color: var(--blue-texts)
 }
 
 .comment__user__message {
@@ -47,13 +57,18 @@
 
 .comment__edit__del {
     display: flex;
-    /* flex-direction: column; */
+    justify-content: space-between;
     margin: 5px 0;
 }
 
-.comment__btn__size {
+.comment__U__C__btn__size {
     width: 100px;
-    margin-left: 5px;
+    /* margin: 0 5px; */
+}
+
+.comment__E__D__btn__size {
+    width: 100px;
+    margin: 0 5px;
 }
 
 .comment__add__btn__size {
@@ -67,9 +82,14 @@
 }
 
 textarea {
+    font-family: 'Open Sans', sans-serif;
     width: 100%;
     height: 30px;
     resize: vertical;
+}
+
+.textarea__add__comment__margin {
+    margin: 5px 0;
 }
 
 .approved__comment__title {

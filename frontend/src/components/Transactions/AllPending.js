@@ -1,18 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { UserIcon } from '../UserIcons/UserIcons';
-import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
-// import { NavLink } from 'react-router-dom';
-
+import { readAllOutgoings } from '../../store/outgoing';
 
 import './AllPending.css';
 
 const AllPending = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
@@ -28,6 +25,7 @@ const AllPending = () => {
         }
     });
 
+    // need to chang this to sort them by create_at
     pending.sort((a, b) => b.id - a.id);
 
     useEffect(() => {

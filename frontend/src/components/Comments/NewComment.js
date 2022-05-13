@@ -1,11 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createComment, readAllComments, updateComment, deleteComment } from '../../store/comment';
+import { createComment } from '../../store/comment';
 import { UserIcon } from '../UserIcons/UserIcons';
-import User from '../Users/User';
-
 
 import './Comments.css';
 
@@ -22,11 +20,9 @@ const AddComment = ({ approvedTran }) => {
             outgoing_id: approvedTran.id,
             message
         };
-        const createdComment = await dispatch(createComment(newComment));
+        await dispatch(createComment(newComment));
         setMessage('');
     };
-
-    const stopTheProp = e => e.stopPropagation();
 
     return (
         <div>
@@ -35,7 +31,7 @@ const AddComment = ({ approvedTran }) => {
                     <UserIcon size={30} isNavIcon={true} />
                 </div>
                 <textarea
-                    className='textarea__input__comments'
+                    className='textarea__add__comment__margin'
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}

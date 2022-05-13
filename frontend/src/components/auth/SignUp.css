@@ -106,8 +106,7 @@
 
 .or {
     font-size: 10px;
-    margin-right: 5px;
-    margin-top: 4px
+    margin: 4px 5px 0 5px;
 }
 
 .link__to__other__auth {

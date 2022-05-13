@@ -4,7 +4,11 @@
     margin: 40px;
     align-items: center;
     width: 500px;
-    height: 600px;
+    height: auto;
     background-color: var(--white);
     border: 1px var(--blue-texts) solid;
+}
+
+.send__btn__margin__bottom {
+    margin-bottom: 30px;
 }

@@ -6,26 +6,26 @@ import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 import User from '../Users/User';
 
 import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
-import { UserIcon } from '../UserIcons/UserIcons';
 import Comments from '../Comments/Comments';
-
-// import { NavLink } from 'react-router-dom';
-
 
 import './OneApproved.css';
 
-const OneApproved = ({ closeModal }) => {
+const OneApproved = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { approved_id } = useParams();
 
     const sessionUser = useSelector(state => state.session?.user);
-    const approvedTran = useSelector(state => state.outgoing[approved_id]);
+    const outgoings = useSelector(state => state.outgoing);
+
+    const approvedTran = outgoings[approved_id];
+
 
     console.log(approvedTran);
     useEffect(() => {
-        dispatch(readOneOutgoing(approved_id));
+        dispatch(readAllOutgoings());
     }, [dispatch]);
+
 
     if (!approvedTran) return null;
 
