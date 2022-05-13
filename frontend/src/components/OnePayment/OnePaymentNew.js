@@ -1,10 +1,9 @@
-import { user } from 'pg/lib/defaults';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-import { createOutgoing } from '../../store/outgoing';
+import { createOutgoing, readAllOutgoings } from '../../store/outgoing';
 
 import './OnePayment.css';
 
@@ -13,6 +12,7 @@ const OnePaymentNew = () => {
     const history = useHistory();
 
     const sessionUser = useSelector(state => state.session?.user);
+    const outgoings = useSelector(state => state.outgoing);
 
     const [users, setUsers] = useState([]);
 
@@ -20,6 +20,10 @@ const OnePaymentNew = () => {
     const [message, setMessage] = useState('');
 
     const [receiver, setReceiver] = useState('');
+
+    useEffect(() => {
+        dispatch(readAllOutgoings());
+    }, [dispatch]);
 
     let receiver_user = users.find(user => user.email === receiver.toLowerCase());
 
@@ -51,9 +55,6 @@ const OnePaymentNew = () => {
         }
         fetchData();
     }, []);
-
-
-    console.log('RECEIVER EMAIL: ', receiver_user);
 
     return (
         <div className='transactions__container'>

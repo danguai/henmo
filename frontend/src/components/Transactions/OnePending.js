@@ -1,15 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
 import User from '../Users/User';
 
-import { updateOutgoing, deleteOutgoing } from '../../store/outgoing';
-// import { UserIcon } from '../UserIcons/UserIcons';
-
-// import { NavLink } from 'react-router-dom';
-
+import { readAllOutgoings, updateOutgoing, deleteOutgoing } from '../../store/outgoing';
 
 import './OnePending.css';
 
@@ -19,50 +15,42 @@ const OnePending = () => {
     const { pending_id } = useParams();
 
     const sessionUser = useSelector(state => state.session?.user);
-    const pendingTran = useSelector(state => state.outgoing[pending_id]);
+    const outgoings = useSelector(state => state.outgoing);
+
+    const pendingTran = outgoings[pending_id];
+
+    useEffect(() => {
+        dispatch(readAllOutgoings());
+    }, [dispatch]);
 
     const [newPayFunds, setNewPayFunds] = useState(pendingTran?.pay_funds);
     const [newMessage, setNewMessage] = useState(pendingTran?.message);
-    const [newPaid, setNewPaid] = useState(false);
-    const [errors, setErrors] = useState([]);
-
+    const [isPaid, setIsPaid] = useState(false);
 
     const [payFundsDisplay, setPayFundsDisplay] = useState('displayed__pay__funds');
     const [payFundsInputDisplay, setPayFundsInputDisplay] = useState('not__displayed__pay__funds');
     const [messageDisplay, setMessageDisplay] = useState('displayed__message');
     const [messageInputDisplay, setMessageInputDisplay] = useState('not__displayed__message');
 
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [showShareModal, setShowShareModal] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false);
-
-
-    // useEffect(() => {
-    //     const func = async () => {
-    //         dispatch(readOneOutgoing(pending_id));
-    //         setIsLoaded(true);
-    //     };
-    //     func();
-    // }, [dispatch, pending_id]);
+    const [errors, setErrors] = useState([]);
 
     const updatePending = async () => {
         let oneTran = {
             id: pendingTran.id,
             message: newMessage,
-            paid: newPaid,
+            paid: isPaid,
             pay_funds: newPayFunds,
             payer_id: pendingTran.payer_id,
             receiver_id: pendingTran.receiver_id
         };
 
         const updatedTran = await dispatch(updateOutgoing(oneTran, pending_id));
-        // console.log('UPDATED TRANSACTION: ', updatedTran);
         setMessageDisplay('displayed__message');
         setMessageInputDisplay('not__displayed__message');
         setPayFundsDisplay('displayed__pay__funds');
         setPayFundsInputDisplay('not__displayed__pay__funds');
 
-        if (newPaid) {
+        if (isPaid) {
             history.push('/');
         }
     };
@@ -111,24 +99,13 @@ const OnePending = () => {
     };
 
     const approvePayment = () => {
-        setNewPaid(!newPaid);
+        setIsPaid(!isPaid);
     };
 
-    if (!pendingTran) {
-        if (isLoaded) {
-            history.push('/pending');
-        }
-        return null;
-    }
-
-    const stopTheProp = e => e.stopPropagation();
+    if (!pendingTran) return null;
 
     return (
-        <div
-            className='transactions__container'
-            onClick={stopTheProp}
-            onMouseDown={stopTheProp}
-        >
+        <div className='transactions__container'>
             <Link to='/pending'
                 className='back__btn'
             >

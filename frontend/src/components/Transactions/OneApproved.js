@@ -20,12 +20,9 @@ const OneApproved = () => {
 
     const approvedTran = outgoings[approved_id];
 
-
-    console.log(approvedTran);
     useEffect(() => {
         dispatch(readAllOutgoings());
     }, [dispatch]);
-
 
     if (!approvedTran) return null;
 
