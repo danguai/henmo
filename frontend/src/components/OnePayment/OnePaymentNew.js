@@ -65,7 +65,7 @@ const OnePaymentNew = () => {
             <div className='approved__payment__container' >
                 <form onSubmit={handleSubmit}>
                     <div className='forms__inputs__format'>
-                        <label className='forms__label'>RECEIVER</label>
+                        <label className='forms__label'>EMAIL</label>
                         <input
                             className='forms__input'
                             name='receiver_name'
