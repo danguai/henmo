@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
 
 import { createOutgoing } from '../../store/outgoing';
 // import { NavLink } from 'react-router-dom';
@@ -17,7 +18,8 @@ const OnePaymentNew = () => {
     const [receiverId, setReceiverId] = useState('');
     const [payFunds, setPayFunds] = useState('');
     const [message, setMessage] = useState('');
-    const [paid, setPaid] = useState(false);
+
+    const [receiver, setReceiver] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,42 +43,47 @@ const OnePaymentNew = () => {
     const addFunds = e => setPayFunds(e.target.value);
     const addReceiver = e => setReceiverId(e.target.value);
 
-    const switchPaid = e => setPaid(!paid);
-
-    console.log('PAID VALUE: ', paid);
-
-
-    // const stopTheProp = e => e.stopPropagation();
 
     return (
-        <div
-            className='transactions__container'
-        // onClick={stopTheProp}
-        // onMouseDown={stopTheProp}
-        >
+        <div className='transactions__container'>
+            <Link to='/'
+                className='back__btn'
+            >
+                BACK
+            </Link>
             <div className='approved__payment__container' >
                 <form onSubmit={handleSubmit}>
-                    <div>WHO
+                    <div className='forms__inputs__format'>
+                        <label className='forms__label'>RECEIVER</label>
                         <input
-                            className=''
+                            className='forms__input'
                             name='receiver'
                             type='number'
                             value={receiverId}
                             onChange={addReceiver}
                         />
+                        {/* <input
+                            className='forms__input'
+                            name='receiver'
+                            type='text'
+                            value={receiverId}
+                            onChange={addReceiver}
+                        /> */}
                     </div>
-                    <div>MESSAGE
+                    <div className='forms__inputs__format'>
+                        <label className='forms__label'>MESSAGE</label>
                         <input
-                            className=''
+                            className='forms__input'
                             name='message'
                             type='text'
                             value={message}
                             onChange={addMessage}
                         />
                     </div>
-                    <div>AMOUNT
+                    <div className='forms__inputs__format' >
+                        <label className='forms__label'>AMOUNT</label>
                         <input
-                            className=''
+                            className='forms__input'
                             name='amount'
                             type='number'
                             value={payFunds}
@@ -87,7 +94,7 @@ const OnePaymentNew = () => {
                         {/* Above checkbox is {paid ? "true" : "false"}. */}
                     </div>
                     <div>
-                        <button type='submit'>
+                        <button className='red__button__basic login__btn__size send__btn__margin__bottom' type='submit'>
                             SEND
                         </button>
                     </div>

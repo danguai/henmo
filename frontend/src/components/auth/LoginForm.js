@@ -86,8 +86,10 @@ const LoginForm = () => {
           </div>
           <div className='login__or__signup'>
             <button className='red__button__basic login__btn__size' type='submit'>LOG IN</button>
-            {/* <button className='white__button__basic login__btn__size' onClick={demoLogin}>DEMO USER</button> */}
             <div className='or__signup'>
+              <div>
+                <Link className='link__to__other__auth' to='/home'>BACK</Link>
+              </div>
               <div className='or'>
                 OR
               </div>

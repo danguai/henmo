@@ -78,6 +78,20 @@ ul {
 }
 
 .blue__button__basic:hover {
+    letter-spacing: 10px;
+    color: var(--blue-texts);
+    background-color: var(--white);
+    border: var(--blue-texts) 1px solid;
+}
+
+.blue__button__v2 {
+    color: var(--white);
+    background-color: var(--blue-texts);
+    border: none;
+    transition: .2s;
+}
+
+.blue__button__v2:hover {
     letter-spacing: 4px;
     color: var(--blue-texts);
     background-color: var(--white);
@@ -93,6 +107,20 @@ ul {
 
 .white__button__basic:hover {
     letter-spacing: 10px;
+    color: var(--white);
+    background-color: var(--main-red);
+    border: var(--white) 1px solid;
+}
+
+.white__button__v2 {
+    color: var(--main-red);
+    background-color: var(--white);
+    border: var(--main-red) 1px solid;
+    transition: .2s;
+}
+
+.white__button__v2:hover {
+    letter-spacing: 4px;
     color: var(--white);
     background-color: var(--main-red);
     border: var(--white) 1px solid;

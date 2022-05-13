@@ -13,9 +13,9 @@
 .comment__box {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     width: 490px;
-    height: 100px;
+    height: auto;
     margin: 5px;
     border: 1px var(--blue-texts) solid;
 }
@@ -23,21 +23,73 @@
 .next__comment {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     width: 490px;
     height: auto;
     margin: 5px;
     border: 1px var(--blue-texts) solid;
 }
 
+.edit__comment {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 445px;
+    height: auto;
+    margin-top: 5px;
+}
+
+.comment__horizontal {
+    display: flex;
+    /* justify-content: space-between;
+    align-items: flex-start; */
+}
+
+.comment__display {
+    font-size: 14px;
+    color: var(--blue-texts)
+}
+
+.comment__user__message {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.comment__edit__del {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.comment__U__C__btn__size {
+    width: 100px;
+    /* margin: 0 5px; */
+}
+
+.comment__E__D__btn__size {
+    width: 100px;
+    margin: 0 5px;
+}
+
+.comment__add__btn__size {
+    width: 70px;
+    margin: 5px;
+}
+
 .por__ahora {
     display: flex;
+
 }
 
 textarea {
+    font-family: 'Open Sans', sans-serif;
     width: 100%;
     height: 30px;
     resize: vertical;
+}
+
+.textarea__add__comment__margin {
+    margin: 5px 0;
 }
 
 .approved__comment__title {

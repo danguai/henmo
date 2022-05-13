@@ -14,14 +14,8 @@ import './AllApproved.css';
 
 const AllApproved = () => {
     const dispatch = useDispatch();
-    // const history = useHistory();
 
-    // const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
-
-    // const [modal, setModal] = useState(false);
-    // const closeModal = () => setModal(false);
-    // const showModal = () => setModal(true);
 
     const approved = [];
     const pending = [];
@@ -34,8 +28,8 @@ const AllApproved = () => {
         }
     });
 
+    // need to chang this to sort them by update_at
     approved.sort((a, b) => b.id - a.id);
-    // missing update date to sortthem by update
 
     useEffect(() => {
         dispatch(readAllOutgoings());
@@ -61,7 +55,6 @@ const AllApproved = () => {
                                     <div className='you__paid'>
                                         You paid
                                         <span className='receiver__name'>
-                                            {/* <User id={paid.receiver_id} */}
                                         </span>
                                     </div>
                                     <div>
@@ -80,13 +73,7 @@ const AllApproved = () => {
                         </Link>
                     </div>
                 )}
-
             </div>
-            {/* {modal && (
-                <Modal closeModal={closeModal}>
-                    <OneApproved closeModal={closeModal} />
-                </Modal>
-            )} */}
         </div >
     );
 }

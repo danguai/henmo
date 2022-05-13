@@ -119,6 +119,9 @@ const SignUpForm = () => {
           <div className='login__or__signup'>
             <button className='red__button__basic login__btn__size' type='submit'>SIGN UP</button>
             <div className='or__signup'>
+              <div>
+                <Link className='link__to__other__auth' to='/home'>BACK</Link>
+              </div>
               <div className='or'>
                 OR
               </div>
