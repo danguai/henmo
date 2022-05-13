@@ -21,6 +21,8 @@ def create_outgoing():
             pay_funds=form.data['pay_funds'],
             message=form.data['message'],
             paid=form.data['paid']
+            # created_at = db.Column(db.DateTime(timezone = True), server_default = func.now())
+            # updated_at = db.Column(db.DateTime(timezone = True), onupdate = func.now())
         )
         db.session.add(outgoing)
         db.session.commit()
@@ -50,7 +52,7 @@ def read_one_outgoing(id):
 
 # U P D A T E   O U T G O I N G
 @outgoing_routes.route('/<int:id>', methods = [ 'PUT' ])
-@login_required
+# @login_required
 def update_outgoing(id):
     outgoing = Outgoing.query.get(id)
 

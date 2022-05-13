@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     outgoing_payer = db.relationship('Outgoing', foreign_keys='Outgoing.payer_id', back_populates='payer', lazy='dynamic')
     outgoing_receiver = db.relationship('Outgoing', foreign_keys='Outgoing.receiver_id', back_populates='receiver', lazy='dynamic')
 
-    # outgoings = db.relationship('Outgoing', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
 
     @property
     def password(self):

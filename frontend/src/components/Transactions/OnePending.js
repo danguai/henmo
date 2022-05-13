@@ -1,12 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 import User from '../Users/User';
 
-import { readOneOutgoing, updateOutgoing, deleteOutgoing } from '../../store/outgoing';
-import { UserIcon } from '../UserIcons/UserIcons';
+import { updateOutgoing, deleteOutgoing } from '../../store/outgoing';
+// import { UserIcon } from '../UserIcons/UserIcons';
 
 // import { NavLink } from 'react-router-dom';
 
@@ -56,7 +56,7 @@ const OnePending = () => {
         };
 
         const updatedTran = await dispatch(updateOutgoing(oneTran, pending_id));
-        console.log('UPDATED TRANSACTION: ', updatedTran);
+        // console.log('UPDATED TRANSACTION: ', updatedTran);
         setMessageDisplay('displayed__message');
         setMessageInputDisplay('not__displayed__message');
         setPayFundsDisplay('displayed__pay__funds');
@@ -114,9 +114,6 @@ const OnePending = () => {
         setNewPaid(!newPaid);
     };
 
-    console.log('APPROVED PAYMENT: ', newPaid);
-
-
     if (!pendingTran) {
         if (isLoaded) {
             history.push('/pending');
@@ -169,7 +166,7 @@ const OnePending = () => {
                                 <button
                                     onClick={payFundsAndInputDisplay}
                                     className=''>
-                                    Edit
+                                    EDIT
                                 </button>
 
                             </div>
@@ -213,7 +210,7 @@ const OnePending = () => {
                                 <button
                                     onClick={messageAndInputDisplay}
                                     className=''>
-                                    Edit
+                                    EDIT
                                 </button>
                             </div>
                         </div>
@@ -232,12 +229,12 @@ const OnePending = () => {
                                 <button
                                     onClick={updatePending}
                                     className=''>
-                                    Update
+                                    UPDATE
                                 </button>
                                 <button
                                     onClick={messageAndInputDisplay}
                                     className=''>
-                                    Cancel
+                                    CANCEL
                                 </button>
                             </div>
                         </div>
@@ -246,17 +243,16 @@ const OnePending = () => {
                 <div className='pending__approve__delete'>
                     <div className=''>
                         <button
-
                             className='red__button__basic approve__btn__size'
                             onMouseDown={approvePayment}
                             onMouseUp={updatePending}
-                        >Approve</button>
+                        >APPROVE</button>
                     </div>
                     <div className='pending__approve__delete'>
                         <button
                             className='blue__button__basic approve__btn__size'
                             onClick={() => deletePending(pendingTran)}
-                        >Delete</button>
+                        >DELETE</button>
                     </div>
                 </div>
             </div>

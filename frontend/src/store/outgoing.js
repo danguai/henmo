@@ -34,7 +34,7 @@ const deleteOutgoingAction = outgoing => ({
 // OUTGOING THUNKS
 // C R E A T E
 export const createOutgoing = outgoing => async dispatch => {
-    const response = await fetch('api/outgoings/new-outgoing', {
+    const response = await fetch('/api/outgoings/new-outgoing', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(outgoing)
@@ -123,7 +123,7 @@ const outgoingReducer = (state = initialState, action) => {
             newState[action.outgoing.id] = action.outgoing;
             return newState;
         case READ_ALL_OUTGOINGS:
-            action.outgoings.forEach(out => newState[out.id] = out);
+            action.outgoings.forEach(outgoing => newState[outgoing.id] = outgoing);
             return newState;
         case READ_ONE_OUTGOING:
             newState[action.outgoing.id] = action.outgoing;

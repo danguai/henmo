@@ -2,10 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 40px;
+    margin-top: 40px;
     align-items: center;
     width: 500px;
-    height: 600px;
+    height: 500px;
     background-color: var(--white);
     border: 1px var(--blue-texts) solid;
 }
@@ -57,4 +57,10 @@
 .approved__message {
     display: flex;
     margin-bottom: 40px;
+}
+
+.comments__division {
+    width: 400px;
+    height: 1px;
+    background-color: var(--blue-texts);
 }
