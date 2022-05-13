@@ -131,7 +131,7 @@ const Comments = ({ approvedTran }) => {
                             <div className='por__ahora' >
                                 {comment.user_id === sessionUser?.id &&
                                     <div>
-                                        <div>
+                                        {/* <div>
                                             <input
                                                 type="text"
                                                 value={editMessage}
@@ -146,7 +146,7 @@ const Comments = ({ approvedTran }) => {
                                             >
                                                 SAVE
                                             </button>
-                                        </div>
+                                        </div> */}
                                         <div className='comment__delete'>
                                             <button
                                                 className='blue__button__basic comment__btn__size'
