@@ -1,11 +1,10 @@
+import { user } from 'pg/lib/defaults';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-
 import { createOutgoing } from '../../store/outgoing';
-// import { NavLink } from 'react-router-dom';
 
 import './OnePayment.css';
 
@@ -15,34 +14,46 @@ const OnePaymentNew = () => {
 
     const sessionUser = useSelector(state => state.session?.user);
 
-    const [receiverId, setReceiverId] = useState('');
+    const [users, setUsers] = useState([]);
+
     const [payFunds, setPayFunds] = useState('');
     const [message, setMessage] = useState('');
 
     const [receiver, setReceiver] = useState('');
+
+    let receiver_user = users.find(user => user.email === receiver.toLowerCase());
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newPayment = {
             payer_id: sessionUser.id,
-            receiver_id: receiverId,
+            receiver_id: receiver_user.id,
             pay_funds: payFunds,
             message,
             paid: false
         };
 
-        console.log('NEW PAYMENT: ', newPayment);
-
         const createdPayment = await dispatch(createOutgoing(newPayment));
-        console.log('CREATED PAYMENT: ', createdPayment);
         history.push(`/pending/${createdPayment.id}`);
     };
 
     const addMessage = e => setMessage(e.target.value);
     const addFunds = e => setPayFunds(e.target.value);
-    const addReceiver = e => setReceiverId(e.target.value);
 
+    const addReceiverByEmail = e => setReceiver(e.target.value);
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch('/api/users/');
+            const responseData = await response.json();
+            setUsers(responseData.users);
+        }
+        fetchData();
+    }, []);
+
+
+    console.log('RECEIVER EMAIL: ', receiver_user);
 
     return (
         <div className='transactions__container'>
@@ -57,18 +68,11 @@ const OnePaymentNew = () => {
                         <label className='forms__label'>RECEIVER</label>
                         <input
                             className='forms__input'
-                            name='receiver'
-                            type='number'
-                            value={receiverId}
-                            onChange={addReceiver}
-                        />
-                        {/* <input
-                            className='forms__input'
-                            name='receiver'
+                            name='receiver_name'
                             type='text'
-                            value={receiverId}
-                            onChange={addReceiver}
-                        /> */}
+                            value={receiver}
+                            onChange={addReceiverByEmail}
+                        />
                     </div>
                     <div className='forms__inputs__format'>
                         <label className='forms__label'>MESSAGE</label>
