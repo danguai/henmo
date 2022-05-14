@@ -161,19 +161,19 @@ const OnePending = () => {
                                     type="number"
                                     value={newPayFunds}
                                     onChange={(e) => setNewPayFunds(e.target.value)}
-                                    className="content__input"
+                                    className="edit__amount__content"
                                 ></input>
                             </div>
                             <div>
                                 <button
                                     onClick={updatePending}
-                                    className=''>
-                                    Update
+                                    className='red__button__v2 comment__U__C__btn__size'>
+                                    UPDATE
                                 </button>
                                 <button
                                     onClick={payFundsAndInputDisplay}
-                                    className=''>
-                                    Cancel
+                                    className='white__button__v2 comment__U__C__btn__size'>
+                                    CANCEL
                                 </button>
                             </div>
                         </div>
@@ -202,22 +202,22 @@ const OnePending = () => {
                     <div className={`${messageInputDisplay}`}>
                         <div className='edit__content__position'>
                             <div>
-                                <input
+                                <textarea
                                     type="text"
                                     value={newMessage}
                                     onChange={(e) => setNewMessage(e.target.value)}
-                                    className="content__input"
-                                ></input>
+                                    className="edit__message__content"
+                                ></textarea>
                             </div>
-                            <div>
+                            <div className='comment__edit__del'>
                                 <button
                                     onClick={updatePending}
-                                    className=''>
+                                    className='red__button__v2 comment__U__C__btn__size'>
                                     UPDATE
                                 </button>
                                 <button
                                     onClick={messageAndInputDisplay}
-                                    className=''>
+                                    className='white__button__v2 comment__U__C__btn__size'>
                                     CANCEL
                                 </button>
                             </div>
@@ -225,14 +225,14 @@ const OnePending = () => {
                     </div>
                 </div>
                 <div className='pending__approve__delete'>
-                    <div className=''>
+                    <div className='approve__delete__margin'>
                         <button
                             className='red__button__basic approve__btn__size'
                             onMouseDown={approvePayment}
                             onMouseUp={updatePending}
                         >APPROVE</button>
                     </div>
-                    <div className='pending__approve__delete'>
+                    <div className='approve__delete__margin'>
                         <button
                             className='blue__button__basic approve__btn__size'
                             onClick={() => deletePending(pendingTran)}

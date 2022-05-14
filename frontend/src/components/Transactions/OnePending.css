@@ -129,6 +129,24 @@
     color: var(--blue-texts);
 }
 
+.edit__message__content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 415px;
+    height: auto;
+    margin-top: 5px;
+}
+
+.edit__amount__content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50px;
+    height: 40px;
+    margin-top: 5px;
+}
+
 .back__btn {
     font-size: 18px;
     font-weight: 600;
@@ -162,7 +180,10 @@
 
 .pending__approve__delete {
     display: flex;
-    margin-bottom: 20px;
+}
+
+.approve__delete__margin {
+    margin-top: 40px
 }
 
 .approve__btn__size {
