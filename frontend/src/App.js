@@ -16,8 +16,6 @@ import OnePaymentNew from './components/OnePayment/OnePaymentNew';
 // import AddComments from './components/Comments/AddComment';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/Users/UsersList';
-import User from './components/Users/User';
 import { authenticate } from './store/session';
 
 function App() {
@@ -56,12 +54,6 @@ function App() {
         <ProtectedRoute path='/pending' exact={true} >
           <AllPending />
         </ProtectedRoute>
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute> */}
-        { /*<ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
         <ProtectedRoute path='/new-payment' exact={true} >
           <OnePaymentNew />
         </ProtectedRoute>

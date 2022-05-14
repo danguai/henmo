@@ -54,7 +54,7 @@ const AllPending = () => {
                                             RECEIVER: {paid.receiver_id}
                                         </span>
                                     </div>
-                                    <div>
+                                    <div className='message__preview'>
                                         {paid.message}
                                     </div>
                                 </div>

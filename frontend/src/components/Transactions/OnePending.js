@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
-import User from '../Users/User';
+import User_Name_Email from '../Users/User_Name_and_Email';
 
 import { readAllOutgoings, updateOutgoing, deleteOutgoing } from '../../store/outgoing';
 
@@ -44,7 +44,7 @@ const OnePending = () => {
             receiver_id: pendingTran.receiver_id
         };
 
-        const updatedTran = await dispatch(updateOutgoing(oneTran, pending_id));
+        await dispatch(updateOutgoing(oneTran, pending_id));
         setMessageDisplay('displayed__message');
         setMessageInputDisplay('not__displayed__message');
         setPayFundsDisplay('displayed__pay__funds');
@@ -112,40 +112,45 @@ const OnePending = () => {
                 BACK
             </Link>
             <div className='pending__tran__container' >
-                <div className='pending__tran__text'>
-                    Transaction #
-                    <span className='pending__tran__number'>
-                        {pendingTran?.id}
-                    </span>
+                <div className='pending__tran__text__and__number'>
+                    <div className='pending__tran__text'>
+                        Transaction
+                    </div>
+                    <div className='pending__tran__number'>
+                        {`#${pendingTran?.id}`}
+                    </div>
                 </div>
-                <div>
-                    <span>
+                <div className='pending__tran__from__and__name'>
+                    <div className='pending__tran__from'>
                         From
-                    </span>
-                    {sessionUser.last_name}, {sessionUser.first_name}
+                    </div>
+                    <div className='pending__tran__name'>
+                        {`${sessionUser.last_name}, ${sessionUser.first_name}`}
+                    </div>
                 </div>
-                <div className='to__user'>
-                    <span>
+                <div className='pending__tran__to__and__user'>
+                    <div className='pending__tran__to'>
                         To
-                    </span>
-                    <User id={pendingTran?.receiver_id} />
+                    </div>
+                    <User_Name_Email id={pendingTran?.receiver_id} />
                 </div>
                 <div>
                     <div className={`${payFundsDisplay}`}>
-                        <div className='edit__amount' onClick={payFundsAndInputDisplay}>
-                            <div>
+                        <div
+                            className='pending__tran__chickens__and__amount'
+                            onClick={payFundsAndInputDisplay}>
+                            <div className='pending__tran__chickens'>
                                 Chickens
                             </div>
-                            <div>
+                            <div className='pending__tran__amount'>
                                 {pendingTran?.pay_funds}
                             </div>
                             <div>
                                 <button
                                     onClick={payFundsAndInputDisplay}
-                                    className=''>
+                                    className='white__button__v2 pending__edit__btn__size chicken__up'>
                                     EDIT
                                 </button>
-
                             </div>
                         </div>
                     </div>
@@ -156,19 +161,19 @@ const OnePending = () => {
                                     type="number"
                                     value={newPayFunds}
                                     onChange={(e) => setNewPayFunds(e.target.value)}
-                                    className="content__input"
+                                    className="edit__amount__content"
                                 ></input>
                             </div>
                             <div>
                                 <button
                                     onClick={updatePending}
-                                    className=''>
-                                    Update
+                                    className='red__button__v2 comment__U__C__btn__size'>
+                                    UPDATE
                                 </button>
                                 <button
                                     onClick={payFundsAndInputDisplay}
-                                    className=''>
-                                    Cancel
+                                    className='white__button__v2 comment__U__C__btn__size'>
+                                    CANCEL
                                 </button>
                             </div>
                         </div>
@@ -176,41 +181,43 @@ const OnePending = () => {
                 </div>
                 <div>
                     <div className={`${messageDisplay}`}>
-                        <div className='edit__message' onClick={messageAndInputDisplay}>
-                            <div>
+                        <div
+                            className='pending__tran__message__and__message'
+                            onClick={messageAndInputDisplay}>
+                            <div className='pending__tran__message__title'>
                                 Message
-                            </div>
-                            <div>
-                                {pendingTran?.message}
                             </div>
                             <div>
                                 <button
                                     onClick={messageAndInputDisplay}
-                                    className=''>
+                                    className='white__button__v2 pending__edit__btn__size'>
                                     EDIT
                                 </button>
                             </div>
+                        </div>
+                        <div className='pending__tran__message__content'>
+                            {pendingTran?.message}
                         </div>
                     </div>
                     <div className={`${messageInputDisplay}`}>
                         <div className='edit__content__position'>
                             <div>
-                                <input
+                                <textarea
                                     type="text"
                                     value={newMessage}
                                     onChange={(e) => setNewMessage(e.target.value)}
-                                    className="content__input"
-                                ></input>
+                                    className="edit__message__content"
+                                ></textarea>
                             </div>
-                            <div>
+                            <div className='comment__edit__del'>
                                 <button
                                     onClick={updatePending}
-                                    className=''>
+                                    className='red__button__v2 comment__U__C__btn__size'>
                                     UPDATE
                                 </button>
                                 <button
                                     onClick={messageAndInputDisplay}
-                                    className=''>
+                                    className='white__button__v2 comment__U__C__btn__size'>
                                     CANCEL
                                 </button>
                             </div>
@@ -218,14 +225,14 @@ const OnePending = () => {
                     </div>
                 </div>
                 <div className='pending__approve__delete'>
-                    <div className=''>
+                    <div className='approve__delete__margin'>
                         <button
                             className='red__button__basic approve__btn__size'
                             onMouseDown={approvePayment}
                             onMouseUp={updatePending}
                         >APPROVE</button>
                     </div>
-                    <div className='pending__approve__delete'>
+                    <div className='approve__delete__margin'>
                         <button
                             className='blue__button__basic approve__btn__size'
                             onClick={() => deletePending(pendingTran)}
