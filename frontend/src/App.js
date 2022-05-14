@@ -6,8 +6,9 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Splashpage from './components/Splashpage/Splashpage';
 import NavBar from './components/NavBar/NavBar';
-import AllApproved from './components/Transactions/AllApproved';
+import AllApprovedTransactions from './components/Transactions/AllApprovedTransactions';
 import OneApproved from './components/Transactions/OneApproved';
+import OneUserAllApproved from './components/Transactions/OneUserAllApproved';
 import AllPending from './components/Transactions/AllPending';
 import OnePending from './components/Transactions/OnePending';
 
@@ -49,7 +50,10 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/' exact={true} >
-          <AllApproved />
+          <AllApprovedTransactions />
+        </ProtectedRoute>
+        <ProtectedRoute path='/approved' exact={true} >
+          <OneUserAllApproved />
         </ProtectedRoute>
         <ProtectedRoute path='/pending' exact={true} >
           <AllPending />
@@ -57,7 +61,7 @@ function App() {
         <ProtectedRoute path='/new-payment' exact={true} >
           <OnePaymentNew />
         </ProtectedRoute>
-        <ProtectedRoute path='/transactions/:approved_id' exact={true} >
+        <ProtectedRoute path='/approved/:approved_id' exact={true} >
           <OneApproved />
         </ProtectedRoute>
         <ProtectedRoute path='/pending/:pending_id' exact={true} >

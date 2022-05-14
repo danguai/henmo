@@ -69,16 +69,28 @@
     color: var(--blue-texts)
 }
 
+.pending__label__red {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--main-red)
+}
+
+.line__division__all__tran {
+    width: 200px;
+    height: 1px;
+    background-color: var(--blue-texts);
+}
+
 .line__division__approved {
-    width: 120px;
+    width: 192px;
     height: 1px;
     background-color: var(--blue-texts);
 }
 
 .line__division__pending {
-    width: 120px;
+    width: 105px;
     height: 1px;
-    background-color: var(--blue-texts);
+    background-color: var(--main-red);
 }
 
 .outgoing__link {
@@ -94,6 +106,21 @@
     letter-spacing: 9px;
     color: var(--rollover-color)
 }
+
+.outgoing__link__red {
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    color: var(--main-red);
+    transition: .3s;
+}
+
+.outgoing__link__red:hover {
+    letter-spacing: 9px;
+    color: var(--main-orange)
+}
+
 
 .logout__button__placement {
     position: absolute;

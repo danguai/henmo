@@ -34,7 +34,8 @@ def create_outgoing():
 @outgoing_routes.route('/', methods = [ 'GET' ])
 # @login_required
 def read_all_outgoings():
-    outgoings = Outgoing.query.filter(Outgoing.payer_id == current_user.id).all()
+    outgoings = Outgoing.query.all()
+    # outgoings = Outgoing.query.filter(Outgoing.payer_id == current_user.id).all()
 
     outgoings_list = [outgoing.to_dict() for outgoing in outgoings]
 

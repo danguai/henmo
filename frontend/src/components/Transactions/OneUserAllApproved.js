@@ -1,34 +1,41 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import Modal from '../Modal/Modal';
-import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
+import User_Name from '../Users/User_Name';
+
 import { UserIcon } from '../UserIcons/UserIcons';
+import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
 
 
 // import { NavLink } from 'react-router-dom';
-import './AllApproved.css';
+import './OneUserAllApproved.css';
 
-const AllApproved = () => {
+const OneUserAllApproved = () => {
     const dispatch = useDispatch();
 
+    const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
-    const approved = [];
-    const pending = [];
+    const allApproved = [];
+    const userApproved = [];
+    const pendingList = [];
 
     Object.values(outgoings).forEach(outgoing => {
-        if (outgoing.paid === true) {
-            approved.push(outgoing);
-        } else {
-            pending.push(outgoing);
+        if (outgoing?.paid === true) {
+            allApproved.push(outgoing);
+        } else if (outgoing?.payer_id === sessionUser.id) {
+            userApproved.push(outgoing);
+        } else if (outgoing?.paid === false) {
+            pendingList.push(outgoing);
         }
     });
 
+
     // need to chang this to sort them by update_at
-    approved.sort((a, b) => b.id - a.id);
+    userApproved.sort((a, b) => b.created_at.split(' ')[4] - a.created_at.split(' ')[4]);
+
 
     useEffect(() => {
         dispatch(readAllOutgoings());
@@ -38,13 +45,13 @@ const AllApproved = () => {
 
     return (
         <div className='transactions__container' >
-            <div className='transaction__title'>APPROVED</div>
+            <div className='transaction__title'>MY TRANSACTION</div>
             <div className='transactions__list__container'>
-                {approved.map((paid, i) =>
+                {userApproved.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>
                         <Link
                             className='each__transaction'
-                            to={`/transactions/${paid.id}`}
+                            to={`/approved/${paid.id}`}
                         >
                             <div className='icon__with__message'>
                                 <div className='avatar__box__transactions'>
@@ -54,6 +61,7 @@ const AllApproved = () => {
                                     <div className='you__paid'>
                                         You paid
                                         <span className='receiver__name'>
+                                            <User_Name id={paid.receiver_id} />
                                         </span>
                                     </div>
                                     <div className='message__preview'>
@@ -77,4 +85,4 @@ const AllApproved = () => {
     );
 }
 
-export default AllApproved;
+export default OneUserAllApproved;

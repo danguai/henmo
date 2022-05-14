@@ -15,21 +15,21 @@ const NavBar = () => {
 
   const outgoings = useSelector(state => state.outgoing);
 
-  const approved = [];
+  const allApproved = [];
+  const userApproved = [];
   const pendingList = [];
 
   Object.values(outgoings).forEach(outgoing => {
-    if (outgoing.paid === true) {
-      approved.push(outgoing);
-    } else {
+    if (outgoing?.paid === true) {
+      allApproved.push(outgoing);
+    } else if (outgoing?.payer_id === sessionUser.id) {
+      userApproved.push(outgoing);
+    } else if (outgoing?.paid === false) {
       pendingList.push(outgoing);
     }
   });
 
   const path = location.pathname;
-
-
-
 
   return (
     <nav id='nav__bar' >
@@ -59,19 +59,28 @@ const NavBar = () => {
         </li>
         <li className='pending__transactions'>
           <div className='pending__label'>
-            APPROVED
+            ALL TRANSACTIONS
           </div>
-          <div className='line__division' />
+          <div className='line__division__all__tran' />
           <Link className='outgoing__link' to='/'>
-            {`APPROVED (${approved.length})`}
+            {`ALL APPROVED (${allApproved.length})`}
           </Link>
         </li>
         <li className='pending__transactions'>
           <div className='pending__label'>
+            MY TRANSACTIONS
+          </div>
+          <div className='line__division__approved' />
+          <Link className='outgoing__link' to='/approved'>
+            {`APPROVED (${userApproved.length})`}
+          </Link>
+        </li>
+        <li className='pending__transactions'>
+          <div className='pending__label__red'>
             PENDING
           </div>
-          <div className='line__division' />
-          <Link className='outgoing__link' to='/pending'>
+          <div className='line__division__pending' />
+          <Link className='outgoing__link__red' to='/pending'>
             {`OUTGOING (${pendingList.length})`}
           </Link>
         </li>
