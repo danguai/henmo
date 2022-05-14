@@ -5,9 +5,8 @@ function User_Name({ id }) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    if (!id) {
-      return;
-    }
+    if (!id) return;
+
     (async () => {
       const response = await fetch(`/api/users/${id}`);
       const user = await response.json();
@@ -18,11 +17,9 @@ function User_Name({ id }) {
   if (!user) return null;
 
   return (
-    <div className='user__first__last__name__email'>
-      <div className='approved__tran__user__name'>
-        {`${user?.last_name}, ${user?.first_name}`}
-      </div>
-    </div >
+    <span>
+      {`${user?.last_name}, ${user?.first_name}`}
+    </span >
   );
 }
 export default User_Name;
