@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import UserName from '../Users/UserName';
 import UserNameEmail from '../Users/UserNameEmail';
 
 import { readAllOutgoings } from '../../store/outgoing';
@@ -45,7 +46,7 @@ const OneApproved = () => {
                         From
                     </div>
                     <div className='approved__tran__name'>
-                        {`${sessionUser.last_name}, ${sessionUser.first_name}`}
+                        <UserName id={approvedTran?.payer_id} />
                     </div>
                 </div>
                 <div className='approved__tran__to__and__user'>

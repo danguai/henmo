@@ -23,37 +23,46 @@ const AllApprovedTransactions = () => {
         }
     });
 
-    allApproved.sort((a, b) => b.updated_at.split(' ')[4] - a.updated_at.split(' ')[4]);
+    let approvedOrder;
+    if (allApproved.length > 0) {
+        approvedOrder = allApproved.sort((a, b) => b.updated_at - a.updated_at);
+    }
+    console.log(approvedOrder);
 
     useEffect(() => {
         dispatch(readAllOutgoings());
     }, [dispatch]);
 
+    const payer_receiver = id => {
+        return <UserName id={id} />
+    };
+
     if (!outgoings) return null;
-    if (!UserName) return null;
+    // if (!UserName) return null;
 
     return (
         <div className='transactions__container' >
             <div className='transaction__title'>ALL TRANSACTIONS</div>
             <div className='transactions__list__container'>
-                {allApproved.map((paid, i) =>
+                {approvedOrder?.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>
                         <Link
                             className='each__transaction'
-                            to={`/approved/${paid.id}`}
-                        >
+                            to={`/approved/${paid.id}`}>
                             <div className='icon__with__message'>
                                 <div className='avatar__box__transactions'>
                                     <UserIcon size={40} />
                                 </div>
                                 <div>
                                     <div className='you__paid'>
-                                        <span className='receiver__name'>
-                                            <UserName id={paid.payer_id} />
+                                        <span className='payer__name'>
+                                            {payer_receiver(paid.payer_id)}
+                                            {/* <UserName id={paid.payer_id} /> */}
                                         </span>
                                         sent
                                         <span className='receiver__name'>
-                                            <UserName id={paid.receiver_id} />
+                                            {payer_receiver(paid.receiver_id)}
+                                            {/* <UserName id={paid.receiver_id} /> */}
                                         </span>
                                     </div>
                                     <div className='message__preview'>
