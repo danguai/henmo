@@ -1,9 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import User_Name from '../Users/User_Name';
+import UserName from '../Users/UserName';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import { readAllOutgoings } from '../../store/outgoing';
@@ -16,23 +16,17 @@ const AllPending = () => {
     const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
-    const allApproved = [];
-    const userApproved = [];
-    const allPending = [];
+    const pendingList = [];
 
     Object.values(outgoings).forEach(outgoing => {
-        if (outgoing?.paid === true) {
-            allApproved.push(outgoing);
-        } else if (outgoing?.payer_id === sessionUser.id) {
-            userApproved.push(outgoing);
-        } else if (outgoing?.paid === false) {
-            allPending.push(outgoing);
+        if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === false) {
+            pendingList.push(outgoing);
         }
     });
 
-    // need to chang this to sort them by create_at
-    allPending.sort((a, b) => b.updated_at.split(' ')[4] - a.updated_at.split(' ')[4]);
-
+    if (pendingList.length > 0) {
+        pendingList.sort((a, b) => b.created_at.split(' ')[4] - a.created_at.split(' ')[4]);
+    }
 
     useEffect(() => {
         dispatch(readAllOutgoings());
@@ -44,7 +38,7 @@ const AllPending = () => {
         <div className='transactions__container' >
             <div className='transaction__title'>PENDING</div>
             <div className='transactions__list__container'>
-                {allPending.map((paid, i) =>
+                {pendingList.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>
                         <Link
                             className='each__transaction'
@@ -55,9 +49,9 @@ const AllPending = () => {
                                 </div>
                                 <div>
                                     <div className='you__paid'>
-                                        You paid
+                                        You'll send
                                         <span className='receiver__name'>
-                                            <User_Name id={paid.receiver_id} />
+                                            <UserName id={paid.receiver_id} />
                                         </span>
                                     </div>
                                     <div className='message__preview'>

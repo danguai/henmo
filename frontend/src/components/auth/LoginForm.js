@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
 import './LoginForm.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [errors, setErrors] = useState([]);
   const [customError, setCustomError] = useState('');
@@ -25,22 +24,12 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (errors.length > 0) {
-      setCustomError('Email or password is incorrect')
+      setCustomError('Email or password are incorrect');
     }
-  }, [errors.length])
+  }, [errors.length]);
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  // const demoLogin = async () => {
-  //   await dispatch(login('demoone@aa.io', 'password'));
-  //   // history.push('/');
-  // };
+  const updateEmail = (e) => setEmail(e.target.value);
+  const updatePassword = (e) => setPassword(e.target.value);
 
   if (user) {
     return <Redirect to='/' />;

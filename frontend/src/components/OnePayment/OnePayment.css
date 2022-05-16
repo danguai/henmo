@@ -10,5 +10,24 @@
 }
 
 .send__btn__margin__bottom {
+    margin-top: 40px;
     margin-bottom: 30px;
+}
+
+.message__error {
+    margin-top: 5px;
+    position: relative;
+    left: 63px;
+}
+
+.amount__error {
+    margin-top: 5px;
+    position: relative;
+    left: 60px;
+}
+
+.email__receiver__error {
+    margin-top: 5px;
+    position: relative;
+    left: 40px;
 }

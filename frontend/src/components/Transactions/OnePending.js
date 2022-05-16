@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
-import User_Name_Email from '../Users/User_Name_and_Email';
+import UserNameEmail from '../Users/UserNameEmail';
 
 import { readAllOutgoings, updateOutgoing, deleteOutgoing } from '../../store/outgoing';
 
@@ -132,7 +132,7 @@ const OnePending = () => {
                     <div className='pending__tran__to'>
                         To
                     </div>
-                    <User_Name_Email id={pendingTran?.receiver_id} />
+                    <UserNameEmail id={pendingTran?.receiver_id} />
                 </div>
                 <div>
                     <div className={`${payFundsDisplay}`}>

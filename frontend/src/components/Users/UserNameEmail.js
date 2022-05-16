@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 
-function User_Name_Email({ id }) {
+const UserNameEmail = ({ id }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -28,4 +27,4 @@ function User_Name_Email({ id }) {
     </div >
   );
 }
-export default User_Name_Email;
+export default UserNameEmail;

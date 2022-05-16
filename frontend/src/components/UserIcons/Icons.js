@@ -1,6 +1,8 @@
 import { avatars } from "../../context/Avatar";
 import './Icons.css';
 
+import { validateAvatar } from "../../utils/validation";
+
 export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) => {
 
     const updateAvatarId = (e) => {
@@ -23,6 +25,11 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
                                 type='radio'
                                 name='avatarId'
                                 onChange={updateAvatarId}
+                                onBlur={() => {
+                                    const error = validateAvatar(avatarId)
+                                    if (error) setAvatarError(error)
+                                }}
+                                onFocus={() => { setAvatarError('') }}
                                 value={i + 1}
                             ></input>
                             <div
@@ -35,6 +42,7 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
                                     alt="avatar"
                                 />
                             </div>
+                            {avatarError && <div className='error_style first__name__error'>{avatarError}</div>}
                         </label>
                     </div>
                 ))}

@@ -1,15 +1,13 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import User_Name from '../Users/User_Name';
+import UserName from '../Users/UserName';
 
 import { UserIcon } from '../UserIcons/UserIcons';
-import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
+import { readAllOutgoings } from '../../store/outgoing';
 
-
-// import { NavLink } from 'react-router-dom';
 import './OneUserAllApproved.css';
 
 const OneUserAllApproved = () => {
@@ -18,24 +16,17 @@ const OneUserAllApproved = () => {
     const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
-    const allApproved = [];
     const userApproved = [];
-    const pendingList = [];
+
+    console.log('MY TRANSACTIONS: ', userApproved);
 
     Object.values(outgoings).forEach(outgoing => {
-        if (outgoing?.paid === true) {
-            allApproved.push(outgoing);
-        } else if (outgoing?.payer_id === sessionUser.id) {
+        if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === true) {
             userApproved.push(outgoing);
-        } else if (outgoing?.paid === false) {
-            pendingList.push(outgoing);
         }
     });
 
-
-    // need to chang this to sort them by update_at
     userApproved.sort((a, b) => b.created_at.split(' ')[4] - a.created_at.split(' ')[4]);
-
 
     useEffect(() => {
         dispatch(readAllOutgoings());
@@ -59,9 +50,9 @@ const OneUserAllApproved = () => {
                                 </div>
                                 <div>
                                     <div className='you__paid'>
-                                        You paid
+                                        You sent
                                         <span className='receiver__name'>
-                                            <User_Name id={paid.receiver_id} />
+                                            <UserName id={paid.receiver_id} />
                                         </span>
                                     </div>
                                     <div className='message__preview'>

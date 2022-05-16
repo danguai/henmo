@@ -1,39 +1,28 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import Modal from '../Modal/Modal';
-import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
+import { readAllOutgoings } from '../../store/outgoing';
 import { UserIcon } from '../UserIcons/UserIcons';
 
-import User_Name from '../Users/User_Name'
+import UserName from '../Users/UserName';
 
-
-// import { NavLink } from 'react-router-dom';
 import './AllApprovedTransactions.css';
 
 const AllApprovedTransactions = () => {
     const dispatch = useDispatch();
 
-    const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
     const allApproved = [];
-    const userApproved = [];
-    const pendingList = [];
 
     Object.values(outgoings).forEach(outgoing => {
         if (outgoing?.paid === true) {
             allApproved.push(outgoing);
-        } else if (outgoing?.payer_id === sessionUser.id) {
-            userApproved.push(outgoing);
-        } else if (outgoing?.paid === false) {
-            pendingList.push(outgoing);
         }
     });
-    console.log(outgoings);
-    // need to chang this to sort them by update_at
+
     allApproved.sort((a, b) => b.updated_at.split(' ')[4] - a.updated_at.split(' ')[4]);
 
     useEffect(() => {
@@ -41,6 +30,7 @@ const AllApprovedTransactions = () => {
     }, [dispatch]);
 
     if (!outgoings) return null;
+    if (!UserName) return null;
 
     return (
         <div className='transactions__container' >
@@ -58,9 +48,12 @@ const AllApprovedTransactions = () => {
                                 </div>
                                 <div>
                                     <div className='you__paid'>
-                                        You paid
                                         <span className='receiver__name'>
-                                            <User_Name id={paid.receiver_id} />
+                                            <UserName id={paid.payer_id} />
+                                        </span>
+                                        sent
+                                        <span className='receiver__name'>
+                                            <UserName id={paid.receiver_id} />
                                         </span>
                                     </div>
                                     <div className='message__preview'>

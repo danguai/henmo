@@ -6,6 +6,7 @@
     --white: #ffffff;
     --blue-texts: #2E4A63;
     --main-red: #DC0022;
+    --main-red-disabled: #d2a2a9;
     --main-orange: #F99223;
     --rollover-color: #3DA0A5;
     --selected-color: #227C00;
@@ -33,6 +34,12 @@ ul {
     background-color: var(--main-red);
     border: none;
     transition: .2s;
+}
+
+.red__button__disabled {
+    color: var(--white);
+    background-color: var(--main-red-disabled);
+    border: none;
 }
 
 .red__button__basic:hover {
@@ -148,4 +155,11 @@ ul {
     color: #2b6f0064;
     background-color: #6dac455b;
     border-color: rgba(6, 132, 6, 0.254);
+}
+
+.error_style {
+    font-weight: 700;
+    font-size: 9px;
+    color: var(--main-red)
+        /* padding: 2px 0 0 5px; */
 }

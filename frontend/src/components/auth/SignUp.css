@@ -37,7 +37,7 @@
 .forms__inputs__format {
     display: flex;
     flex-direction: row;
-    margin: 15px 0;
+    margin-top: 15px;
 }
 
 .forms__inputs__special__format {
@@ -63,7 +63,7 @@
     font-size: 12px;
     letter-spacing: 1.2px;
     color: var(--blue-texts);
-    margin: 15px 0px;
+    margin-top: 15px;
     white-space: nowrap;
 }
 
@@ -95,7 +95,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .or__login {
@@ -126,7 +126,37 @@
     flex-direction: column;
     align-items: center;
 
-    font-size: 14px;
+    font-size: 9px;
     font-weight: 700;
     color: var(--main-red)
+}
+
+.first__name__error {
+    margin-top: 5px;
+    position: relative;
+    left: 80px;
+}
+
+.last__name__error {
+    margin-top: 5px;
+    position: relative;
+    left: 75px;
+}
+
+.email__error {
+    margin-top: 5px;
+    position: relative;
+    left: 40px;
+}
+
+.password__error {
+    margin-top: 5px;
+    position: relative;
+    left: 74px;
+}
+
+.repeat__password__error {
+    margin-top: 5px;
+    position: relative;
+    left: 127px;
 }

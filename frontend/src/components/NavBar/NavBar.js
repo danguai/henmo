@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import LogoutButton from '../auth/LogoutButton';
@@ -9,8 +9,6 @@ import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css';
 
 const NavBar = () => {
-  const location = useLocation();
-
   const sessionUser = useSelector(state => state.session?.user);
 
   const outgoings = useSelector(state => state.outgoing);
@@ -22,14 +20,16 @@ const NavBar = () => {
   Object.values(outgoings).forEach(outgoing => {
     if (outgoing?.paid === true) {
       allApproved.push(outgoing);
-    } else if (outgoing?.payer_id === sessionUser.id) {
+    }
+
+    if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === true) {
       userApproved.push(outgoing);
-    } else if (outgoing?.paid === false) {
+    }
+
+    if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === false) {
       pendingList.push(outgoing);
     }
   });
-
-  const path = location.pathname;
 
   return (
     <nav id='nav__bar' >
