@@ -1,18 +1,16 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import UserNameEmail from '../Users/UserNameEmail';
 
-import User_Name_Email from '../Users/User_Name_and_Email';
-
-import { readAllOutgoings, readOneOutgoing } from '../../store/outgoing';
+import { readAllOutgoings } from '../../store/outgoing';
 import Comments from '../Comments/Comments';
 
 import './OneApproved.css';
 
 const OneApproved = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const { approved_id } = useParams();
 
     const sessionUser = useSelector(state => state.session?.user);
@@ -54,7 +52,7 @@ const OneApproved = () => {
                     <div className='approved__tran__to'>
                         To
                     </div>
-                    <User_Name_Email id={approvedTran?.receiver_id} />
+                    <UserNameEmail id={approvedTran?.receiver_id} />
                 </div>
                 <div className='approved__tran__chickens__and__amount'>
                     <div className='approved__tran__chickens'>

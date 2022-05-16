@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createComment, readAllComments, deleteComment } from '../../store/comment';
+import { readAllComments } from '../../store/comment';
 
 import AddComment from './NewComment';
 import CommentWithEdit from './CommentWithEdit';
@@ -12,7 +12,6 @@ import './Comments.css';
 const Comments = ({ approvedTran }) => {
     const dispatch = useDispatch();
 
-    const sessionUser = useSelector(state => state.session?.user);
     const allComments = useSelector(state => state.comment);
 
     const theseComments = [];

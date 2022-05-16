@@ -35,13 +35,14 @@ const SignUpForm = () => {
   const [passwordError, setPasswordError] = useState('');
   const [repeatPasswordError, setRepeatPasswordError] = useState('');
 
-  const checkingErrors =
-    (firstNameError ||
-      lastNameError ||
-      avatarError ||
-      emailError ||
-      passwordError ||
-      repeatPasswordError);
+  const checkingErrors = (
+    firstNameError ||
+    lastNameError ||
+    avatarError ||
+    emailError ||
+    passwordError ||
+    repeatPasswordError
+  );
 
   const user = useSelector(state => state.session?.user);
 

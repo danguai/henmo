@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 
-function User_Name({ id }) {
+const UserName = ({ id }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -22,4 +21,4 @@ function User_Name({ id }) {
     </span >
   );
 }
-export default User_Name;
+export default UserName;

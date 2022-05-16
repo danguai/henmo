@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
+import { validateEmailReceiver, validateMessage, validateAmount } from '../../utils/validation';
+
 import { createOutgoing, readAllOutgoings } from '../../store/outgoing';
 
 import './OnePayment.css';
@@ -11,33 +13,26 @@ const OnePaymentNew = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const sessionUser = useSelector(state => state.session?.user);
-    const outgoings = useSelector(state => state.outgoing);
-
     const [users, setUsers] = useState([]);
     const [payFunds, setPayFunds] = useState('');
     const [message, setMessage] = useState('');
     const [receiver, setReceiver] = useState('');
 
-    // const [notFoundError, setNotFoundError] = useState('');
+    const sessionUser = useSelector(state => state.session?.user);
 
-    // const [nameError, setNameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [userNotFoundError, setUserNotFoundError] = useState('');
+    const [messageError, setMessageError] = useState('');
+    const [amountError, setAmountError] = useState('');
 
-    useEffect(() => {
-        dispatch(readAllOutgoings());
-    }, [dispatch]);
-
-    let receiver_user = users.find(user => {
-        if (user.email === receiver.toLowerCase()) {
-            return user;
-        } else {
-            // setNotFound('Unable to find user');
-        }
-    });
+    const checkingErrors = (
+        emailError ||
+        messageError ||
+        amountError
+    );
 
     const addMessage = e => setMessage(e.target.value);
     const addFunds = e => setPayFunds(e.target.value);
-
     const addReceiverByEmail = e => setReceiver(e.target.value);
 
     useEffect(() => {
@@ -49,20 +44,31 @@ const OnePaymentNew = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        dispatch(readAllOutgoings());
+    }, [dispatch]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newPayment = {
-            payer_id: sessionUser.id,
-            receiver_id: receiver_user.id,
-            pay_funds: payFunds,
-            message,
-            paid: false
-        };
+        let receiverUser = users.find(user => user.email === receiver.toLowerCase());
 
-        const createdPayment = await dispatch(createOutgoing(newPayment));
+        if (receiverUser?.id === sessionUser.id) {
+            setEmailError("You can't send chickens to yourself.");
+        } else if (receiverUser) {
+            const newPayment = {
+                payer_id: sessionUser.id,
+                receiver_id: receiverUser.id,
+                pay_funds: payFunds,
+                message,
+                paid: false
+            };
 
-        history.push(`/pending/${createdPayment.id}`);
+            const createdPayment = await dispatch(createOutgoing(newPayment));
+            history.push(`/pending/${createdPayment.id}`);
+        } else {
+            setUserNotFoundError('User not found');
+        }
     };
 
     return (
@@ -80,35 +86,57 @@ const OnePaymentNew = () => {
                             className='forms__input'
                             name='receiver_name'
                             type='email'
-                            value={receiver}
                             onChange={addReceiverByEmail}
+                            onBlur={() => {
+                                const error = validateEmailReceiver(receiver)
+                                if (error) setEmailError(error)
+                            }}
+                            onFocus={() => { setEmailError('') }}
+                            value={receiver}
                         />
                     </div>
+                    {emailError && <div className='error_style email__receiver__error'>{emailError}</div>}
+                    {userNotFoundError && <div className='error_style email__receiver__error'>{userNotFoundError}</div>}
                     <div className='forms__inputs__format'>
                         <label className='forms__label'>MESSAGE</label>
                         <input
                             className='forms__input'
                             name='message'
                             type='text'
-                            value={message}
                             onChange={addMessage}
+                            onBlur={() => {
+                                const error = validateMessage(message)
+                                if (error) setMessageError(error)
+                            }}
+                            onFocus={() => { setMessageError(''); setUserNotFoundError('') }}
+                            value={message}
                         />
                     </div>
+                    {messageError && <div className='error_style message__error'>{messageError}</div>}
                     <div className='forms__inputs__format' >
                         <label className='forms__label'>AMOUNT</label>
                         <input
                             className='forms__input'
                             name='amount'
                             type='number'
-                            value={payFunds}
                             onChange={addFunds}
+                            onBlur={() => {
+                                const error = validateAmount(payFunds)
+                                if (error) setAmountError(error)
+                            }}
+                            onFocus={() => { setAmountError('') }}
+                            value={payFunds}
                         />
                     </div>
+                    {amountError && <div className='error_style amount__error'>{amountError}</div>}
                     <div className="result">
-                        {/* Above checkbox is {paid ? "true" : "false"}. */}
                     </div>
                     <div>
-                        <button className='red__button__basic login__btn__size send__btn__margin__bottom' type='submit'>
+                        <button
+                            className={checkingErrors ?
+                                'red__button__disabled login__btn__size send__btn__margin__bottom' :
+                                'red__button__basic login__btn__size send__btn__margin__bottom'}
+                            type='submit'>
                             SEND
                         </button>
                     </div>

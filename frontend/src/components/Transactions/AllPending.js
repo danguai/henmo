@@ -1,9 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import User_Name from '../Users/User_Name';
+import UserName from '../Users/UserName';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import { readAllOutgoings } from '../../store/outgoing';
@@ -16,13 +16,7 @@ const AllPending = () => {
     const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
-    const allApproved = [];
-    const userApproved = [];
     const pendingList = [];
-
-    // console.log('ALL TRANSACTIONS: ', allApproved);
-    // console.log('MY TRANSACTIONS: ', userApproved);
-    console.log('MY PENDING: ', pendingList);
 
     Object.values(outgoings).forEach(outgoing => {
         if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === false) {
@@ -55,9 +49,9 @@ const AllPending = () => {
                                 </div>
                                 <div>
                                     <div className='you__paid'>
-                                        You paid
+                                        You'll send
                                         <span className='receiver__name'>
-                                            <User_Name id={paid.receiver_id} />
+                                            <UserName id={paid.receiver_id} />
                                         </span>
                                     </div>
                                     <div className='message__preview'>

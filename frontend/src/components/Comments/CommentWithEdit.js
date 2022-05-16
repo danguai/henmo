@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createComment, readAllComments, updateComment, deleteComment } from '../../store/comment';
+import { updateComment, deleteComment } from '../../store/comment';
 import { UserIcon } from '../UserIcons/UserIcons';
 
 import './Comments.css';
@@ -16,7 +16,7 @@ const CommentWithEdit = ({ comment }) => {
     const [commentsDisplay, setCommentsDisplay] = useState('displayed__comments');
     const [commentsInputDisplay, setCommentsInputDisplay] = useState('not__displayed__comments');
 
-    const [editMessage, setEditMessage] = useState(createComment?.message);
+    const [editMessage, setEditMessage] = useState(comment?.message);
 
     const editedComment = async () => {
         let editComment = {
@@ -51,10 +51,7 @@ const CommentWithEdit = ({ comment }) => {
             setCommentsInputDisplay('not__displayed__comments');
         }
         setEditMessage(comment.message);
-    }
-    useEffect(() => {
-        dispatch(readAllComments());
-    }, [dispatch]);
+    };
 
     const isOwnerOfComment = comment.user_id === sessionUser?.id;
 
