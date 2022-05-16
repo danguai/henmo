@@ -15,32 +15,25 @@ const OnePaymentNew = () => {
     const outgoings = useSelector(state => state.outgoing);
 
     const [users, setUsers] = useState([]);
-
     const [payFunds, setPayFunds] = useState('');
     const [message, setMessage] = useState('');
-
     const [receiver, setReceiver] = useState('');
+
+    // const [notFoundError, setNotFoundError] = useState('');
+
+    // const [nameError, setNameError] = useState('');
 
     useEffect(() => {
         dispatch(readAllOutgoings());
     }, [dispatch]);
 
-    let receiver_user = users.find(user => user.email === receiver.toLowerCase());
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const newPayment = {
-            payer_id: sessionUser.id,
-            receiver_id: receiver_user.id,
-            pay_funds: payFunds,
-            message,
-            paid: false
-        };
-
-        const createdPayment = await dispatch(createOutgoing(newPayment));
-        history.push(`/pending/${createdPayment.id}`);
-    };
+    let receiver_user = users.find(user => {
+        if (user.email === receiver.toLowerCase()) {
+            return user;
+        } else {
+            // setNotFound('Unable to find user');
+        }
+    });
 
     const addMessage = e => setMessage(e.target.value);
     const addFunds = e => setPayFunds(e.target.value);
@@ -56,6 +49,22 @@ const OnePaymentNew = () => {
         fetchData();
     }, []);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const newPayment = {
+            payer_id: sessionUser.id,
+            receiver_id: receiver_user.id,
+            pay_funds: payFunds,
+            message,
+            paid: false
+        };
+
+        const createdPayment = await dispatch(createOutgoing(newPayment));
+
+        history.push(`/pending/${createdPayment.id}`);
+    };
+
     return (
         <div className='transactions__container'>
             <Link to='/'
@@ -70,7 +79,7 @@ const OnePaymentNew = () => {
                         <input
                             className='forms__input'
                             name='receiver_name'
-                            type='text'
+                            type='email'
                             value={receiver}
                             onChange={addReceiverByEmail}
                         />

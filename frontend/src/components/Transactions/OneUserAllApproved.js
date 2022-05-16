@@ -22,20 +22,17 @@ const OneUserAllApproved = () => {
     const userApproved = [];
     const pendingList = [];
 
+    // console.log('ALL TRANSACTIONS: ', allApproved);
+    console.log('MY TRANSACTIONS: ', userApproved);
+    // console.log('MY PENDING: ', pendingList);
+
     Object.values(outgoings).forEach(outgoing => {
-        if (outgoing?.paid === true) {
-            allApproved.push(outgoing);
-        } else if (outgoing?.payer_id === sessionUser.id) {
+        if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === true) {
             userApproved.push(outgoing);
-        } else if (outgoing?.paid === false) {
-            pendingList.push(outgoing);
         }
     });
 
-
-    // need to chang this to sort them by update_at
     userApproved.sort((a, b) => b.created_at.split(' ')[4] - a.created_at.split(' ')[4]);
-
 
     useEffect(() => {
         dispatch(readAllOutgoings());

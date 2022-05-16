@@ -1,5 +1,6 @@
 .radio__div {
     width: 410px;
+    margin-top: 15px;
     /* border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid; */
     /* border-radius: var(--main-border-radius); */
     /* padding: 5px; */

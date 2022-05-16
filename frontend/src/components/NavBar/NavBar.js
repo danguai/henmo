@@ -22,9 +22,9 @@ const NavBar = () => {
   Object.values(outgoings).forEach(outgoing => {
     if (outgoing?.paid === true) {
       allApproved.push(outgoing);
-    } else if (outgoing?.payer_id === sessionUser.id) {
+    } else if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === true) {
       userApproved.push(outgoing);
-    } else if (outgoing?.paid === false) {
+    } else if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === false) {
       pendingList.push(outgoing);
     }
   });

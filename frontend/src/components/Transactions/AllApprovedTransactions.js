@@ -23,17 +23,16 @@ const AllApprovedTransactions = () => {
     const userApproved = [];
     const pendingList = [];
 
+    console.log('ALL TRANSACTIONS: ', allApproved);
+    // console.log('MY TRANSACTIONS: ', userApproved);
+    // console.log('MY PENDING: ', pendingList);
+
     Object.values(outgoings).forEach(outgoing => {
         if (outgoing?.paid === true) {
             allApproved.push(outgoing);
-        } else if (outgoing?.payer_id === sessionUser.id) {
-            userApproved.push(outgoing);
-        } else if (outgoing?.paid === false) {
-            pendingList.push(outgoing);
         }
     });
-    console.log(outgoings);
-    // need to chang this to sort them by update_at
+
     allApproved.sort((a, b) => b.updated_at.split(' ')[4] - a.updated_at.split(' ')[4]);
 
     useEffect(() => {
@@ -58,7 +57,10 @@ const AllApprovedTransactions = () => {
                                 </div>
                                 <div>
                                     <div className='you__paid'>
-                                        You paid
+                                        <span className='receiver__name'>
+                                            <User_Name id={paid.payer_id} />
+                                        </span>
+                                        paid
                                         <span className='receiver__name'>
                                             <User_Name id={paid.receiver_id} />
                                         </span>

@@ -18,21 +18,21 @@ const AllPending = () => {
 
     const allApproved = [];
     const userApproved = [];
-    const allPending = [];
+    const pendingList = [];
+
+    // console.log('ALL TRANSACTIONS: ', allApproved);
+    // console.log('MY TRANSACTIONS: ', userApproved);
+    console.log('MY PENDING: ', pendingList);
 
     Object.values(outgoings).forEach(outgoing => {
-        if (outgoing?.paid === true) {
-            allApproved.push(outgoing);
-        } else if (outgoing?.payer_id === sessionUser.id) {
-            userApproved.push(outgoing);
-        } else if (outgoing?.paid === false) {
-            allPending.push(outgoing);
+        if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === false) {
+            pendingList.push(outgoing);
         }
     });
 
-    // need to chang this to sort them by create_at
-    allPending.sort((a, b) => b.updated_at.split(' ')[4] - a.updated_at.split(' ')[4]);
-
+    if (pendingList.length > 0) {
+        pendingList.sort((a, b) => b.created_at.split(' ')[4] - a.created_at.split(' ')[4]);
+    }
 
     useEffect(() => {
         dispatch(readAllOutgoings());
@@ -44,7 +44,7 @@ const AllPending = () => {
         <div className='transactions__container' >
             <div className='transaction__title'>PENDING</div>
             <div className='transactions__list__container'>
-                {allPending.map((paid, i) =>
+                {pendingList.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>
                         <Link
                             className='each__transaction'

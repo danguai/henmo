@@ -25,22 +25,12 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (errors.length > 0) {
-      setCustomError('Email or password is incorrect')
+      setCustomError('Email or password are incorrect');
     }
-  }, [errors.length])
+  }, [errors.length]);
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  // const demoLogin = async () => {
-  //   await dispatch(login('demoone@aa.io', 'password'));
-  //   // history.push('/');
-  // };
+  const updateEmail = (e) => setEmail(e.target.value);
+  const updatePassword = (e) => setPassword(e.target.value);
 
   if (user) {
     return <Redirect to='/' />;
