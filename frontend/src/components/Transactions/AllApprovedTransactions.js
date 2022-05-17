@@ -13,22 +13,21 @@ import './Loading.css';
 
 const AllApprovedTransactions = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
-    const [users, setUsers] = useState({});
-    const [combined, setCombined] = useState([]);
+    // const [users, setUsers] = useState({});
+    // const [combined, setCombined] = useState({});
 
     const outgoings = useSelector(state => state.outgoing);
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('/api/users/');
-            const responseData = await response.json();
-            setUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
-
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         const response = await fetch('/api/users/');
+    //         const responseData = await response.json();
+    //         setUsers(responseData.users);
+    //     }
+    //     fetchData();
+    // }, []);
 
     const allApproved = [];
     Object.values(outgoings).forEach(outgoing => {
@@ -36,6 +35,10 @@ const AllApprovedTransactions = () => {
             allApproved.push(outgoing);
         }
     });
+    allApproved.sort((a, b) => a.updated_at - b.updated_at);
+
+
+    console.log(allApproved);
 
     // useEffect(() => {
     //     (async (allApproved, users) => {
@@ -60,9 +63,7 @@ const AllApprovedTransactions = () => {
     }, [dispatch]);
 
     if (!outgoings) return null;
-
-    if (!users) return null;
-
+    // if (!users) return null;
 
     return (
         <div className='transactions__container' >
@@ -75,7 +76,7 @@ const AllApprovedTransactions = () => {
                             to={`/approved/${paid.id}`}>
                             <div className='icon__with__message'>
                                 <div className='avatar__box__transactions'>
-                                    <UserIcon size={40} />
+                                    <UserIcon size={40} givenUser={paid.payer} />
                                 </div>
                                 <div>
                                     <div className='you__paid'>
@@ -84,11 +85,11 @@ const AllApprovedTransactions = () => {
                                             Loading...
                                         </section> */}
                                         <span className='payer__name'>
-                                            <UserName id={paid.payer_id} />
+                                            <UserName user={paid.payer} />
                                         </span>
                                         sent
                                         <span className='receiver__name'>
-                                            <UserName id={paid.receiver_id} />
+                                            <UserName user={paid.receiver} />
                                         </span>
                                     </div>
                                     <div className='message__preview'>

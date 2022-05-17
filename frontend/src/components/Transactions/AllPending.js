@@ -46,13 +46,13 @@ const AllPending = () => {
                             to={`/pending/${paid.id}`}>
                             <div className='icon__with__message'>
                                 <div className='avatar__box__transactions'>
-                                    <UserIcon size={40} />
+                                    <UserIcon size={40} givenUser={paid.payer} />
                                 </div>
                                 <div>
                                     <div className='you__paid'>
                                         You'll send
                                         <span className='receiver__name'>
-                                            <UserName id={paid.receiver_id} />
+                                            <UserName user={paid.receiver} />
                                         </span>
                                     </div>
                                     <div className='message__preview'>

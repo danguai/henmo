@@ -29,5 +29,7 @@ class Outgoing(db.Model):
             'message': self.message,
             'paid': self.paid,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'payer': self.payer.to_dict(),
+            'receiver': self.receiver.to_dict()
         }
