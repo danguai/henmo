@@ -46,7 +46,7 @@ After signing up, you can now access Henmo! Have fun paying other people with ch
 -Logged-in users can read all comments on approved payments.
    - After a comment is created, only owners of those comments can update or delete them.
 
-#### Future Implementations
+## Future Implementations
 A few ideas to expand the world of Henmo:
 - Request Payment
 - Funds
