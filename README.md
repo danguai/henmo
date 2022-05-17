@@ -11,7 +11,7 @@
 - [Getting Started](https://github.com/danguai/henmo#getting-started)
 - [Technologies](https://github.com/danguai/henmo#technologies)
 - [Feature List](https://github.com/danguai/henmo#feature-list)
-- [Future Implementations](https://github.com/danguai/henmo#future-implementation)
+- [Future Implementations](https://github.com/danguai/henmo#future-implementations)
 
 
 
