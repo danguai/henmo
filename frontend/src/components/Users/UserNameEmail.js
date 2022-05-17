@@ -1,18 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const UserNameEmail = ({ id }) => {
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    if (!id) return;
-
-    (async () => {
-      const response = await fetch(`/api/users/${id}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [id]);
-
+const UserNameEmail = ({ user }) => {
   if (!user) return null;
 
   return (

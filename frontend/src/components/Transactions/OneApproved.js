@@ -45,14 +45,14 @@ const OneApproved = () => {
                         From
                     </div>
                     <div className='approved__tran__name'>
-                        <UserName id={approvedTran.payer_id} />
+                        <UserName user={approvedTran.payer} />
                     </div>
                 </div>
                 <div className='approved__tran__to__and__user'>
                     <div className='approved__tran__to'>
                         To
                     </div>
-                    <UserNameEmail id={approvedTran.receiver_id} />
+                    <UserNameEmail user={approvedTran.receiver} />
                 </div>
                 <div className='approved__tran__chickens__and__amount'>
                     <div className='approved__tran__chickens'>

@@ -54,14 +54,23 @@
     margin-right: 10px
 }
 
-.you__paid {
+.you__sent {
+    display: flex;
+    margin-top: 1px;
     font-size: 14px;
 }
 
 .receiver__name {
-    margin: 0 10px;
+    display: flex;
+    margin-top: -3px;
+    margin-left: 10px;
     font-weight: 700;
     font-size: 18px;
+}
+
+.receiver__user {
+    margin-left: 10px;
+    border: none;
 }
 
 .number__of__chickens {

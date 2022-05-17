@@ -137,7 +137,7 @@ const OnePending = () => {
                     <div className='pending__tran__to'>
                         To
                     </div>
-                    <UserNameEmail id={pendingTran?.receiver_id} />
+                    <UserNameEmail user={pendingTran?.receiver} />
                 </div>
                 <div>
                     <div className={`${payFundsDisplay}`}>

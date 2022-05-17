@@ -79,18 +79,17 @@ const AllApprovedTransactions = () => {
                                     <UserIcon size={40} givenUser={paid.payer} />
                                 </div>
                                 <div>
-                                    <div className='you__paid'>
-                                        {/* <section class="section section-4">
-                                            <span class="loader loader-bars"><span></span></span>
-                                            Loading...
-                                        </section> */}
-                                        <span className='payer__name'>
+                                    <div className='you__sent'>
+                                        <div className='payer__name'>
                                             <UserName user={paid.payer} />
-                                        </span>
+                                        </div>
                                         sent
-                                        <span className='receiver__name'>
+                                        <div className='receiver__name'>
                                             <UserName user={paid.receiver} />
-                                        </span>
+                                        </div>
+                                        <div className='receiver__user'>
+                                            <UserIcon size={20} givenUser={paid.receiver} />
+                                        </div>
                                     </div>
                                     <div className='message__preview'>
                                         {paid.message}
