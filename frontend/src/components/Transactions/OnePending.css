@@ -212,6 +212,11 @@
     margin: 0 5px;
 }
 
+.message__error__pending {
+    margin-top: 5px;
+    position: relative;
+}
+
 .displayed__pay__funds {
     display: block;
 }

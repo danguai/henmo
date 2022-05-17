@@ -115,3 +115,12 @@ textarea {
 .not__displayed__comments {
     display: none;
 }
+
+.comment__error {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    margin-top: 3px;
+    margin-right: 5px;
+}

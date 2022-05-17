@@ -51,7 +51,7 @@ const AllApprovedTransactions = () => {
                             to={`/approved/${paid.id}`}>
                             <div className='icon__with__message'>
                                 <div className='avatar__box__transactions'>
-                                    <UserIcon size={40} />
+                                    <UserIcon size={40} givenUser={paid.payer_id} />
                                 </div>
                                 <div>
                                     <div className='you__paid'>

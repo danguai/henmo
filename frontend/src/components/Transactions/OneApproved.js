@@ -14,7 +14,6 @@ const OneApproved = () => {
     const dispatch = useDispatch();
     const { approved_id } = useParams();
 
-    const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
     const approvedTran = outgoings[approved_id];
@@ -46,14 +45,14 @@ const OneApproved = () => {
                         From
                     </div>
                     <div className='approved__tran__name'>
-                        <UserName id={approvedTran?.payer_id} />
+                        <UserName id={approvedTran.payer_id} />
                     </div>
                 </div>
                 <div className='approved__tran__to__and__user'>
                     <div className='approved__tran__to'>
                         To
                     </div>
-                    <UserNameEmail id={approvedTran?.receiver_id} />
+                    <UserNameEmail id={approvedTran.receiver_id} />
                 </div>
                 <div className='approved__tran__chickens__and__amount'>
                     <div className='approved__tran__chickens'>

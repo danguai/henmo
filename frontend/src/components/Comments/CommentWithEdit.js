@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateComment, deleteComment } from '../../store/comment';
 import { UserIcon } from '../UserIcons/UserIcons';
 
+import { validateComment } from '../../utils/validation';
+
 import './Comments.css';
 
 
@@ -17,6 +19,7 @@ const CommentWithEdit = ({ comment }) => {
     const [commentsInputDisplay, setCommentsInputDisplay] = useState('not__displayed__comments');
 
     const [editMessage, setEditMessage] = useState(comment?.message);
+    const [commentError, setCommentError] = useState('');
 
     const editedComment = async () => {
         let editComment = {
@@ -57,6 +60,7 @@ const CommentWithEdit = ({ comment }) => {
 
     return (
         <div className='comment__box'>
+            {commentError && <div className='error_style comment__error'>{commentError}</div>}
             <div className='comment__user__message'>
                 <div className='comments__image__users'>
                     <UserIcon id={comment.user_id} />
@@ -74,8 +78,14 @@ const CommentWithEdit = ({ comment }) => {
                         <div className='edit__comment'>
                             <textarea
                                 type="text"
-                                value={editMessage}
                                 onChange={(e) => setEditMessage(e.target.value)}
+                                onBlur={() => {
+                                    const error = validateComment(editMessage)
+                                    if (error) setCommentError(error)
+                                }}
+
+                                onFocus={() => { setCommentError('') }}
+                                value={editMessage}
                             ></textarea>
                         </div>
                         <div className='comment__edit__del'>
@@ -87,6 +97,7 @@ const CommentWithEdit = ({ comment }) => {
                             </button>
                             <button
                                 className='white__button__v2 comment__U__C__btn__size'
+                                onFocus={() => { setCommentError('') }}
                                 onClick={commentsAndInputDisplay}
                             >
                                 CANCEL

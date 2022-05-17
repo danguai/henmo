@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory, useParams } from 'react-router-dom';
 
+import { validateAmount, validateMessage } from '../../utils/validation';
+
 import UserNameEmail from '../Users/UserNameEmail';
 
 import { readAllOutgoings, updateOutgoing, deleteOutgoing } from '../../store/outgoing';
@@ -27,12 +29,13 @@ const OnePending = () => {
     const [newMessage, setNewMessage] = useState(pendingTran?.message);
     const [isPaid, setIsPaid] = useState(false);
 
+    const [amountError, setAmountError] = useState('');
+    const [messageError, setMessageError] = useState('');
+
     const [payFundsDisplay, setPayFundsDisplay] = useState('displayed__pay__funds');
     const [payFundsInputDisplay, setPayFundsInputDisplay] = useState('not__displayed__pay__funds');
     const [messageDisplay, setMessageDisplay] = useState('displayed__message');
     const [messageInputDisplay, setMessageInputDisplay] = useState('not__displayed__message');
-
-    const [errors, setErrors] = useState([]);
 
     const updatePending = async () => {
         let oneTran = {
@@ -64,6 +67,7 @@ const OnePending = () => {
         if (payFundsDisplay === 'displayed__pay__funds') {
             setPayFundsDisplay('not__displayed__pay__funds');
             setPayFundsInputDisplay('displayed__pay__funds');
+            setAmountError('');
         } else {
             setPayFundsDisplay('displayed__pay__funds');
             setPayFundsInputDisplay('not__displayed__pay__funds');
@@ -83,6 +87,7 @@ const OnePending = () => {
         if (messageDisplay === 'displayed__message') {
             setMessageDisplay('not__displayed__message');
             setMessageInputDisplay('displayed__message');
+            setMessageError('');
         } else {
             setMessageDisplay('displayed__message');
             setMessageInputDisplay('not__displayed__message');
@@ -158,11 +163,17 @@ const OnePending = () => {
                         <div className='edit__content__position'>
                             <div>
                                 <input
-                                    type="number"
-                                    value={newPayFunds}
-                                    onChange={(e) => setNewPayFunds(e.target.value)}
                                     className="edit__amount__content"
+                                    type="number"
+                                    onChange={(e) => setNewPayFunds(e.target.value)}
+                                    onBlur={() => {
+                                        const error = validateAmount(newPayFunds)
+                                        if (error) setAmountError(error)
+                                    }}
+                                    onFocus={() => { setAmountError('') }}
+                                    value={newPayFunds}
                                 ></input>
+                                {amountError && <div className='error_style amount__error'>{amountError}</div>}
                             </div>
                             <div>
                                 <button
@@ -203,12 +214,18 @@ const OnePending = () => {
                         <div className='edit__content__position'>
                             <div>
                                 <textarea
-                                    type="text"
-                                    value={newMessage}
-                                    onChange={(e) => setNewMessage(e.target.value)}
                                     className="edit__message__content"
-                                ></textarea>
+                                    type="text"
+                                    onChange={(e) => setNewMessage(e.target.value)}
+                                    onBlur={() => {
+                                        const error = validateMessage(newMessage)
+                                        if (error) setMessageError(error)
+                                    }}
+                                    onFocus={() => { setMessageError('') }}
+                                    value={newMessage}
+                                />
                             </div>
+                            {messageError && <div className='error_style message__error__pending'>{messageError}</div>}
                             <div className='comment__edit__del'>
                                 <button
                                     onClick={updatePending}
