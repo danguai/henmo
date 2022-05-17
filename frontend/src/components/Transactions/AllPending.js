@@ -49,11 +49,14 @@ const AllPending = () => {
                                     <UserIcon size={40} givenUser={paid.payer} />
                                 </div>
                                 <div>
-                                    <div className='you__paid'>
+                                    <div className='you__sent'>
                                         You'll send
-                                        <span className='receiver__name'>
+                                        <div className='receiver__name'>
                                             <UserName user={paid.receiver} />
-                                        </span>
+                                        </div>
+                                        <div className='receiver__user'>
+                                            <UserIcon size={20} givenUser={paid.receiver} />
+                                        </div>
                                     </div>
                                     <div className='message__preview'>
                                         {paid.message}

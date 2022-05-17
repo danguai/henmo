@@ -64,12 +64,6 @@
     font-size: 15px;
 }
 
-.receiver__name {
-    margin-left: 10px;
-    font-weight: 700;
-    font-size: 18px;
-}
-
 .number__of__chickens {
     display: flex;
     flex-direction: column;
