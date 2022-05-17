@@ -25,11 +25,7 @@ const OnePaymentNew = () => {
     const [messageError, setMessageError] = useState('');
     const [amountError, setAmountError] = useState('');
 
-    const checkingErrors = (
-        emailError ||
-        messageError ||
-        amountError
-    );
+    const checkingErrors = (emailError || messageError || amountError);
 
     const addMessage = e => setMessage(e.target.value);
     const addFunds = e => setPayFunds(e.target.value);

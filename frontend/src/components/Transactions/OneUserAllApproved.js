@@ -26,7 +26,7 @@ const OneUserAllApproved = () => {
         }
     });
 
-    userApproved.sort((a, b) => b.created_at.split(' ')[4] - a.created_at.split(' ')[4]);
+    userApproved.sort((a, b) => b.created_at - a.created_at);
 
     useEffect(() => {
         dispatch(readAllOutgoings());
@@ -46,13 +46,13 @@ const OneUserAllApproved = () => {
                         >
                             <div className='icon__with__message'>
                                 <div className='avatar__box__transactions'>
-                                    <UserIcon size={40} />
+                                    <UserIcon size={40} givenUser={paid.payer} />
                                 </div>
                                 <div>
                                     <div className='you__paid'>
                                         You sent
                                         <span className='receiver__name'>
-                                            <UserName id={paid.receiver_id} />
+                                            <UserName user={paid.receiver} />
                                         </span>
                                     </div>
                                     <div className='message__preview'>

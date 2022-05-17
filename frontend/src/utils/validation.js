@@ -34,6 +34,7 @@ export const validateRepeatPassword = (password, repeatPassword) => {
 export const validateAmount = amount => {
     if (!amount) return `You must add a number of chickens.`;
     if (amount < 0) return `You can't send negative chickens.`;
+    if (amount == 0) return `You have to send some chickens.`;
 };
 
 export const validateMessage = message => {
@@ -42,4 +43,10 @@ export const validateMessage = message => {
 
 export const validateEmailReceiver = email => {
     if (!email) return 'Please provide an email.';
+};
+
+// A D D   C O M M E N T
+
+export const validateComment = comment => {
+    if (!comment) return `You can't send an empty comment.`;
 };

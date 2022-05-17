@@ -14,7 +14,7 @@ export const avatars = {
     8: { imageUrl: '/static/chicken-8-dark-gray.png', color: '#B3D035', fontColor: '#035B2F' }
 };
 
-export const AvatarProvider = ({ children }) => {
+export function AvatarProvider({ children }) {
     return (
         <AvatarContext.Provider value={{ avatars }}>
             {children}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import UserName from '../Users/UserName';
 import UserNameEmail from '../Users/UserNameEmail';
 
 import { readAllOutgoings } from '../../store/outgoing';
@@ -13,7 +14,6 @@ const OneApproved = () => {
     const dispatch = useDispatch();
     const { approved_id } = useParams();
 
-    const sessionUser = useSelector(state => state.session?.user);
     const outgoings = useSelector(state => state.outgoing);
 
     const approvedTran = outgoings[approved_id];
@@ -45,14 +45,14 @@ const OneApproved = () => {
                         From
                     </div>
                     <div className='approved__tran__name'>
-                        {`${sessionUser.last_name}, ${sessionUser.first_name}`}
+                        <UserName id={approvedTran.payer_id} />
                     </div>
                 </div>
                 <div className='approved__tran__to__and__user'>
                     <div className='approved__tran__to'>
                         To
                     </div>
-                    <UserNameEmail id={approvedTran?.receiver_id} />
+                    <UserNameEmail id={approvedTran.receiver_id} />
                 </div>
                 <div className='approved__tran__chickens__and__amount'>
                     <div className='approved__tran__chickens'>

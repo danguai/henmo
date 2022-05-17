@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
-const UserName = ({ id }) => {
-  const [user, setUser] = useState({});
+const UserName = ({ user }) => {
+  // const [user, setUser] = useState({});
 
-  useEffect(() => {
-    if (!id) return;
+  // useEffect(() => {
+  //   if (!id) return;
 
-    (async () => {
-      const response = await fetch(`/api/users/${id}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [id]);
+  //   (async () => {
+  //     const response = await fetch(`/api/users/${user.id}`);
+  //     const user = await response.json();
+  //     setUser(user);
+  //   })();
+  // }, [id]);
 
   if (!user) return null;
 
   return (
-    <span>
-      {`${user?.last_name}, ${user?.first_name}`}
-    </span >
+    <>
+      {`${user.last_name}, ${user.first_name}`}
+    </ >
   );
 }
+
 export default UserName;

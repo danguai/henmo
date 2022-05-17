@@ -58,8 +58,14 @@
     font-size: 14px;
 }
 
+.payer__name {
+    margin-right: 10px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
 .receiver__name {
-    margin: 0 10px;
+    margin-left: 10px;
     font-weight: 700;
     font-size: 18px;
 }
