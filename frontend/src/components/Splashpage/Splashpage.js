@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 
 import './Splashpage.css';
+import './Footer.css';
 
 const Splashpage = () => {
     const dispatch = useDispatch();
@@ -53,9 +54,24 @@ const Splashpage = () => {
             <div className='one__liner'>
                 <p>is a clone of venmo where <span className="bold__chickens">chickens</span> are the currency</p>
             </div>
-            {/* <div>
-                <img id='image_splash' src='static/splashpage.png' alt='henmo-logo' />
-            </div> */}
+
+            <div className="built__with__container">
+                <a>
+                    <img id='chicken__8__dark__gray__small' src='static/chicken-8-dark-gray.png' alt='chicken__8__dark__gray' />
+                </a>
+                <a href='https://github.com/danguai' target="_blank" className='built__with__logos'>
+                    <img className='built__with__logos' src='static/github.png' />
+                </a>
+                <a href='https://www.linkedin.com/in/blancodaniel/' target="_blank" className='built__with__logos'>
+                    <img className='built__with__logos' src='static/linkedin.png' />
+                </a>
+                <a href='https://www.instagram.com/danguai/' target="_blank" className='built__with__logos'>
+                    <img className='built__with__logos' src='static/instagram.png' />
+                </a>
+                <a href='https://d-blanco.com/' target="_blank" className='built__with__logos'>
+                    d-blanco.com
+                </a>
+            </div>
         </div>
     )
 };

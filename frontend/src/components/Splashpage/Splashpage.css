@@ -83,5 +83,10 @@
     top: -150px;
     right: -200px;
     transform: rotate(180deg);
+}
 
+#chicken__8__dark__gray__small {
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
 }
