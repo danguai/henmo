@@ -26,7 +26,7 @@ const OneUserAllApproved = () => {
         }
     });
 
-    userApproved.sort((a, b) => b.created_at.split(' ')[4] - a.created_at.split(' ')[4]);
+    userApproved.sort((a, b) => b.created_at - a.created_at);
 
     useEffect(() => {
         dispatch(readAllOutgoings());

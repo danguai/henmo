@@ -24,12 +24,9 @@ const AllPending = () => {
         }
     });
 
-    const createAt = trans => {
-        return trans.split(' ')[4].split(':').join('');
-    };
 
     if (pendingList.length > 0) {
-        pendingList.sort((a, b) => createAt(b.created_at) - createAt(a.created_at));
+        pendingList.sort((a, b) => b.created_at - a.created_at);
     }
 
     useEffect(() => {

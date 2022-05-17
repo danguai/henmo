@@ -16,9 +16,9 @@ const UserName = ({ id }) => {
   if (!user) return null;
 
   return (
-    <span>
+    <>
       {`${user?.last_name}, ${user?.first_name}`}
-    </span >
+    </ >
   );
 }
 

@@ -5,7 +5,7 @@ import { avatars } from '../../context/Avatar';
 
 import './UserIcons.css';
 
-export const UserIcon = ({ isNavIcon, givenUser, size, isShareIcon }) => {
+export const UserIcon = ({ givenUser, size }) => {
     // const { avatars } = useContext(AvatarContext);
 
     const sessionUser = useSelector(state => state.session?.user);
@@ -16,8 +16,6 @@ export const UserIcon = ({ isNavIcon, givenUser, size, isShareIcon }) => {
 
     const styleObj = {
         backgroundImage: `url(${avatar?.imageUrl})`,
-        // backgroundColor: 'var(--white)',
-        // borderColor: 'var(--blue-texts)'
     };
 
     if (size) {
@@ -26,9 +24,9 @@ export const UserIcon = ({ isNavIcon, givenUser, size, isShareIcon }) => {
     }
 
     return (
-        <div className={`user__icon ${isShareIcon ? 'share__icon' : ''}`}
+        <div
+            className={'user__icon'}
             style={styleObj}
-            title={givenUser ? givenUser.email : ''}
         />
     )
 };

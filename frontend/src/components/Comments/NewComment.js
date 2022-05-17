@@ -28,11 +28,10 @@ const AddComment = ({ approvedTran }) => {
 
     return (
         <div>
-
             {commentError && <div className='error_style comment__error'>{commentError}</div>}
             <div className='next__comment'>
                 <div className='comments__image__users'>
-                    <UserIcon size={30} isNavIcon={true} givenUser={approvedTran.id} />
+                    <UserIcon size={30} />
                 </div>
                 <textarea
                     className='textarea__add__comment__margin'
