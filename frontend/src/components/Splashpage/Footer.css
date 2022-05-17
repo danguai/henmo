@@ -1,0 +1,31 @@
+.footer__bar {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(180, 40, 46, 1);
+    position: fixed;
+    bottom: 0;
+}
+
+.built__with__container {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    color: black;
+    right: 0;
+    bottom: 0;
+    margin: 25px;
+}
+
+.built__with__logos {
+    display: flex;
+    margin: 5px 7px;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: auto;
+    color: black;
+    text-decoration: none;
+}
