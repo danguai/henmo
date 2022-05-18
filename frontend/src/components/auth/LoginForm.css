@@ -20,6 +20,7 @@
     height: auto;
 
     margin-top: 200px;
+    overflow: hidden;
 }
 
 
@@ -35,38 +36,6 @@
     top: -70px;
 }
 
-/*   in SIGNUP.CSS
-.forms__inputs__format {
-    display: flex;
-    flex-direction: column;
-} */
-
-/*  in SIGNUP.CSS
-.forms__name {
-    font-weight: 800;
-    font-size: 40px;
-    letter-spacing: 8px;
-    color: var(--blue-texts);
-
-    margin-top: 40px;
-    margin-bottom: 10px;
-} */
-
-/*   in SIGNUP.CSS
-.forms__label {
-    font-size: 12px;
-    letter-spacing: 1.2px;
-    color: var(--blue-texts);
-    margin: 10px;
-} */
-
-/*   in SIGNUP.CSS
-.forms__inputs__format>input {
-    height: 40px;
-    border: none;
-    border-bottom: 1px var(--blue-texts) solid;
-} */
-
 .login__btn__size {
     width: 400px;
     height: 40px;
@@ -74,7 +43,6 @@
     font-size: 16px;
     margin: 5px;
     letter-spacing: 2px;
-
 }
 
 
@@ -84,28 +52,32 @@
     margin: 10px;
 }
 
-/*   in SIGNUP.CSS
-.or {
-    font-size: 10px;
-    margin-right: 5px;
-    margin-top: 4px
-} */
-
-/*   in SIGNUP.CSS
-.link__to__other__auth {
-    font-weight: 800;
-    font-size: 14px;
-    text-decoration: none;
-    color: var(--blue-texts)
-} */
-
 .errors__login {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     margin-top: 20px;
     font-size: 9px;
     font-weight: 700;
     color: var(--main-red)
+}
+
+#chicken__1__white__login {
+    position: relative;
+    width: 100px;
+    height: auto;
+    top: -60px;
+    right: 240px;
+    transform: rotate(25deg);
+    margin-bottom: -110px;
+}
+
+#chicken__4__light__gray__login {
+    position: relative;
+    width: 120px;
+    height: auto;
+    top: -210px;
+    left: 140px;
+    transform: rotate(150deg);
+    margin-bottom: -110px;
 }

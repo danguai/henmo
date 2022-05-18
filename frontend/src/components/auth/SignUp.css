@@ -20,6 +20,7 @@
     height: auto;
 
     margin-top: 200px;
+    overflow: hidden;
 }
 
 
@@ -159,4 +160,24 @@
     margin-top: 5px;
     position: relative;
     left: 127px;
+}
+
+#chicken__3__brown__signup {
+    position: relative;
+    width: 100px;
+    height: auto;
+    top: -60px;
+    right: 250px;
+    transform: scalex(-1) rotate(-125deg);
+    margin-bottom: -110px;
+}
+
+#chicken__5__dark__white__signup {
+    position: relative;
+    width: 190px;
+    height: auto;
+    top: -130px;
+    left: 255px;
+    margin-bottom: -180px;
+    transform: scalex(-1) rotate(20deg);
 }
