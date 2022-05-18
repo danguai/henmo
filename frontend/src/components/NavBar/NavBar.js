@@ -1,10 +1,11 @@
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import LogoutButton from '../auth/LogoutButton';
+
+import { avatars } from '../../context/Avatar';
 
 import './NavBar.css';
 
@@ -30,6 +31,13 @@ const NavBar = () => {
       pendingList.push(outgoing);
     }
   });
+
+  const avatarPNGs = Object.values(avatars)
+    .map(avatar => avatar.imageUrl);
+
+  const randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
+
+  console.log('AVATARPNG', randomAvatar);
 
   return (
     <nav id='nav__bar' >
@@ -84,6 +92,12 @@ const NavBar = () => {
             {`OUTGOING (${pendingList.length})`}
           </Link>
         </li>
+        <div className='chicken__img__container'>
+          <img
+            id='big__chicken__navbar'
+            src={randomAvatar}
+            alt='chicken__1__white' />
+        </div>
         <li className='logout__button__placement'>
           <LogoutButton />
         </li>

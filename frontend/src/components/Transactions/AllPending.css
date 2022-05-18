@@ -21,3 +21,44 @@
     overflow: hidden;
     /* border: blue 1px solid; */
 }
+
+#chicken__1__white__pending {
+    position: fixed;
+    width: 250px;
+    height: auto;
+    bottom: -135px;
+    right: -140px;
+    transform: scalex(-1) rotate(-120deg);
+    z-index: -1;
+}
+
+#chicken__7__orange__pending {
+    position: fixed;
+    width: 150px;
+    height: auto;
+    top: -80px;
+    left: 230px;
+    transform: rotate(-30deg);
+    z-index: -1;
+}
+
+#chicken__3__brown__pending {
+    position: fixed;
+    width: 250px;
+    height: auto;
+    bottom: -120px;
+    left: 150px;
+    transform: scalex(-1);
+    transform: scalex(-1) rotate(-90deg);
+    z-index: -1;
+}
+
+#chicken__8__gray__pending {
+    position: fixed;
+    width: 150px;
+    height: auto;
+    top: -80px;
+    right: -60px;
+    transform: scalex(-1) rotate(90deg);
+    z-index: -1;
+}
