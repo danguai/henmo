@@ -44,6 +44,18 @@ const LoginForm = () => {
         <div className='forms__name'>
           LOGIN
         </div>
+        <div>
+          <img
+            id='chicken__1__white__login'
+            src='static/chicken-1-white.png'
+            alt='chicken__1__white' />
+        </div>
+        <div>
+          <img
+            id='chicken__4__light__gray__login'
+            src='static/chicken-4-light-gray.png'
+            alt='chicken__4__light__gray' />
+        </div>
         <form onSubmit={onLogin}>
           <div className='forms__inputs__format'>
             <label className='forms__label' htmlFor='email'>EMAIL</label>
@@ -65,11 +77,6 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
           </div>
-          {/* <div className='errors__login'>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div> */}
           <div className='errors__login'>
             <span>{customError}</span>
           </div>

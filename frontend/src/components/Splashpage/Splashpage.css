@@ -13,17 +13,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 450px;
     height: auto;
-
     margin-top: 140px;
 }
-
 
 .henmo__logo__splash {
     position: absolute;
     top: 185px;
+}
+
+#chicken__7__orange {
+    position: relative;
+    width: 60px;
+    height: auto;
+    top: 129px;
+    right: 200px;
+    z-index: 1;
+}
+
+#chicken__1__white {
+    position: relative;
+    width: 110px;
+    height: auto;
+    top: 195px;
+    left: 320px;
+    z-index: 1;
+    transform: rotate(135deg);
 }
 
 .henmo__logo__splash>img {
@@ -33,14 +49,14 @@
 
 .one__liner {
     position: relative;
-    top: 250px;
+    top: 60px;
     font-size: 28px;
     color: var(--blue-texts);
 }
 
 .splash__btns__container {
     position: relative;
-    top: 230px;
+    top: 50px;
 }
 
 #image_splash {
@@ -63,7 +79,6 @@
     height: auto;
     bottom: 70px;
     left: 50px;
-
 }
 
 #chicken__3__brown {
@@ -73,7 +88,6 @@
     top: 190px;
     left: -140px;
     transform: rotate(45deg);
-
 }
 
 #chicken__8__dark__gray {
@@ -83,6 +97,15 @@
     top: -150px;
     right: -200px;
     transform: rotate(180deg);
+}
+
+#chicken__5__dark__white {
+    position: fixed;
+    width: 850px;
+    height: auto;
+    bottom: -400px;
+    right: -625px;
+    transform: scalex(-1);
 }
 
 #chicken__8__dark__gray__small {

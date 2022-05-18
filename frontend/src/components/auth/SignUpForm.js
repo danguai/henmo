@@ -81,6 +81,18 @@ const SignUpForm = () => {
         <div className='forms__name'>
           SIGN UP
         </div>
+        <div>
+          <img
+            id='chicken__3__brown__signup'
+            src='static/chicken-3-brown.png'
+            alt='chicken__3__brown' />
+        </div>
+        <div>
+          <img
+            id='chicken__5__dark__white__signup'
+            src='static/chicken-5-dark-white.png'
+            alt='chicken__5__dark__white' />
+        </div>
         <form onSubmit={onSignUp}>
           <div className='forms__inputs__format'>
             <label className='forms__label'>FIRST NAME</label>

@@ -83,3 +83,23 @@
     font-size: 30px;
     font-weight: 800;
 }
+
+#chicken__7__orange__approved {
+    position: fixed;
+    width: 250px;
+    height: auto;
+    bottom: -100px;
+    right: -150px;
+    transform: scalex(-1);
+    z-index: -1;
+}
+
+#chicken__2__black__approved {
+    position: fixed;
+    width: 150px;
+    height: auto;
+    top: -50px;
+    left: 200px;
+    transform: scalex(-1) rotate(210deg);
+    z-index: -1;
+}

@@ -68,6 +68,18 @@ const AllApprovedTransactions = () => {
     return (
         <div className='transactions__container' >
             <div className='transaction__title'>ALL TRANSACTIONS</div>
+            <div>
+                <img
+                    id='chicken__7__orange__approved'
+                    src='static/chicken-7-orange.png'
+                    alt='chicken__7__orange__approved' />
+            </div>
+            <div>
+                <img
+                    id='chicken__2__black__approved'
+                    src='static/chicken-2-black.png'
+                    alt='chicken__2__black__approved' />
+            </div>
             <div className='transactions__list__container'>
                 {allApproved?.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>
