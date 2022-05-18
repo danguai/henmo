@@ -10,7 +10,6 @@
 
 }
 
-
 .navbar__elements {
     display: flex;
     flex-direction: column;
@@ -121,8 +120,16 @@
     color: var(--main-orange)
 }
 
-
 .logout__button__placement {
     position: absolute;
     bottom: 20px;
+}
+
+#big__chicken__navbar {
+    position: fixed;
+    width: 750px;
+    height: auto;
+    bottom: -400px;
+    left: -425px;
+    transform: rotate(-7deg)
 }

@@ -37,6 +37,18 @@ const OneUserAllApproved = () => {
     return (
         <div className='transactions__container' >
             <div className='transaction__title'>MY TRANSACTION</div>
+            <div>
+                <img
+                    id='chicken__4__gray__one__approved'
+                    src='static/chicken-4-light-gray.png'
+                    alt='chicken__4__gray__one__approved' />
+            </div>
+            <div>
+                <img
+                    id='chicken__6__yellow__one__approved'
+                    src='static/chicken-6-yellow.png'
+                    alt='chicken__6__yellow__one__approved' />
+            </div>
             <div className='transactions__list__container'>
                 {userApproved.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>

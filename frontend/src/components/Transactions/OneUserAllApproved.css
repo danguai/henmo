@@ -92,3 +92,23 @@
     font-size: 30px;
     font-weight: 800;
 }
+
+#chicken__4__gray__one__approved {
+    position: fixed;
+    width: 250px;
+    height: auto;
+    bottom: -100px;
+    left: 150px;
+    /* transform: scalex(-1); */
+    z-index: -1;
+}
+
+#chicken__6__yellow__one__approved {
+    position: fixed;
+    width: 150px;
+    height: auto;
+    top: -80px;
+    right: -60px;
+    transform: scalex(-1) rotate(90deg);
+    z-index: -1;
+}
