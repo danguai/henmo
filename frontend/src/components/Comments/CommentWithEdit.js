@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { updateComment, deleteComment } from '../../store/comment';
 import { UserIcon } from '../UserIcons/UserIcons';
+import UserInitials from '../Users/UserInitials';
 
 import { validateComment } from '../../utils/validation';
 
@@ -70,6 +71,9 @@ const CommentWithEdit = ({ comment }) => {
                         className='comment__display'
                         onClick={commentsAndInputDisplay}
                     >
+                        <span className='comment__name'>
+                            <UserInitials user={comment.user} />
+                        </span>
                         {comment.message}
                     </div>
                 </div>

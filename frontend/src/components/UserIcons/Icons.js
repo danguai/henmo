@@ -10,7 +10,10 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
     return (
         <div className='radio__div'>
             <div className="justify__right__label" >
-                <div className="avatar__label">CHOOSE YOUR CHICKEN</div>
+                <div className="avatar__label">
+                    CHOOSE YOUR CHICKEN
+                    <span> *</span>
+                </div>
                 {/* <div>
                     <i className="fa-solid fa-circle-check avatar-check" id={avatarError}></i>
                 </div> */}

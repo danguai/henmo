@@ -29,31 +29,37 @@ const AddComment = ({ approvedTran }) => {
     return (
         <div>
             {commentError && <div className='error_style comment__error'>{commentError}</div>}
-            <div className='next__comment'>
-                <div className='comments__image__users'>
-                    <UserIcon size={30} />
+            <div className='new__comment'>
+                <label className='new__comment__label'>
+                    NEW COMMENT
+                    <span> *</span>
+                </label>
+                <div className='next__comment'>
+                    <div className='comments__image__users'>
+                        <UserIcon size={30} />
+                    </div>
+                    <textarea
+                        className='textarea__add__comment__margin'
+                        type="text"
+                        onChange={(e) => setMessage(e.target.value)}
+                        onBlur={() => {
+                            const error = validateComment(message)
+                            if (error) setCommentError(error)
+                        }}
+                        onFocus={() => { setCommentError('') }}
+                        value={message}
+                    // placeholder='Add a comment...'
+                    />
+                    <div className='add__cancel__comments'>
+                        <button
+                            onClick={addComment}
+                            className='red__button__v2 comment__add__btn__size'>
+                            ADD
+                        </button>
+                    </div>
                 </div>
-                <textarea
-                    className='textarea__add__comment__margin'
-                    type="text"
-                    onChange={(e) => setMessage(e.target.value)}
-                    onBlur={() => {
-                        const error = validateComment(message)
-                        if (error) setCommentError(error)
-                    }}
-                    onFocus={() => { setCommentError('') }}
-                    value={message}
-                // placeholder='Add a comment...'
-                />
-                <div className='add__cancel__comments'>
-                    <button
-                        onClick={addComment}
-                        className='red__button__v2 comment__add__btn__size'>
-                        ADD
-                    </button>
-                </div>
+                <div className='required__comment'>* REQUIRED</div>
             </div>
-
         </div>
     )
 };

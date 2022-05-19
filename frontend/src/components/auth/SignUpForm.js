@@ -95,7 +95,10 @@ const SignUpForm = () => {
         </div>
         <form onSubmit={onSignUp}>
           <div className='forms__inputs__format'>
-            <label className='forms__label'>FIRST NAME</label>
+            <label className='forms__label'>
+              FIRST NAME
+              <span> *</span>
+            </label>
             <input
               className='forms__input'
               type='text'
@@ -111,7 +114,10 @@ const SignUpForm = () => {
           </div>
           {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
           <div className='forms__inputs__format last__name'>
-            <label className='forms__label'>LAST NAME</label>
+            <label className='forms__label'>
+              LAST NAME
+              <span> *</span>
+            </label>
             <input
               className='forms__input'
               type='text'
@@ -131,7 +137,10 @@ const SignUpForm = () => {
           />
           <div>
             <div className='forms__inputs__format'>
-              <label className='forms__label' >EMAIL</label>
+              <label className='forms__label' >
+                EMAIL
+                <span> *</span>
+              </label>
               <input
                 className='forms__input'
                 type='text'
@@ -148,7 +157,10 @@ const SignUpForm = () => {
             {emailError && <div className='error_style email__error'>{emailError}</div>}
           </div>
           <div className='forms__inputs__format'>
-            <label className='forms__label' >PASSWORD</label>
+            <label className='forms__label' >
+              PASSWORD
+              <span> *</span>
+            </label>
             <input
               className='forms__input'
               type='password'
@@ -164,7 +176,10 @@ const SignUpForm = () => {
           </div>
           {passwordError && <div className='error_style password__error'>{passwordError}</div>}
           <div className='forms__inputs__format'>
-            <label className='forms__label' >REPEAT PASSWORD</label>
+            <label className='forms__label' >
+              REPEAT PASSWORD
+              <span> *</span>
+            </label>
             <input
               className='forms__input'
               type='password'
@@ -208,6 +223,7 @@ const SignUpForm = () => {
               </div>
             </div>
           </div>
+          <div className='required'>* REQUIRED</div>
         </form>
       </div>
     </div>

@@ -27,6 +27,12 @@
     margin: 5px 0;
 }
 
+.avatar__label>span {
+    font-size: 10px;
+    position: relative;
+    top: -2px
+}
+
 #radio__jello__div {
     display: flex;
     flex-direction: column;
