@@ -37,8 +37,8 @@ def avatar_select(form, field):
 
 
 class SignUpForm(FlaskForm):
-    first_name = StringField('First Name', validators=[DataRequired()])
-    last_name = StringField('Last Name', validators=[DataRequired()])
-    avatar_id = IntegerField('Avatar ID', validators=[DataRequired()])
+    first_name = StringField('First Name', validators=[DataRequired('You must enter a First Name')])
+    last_name = StringField('Last Name', validators=[DataRequired('You must enter a Last Name')])
+    avatar_id = IntegerField('Avatar ID', validators=[DataRequired('You must choose a chicken avatar.')])
     email = StringField('Email', validators=[DataRequired(), user_exists, Email()])
     password = StringField('Password', validators=[DataRequired()])
