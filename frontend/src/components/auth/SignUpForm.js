@@ -213,7 +213,7 @@ const SignUpForm = () => {
             </button>
             <div className='or__signup'>
               <div>
-                <Link className='link__to__other__auth' to='/home'>BACK</Link>
+                <Link className='link__to__other__auth' to='/'>BACK</Link>
               </div>
               <div className='or'>
                 OR

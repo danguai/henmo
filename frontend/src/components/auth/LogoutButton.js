@@ -9,7 +9,7 @@ const LogoutButton = () => {
 
   const onLogout = async (e) => {
     await dispatch(logout());
-    history.push('/home');
+    history.push('/');
   };
 
   return <button className='white__button__basic pay__btn__size' onClick={onLogout}>LOGOUT</button>;
