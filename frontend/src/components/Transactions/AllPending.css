@@ -18,6 +18,7 @@
 
 .message__preview {
     height: 25px;
+    width: 680px;
     overflow: hidden;
     /* border: blue 1px solid; */
 }

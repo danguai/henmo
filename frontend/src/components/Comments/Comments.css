@@ -47,7 +47,11 @@
 
 .comment__display {
     font-size: 14px;
-    color: var(--blue-texts)
+    color: var(--blue-texts);
+    padding: 5px;
+    width: 440px;
+    display: inline-block;
+    word-wrap: break-word;
 }
 
 .comment__user__message {

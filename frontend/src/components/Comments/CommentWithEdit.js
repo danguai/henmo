@@ -63,7 +63,7 @@ const CommentWithEdit = ({ comment }) => {
             {commentError && <div className='error_style comment__error'>{commentError}</div>}
             <div className='comment__user__message'>
                 <div className='comments__image__users'>
-                    <UserIcon id={comment.user_id} />
+                    <UserIcon givenUser={comment.user} />
                 </div>
                 <div className={`${commentsDisplay}`}>
                     <div

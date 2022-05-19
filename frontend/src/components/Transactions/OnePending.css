@@ -125,8 +125,10 @@
 .pending__tran__message__content {
     font-weight: 700;
     font-size: 15px;
-    /* letter-spacing: 4px; */
     color: var(--blue-texts);
+    width: 415px;
+    display: inline-block;
+    word-wrap: break-word;
 }
 
 .edit__message__content {

@@ -37,8 +37,6 @@ const NavBar = () => {
 
   const randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
 
-  console.log('AVATARPNG', randomAvatar);
-
   return (
     <nav id='nav__bar' >
       <ul className='navbar__elements'>

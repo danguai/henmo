@@ -7,8 +7,6 @@ import { readAllComments } from '../../store/comment';
 import AddComment from './NewComment';
 import CommentWithEdit from './CommentWithEdit';
 
-import { validateComment } from '../../utils/validation';
-
 import './Comments.css';
 
 const Comments = ({ approvedTran }) => {
