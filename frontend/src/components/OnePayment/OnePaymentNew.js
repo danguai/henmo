@@ -24,6 +24,8 @@ const OnePaymentNew = () => {
     const [userNotFoundError, setUserNotFoundError] = useState('');
     const [messageError, setMessageError] = useState('');
     const [amountError, setAmountError] = useState('');
+    const [emptyFormError, setEmptyFormError] = useState('');
+
 
     const checkingErrors = (emailError || messageError || amountError);
 
@@ -60,8 +62,14 @@ const OnePaymentNew = () => {
                 paid: false
             };
 
+
+
             const createdPayment = await dispatch(createOutgoing(newPayment));
-            history.push(`/pending/${createdPayment.id}`);
+            if (!createdPayment) {
+                setEmptyFormError('You must complete the form');
+            } else {
+                history.push(`/pending/${createdPayment.id}`);
+            }
         } else {
             setUserNotFoundError('User not found');
         }
@@ -136,6 +144,7 @@ const OnePaymentNew = () => {
                     {amountError && <div className='error_style amount__error'>{amountError}</div>}
                     <div className="result">
                     </div>
+                    {emptyFormError && <div className='error_style amount__error'>{emptyFormError}</div>}
                     <div>
                         <button
                             className={checkingErrors ?
