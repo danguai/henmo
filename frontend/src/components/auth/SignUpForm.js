@@ -69,7 +69,7 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => setRepeatPassword(e.target.value);
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/all-approved' />;
   }
 
   return (

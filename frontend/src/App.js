@@ -49,7 +49,7 @@ function App() {
         <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/' exact={true} >
+        <ProtectedRoute path='/all-approved' exact={true} >
           <AllApprovedTransactions />
         </ProtectedRoute>
         <ProtectedRoute path='/approved' exact={true} >
