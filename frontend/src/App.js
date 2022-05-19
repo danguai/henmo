@@ -40,7 +40,7 @@ function App() {
     <BrowserRouter>
       {sessionUser && <NavBar />}
       <Switch>
-        <Route path='/home' exact={true}>
+        <Route path='/' exact={true}>
           <Splashpage />
         </Route>
         <Route path='/login' exact={true}>
