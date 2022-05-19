@@ -5,9 +5,7 @@ import { validateAvatar } from "../../utils/validation";
 
 export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) => {
 
-    const updateAvatarId = (e) => {
-        setAvatarId(e.target.value);
-    };
+    const updateAvatarId = (e) => setAvatarId(e.target.value);
 
     return (
         <div className='radio__div'>
