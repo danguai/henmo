@@ -35,10 +35,12 @@ export const validateAmount = amount => {
     if (!amount) return `You must add a number of chickens.`;
     if (amount < 0) return `You can't send negative chickens.`;
     if (amount == 0) return `You have to send some chickens.`;
+    if (amount > 500) return `You can't send more than 500 chickens.`;
 };
 
 export const validateMessage = message => {
     if (!message) return 'You must add a message.';
+    if (message.length > 500) return `You can't add messages longer than 500 characters.`;
 };
 
 export const validateEmailReceiver = email => {
@@ -49,4 +51,5 @@ export const validateEmailReceiver = email => {
 
 export const validateComment = comment => {
     if (!comment) return `You can't send an empty comment.`;
+    if (comment.length > 1000) return `You can't sent comments longer than 1000 characters.`;
 };

@@ -22,6 +22,11 @@ def user_exists(form, field):
     if user:
         raise ValidationError('Email address is already in use.')
 
+def avatar_select(form, field):
+    avatar_id = field.data
+    # avatar = User.query.filter(User.avatar_id == avatar_id).first()
+    if avatar_id is False:
+        raise ValidationError('You must choose a chicken avatar.')
 
 # def username_exists(form, field):
 #     # Checking if username is already in use

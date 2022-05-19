@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { updateComment, deleteComment } from '../../store/comment';
 import { UserIcon } from '../UserIcons/UserIcons';
+import UserInitials from '../Users/UserInitials';
 
 import { validateComment } from '../../utils/validation';
 
@@ -63,13 +64,16 @@ const CommentWithEdit = ({ comment }) => {
             {commentError && <div className='error_style comment__error'>{commentError}</div>}
             <div className='comment__user__message'>
                 <div className='comments__image__users'>
-                    <UserIcon id={comment.user_id} />
+                    <UserIcon givenUser={comment.user} />
                 </div>
                 <div className={`${commentsDisplay}`}>
                     <div
                         className='comment__display'
                         onClick={commentsAndInputDisplay}
                     >
+                        <span className='comment__name'>
+                            <UserInitials user={comment.user} />
+                        </span>
                         {comment.message}
                     </div>
                 </div>

@@ -68,6 +68,22 @@
     white-space: nowrap;
 }
 
+.forms__label>span {
+    font-size: 10px;
+    position: relative;
+    top: -2px
+}
+
+.required {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    color: var(--blue-texts);
+    white-space: nowrap;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    float: right;
+}
+
 .forms__inputs__format>input {
     height: 40px;
     width: 100%;

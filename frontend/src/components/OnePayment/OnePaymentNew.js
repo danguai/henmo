@@ -77,7 +77,10 @@ const OnePaymentNew = () => {
             <div className='approved__payment__container' >
                 <form onSubmit={handleSubmit}>
                     <div className='forms__inputs__format'>
-                        <label className='forms__label'>EMAIL</label>
+                        <label className='forms__label'>
+                            EMAIL
+                            <span> *</span>
+                        </label>
                         <input
                             className='forms__input'
                             name='receiver_name'
@@ -94,7 +97,10 @@ const OnePaymentNew = () => {
                     {emailError && <div className='error_style email__receiver__error'>{emailError}</div>}
                     {userNotFoundError && <div className='error_style email__receiver__error'>{userNotFoundError}</div>}
                     <div className='forms__inputs__format'>
-                        <label className='forms__label'>MESSAGE</label>
+                        <label className='forms__label'>
+                            MESSAGE
+                            <span> *</span>
+                        </label>
                         <input
                             className='forms__input'
                             name='message'
@@ -110,7 +116,10 @@ const OnePaymentNew = () => {
                     </div>
                     {messageError && <div className='error_style message__error'>{messageError}</div>}
                     <div className='forms__inputs__format' >
-                        <label className='forms__label'>AMOUNT</label>
+                        <label className='forms__label'>
+                            AMOUNT
+                            <span> *</span>
+                        </label>
                         <input
                             className='forms__input'
                             name='amount'
@@ -136,9 +145,23 @@ const OnePaymentNew = () => {
                             SEND
                         </button>
                     </div>
+                    <div className='required'>* REQUIRED</div>
                 </form>
             </div>
-        </div >
+            <div className='foot__note'>
+                <div>
+                    **
+                </div>
+                Transactions will be in
+                <span>
+                    PENDING
+                </span>
+                waiting for
+                <span>
+                    APPROVAL
+                </span>
+            </div>
+        </div>
     )
 };
 
