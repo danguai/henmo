@@ -148,7 +148,20 @@ const OnePaymentNew = () => {
                     <div className='required'>* REQUIRED</div>
                 </form>
             </div>
-        </div >
+            <div className='foot__note'>
+                <div>
+                    **
+                </div>
+                Transactions will be in
+                <span>
+                    PENDING
+                </span>
+                waiting for
+                <span>
+                    APPROVAL
+                </span>
+            </div>
+        </div>
     )
 };
 

@@ -69,8 +69,9 @@
 }
 
 .pending__label__red {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
+    letter-spacing: 2px;
     color: var(--main-red)
 }
 
@@ -87,7 +88,7 @@
 }
 
 .line__division__pending {
-    width: 105px;
+    width: 125px;
     height: 1px;
     background-color: var(--main-red);
 }
@@ -108,7 +109,7 @@
 
 .outgoing__link__red {
     margin-top: 10px;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 3px;
     text-decoration: none;
     color: var(--main-red);
