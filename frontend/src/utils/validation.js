@@ -23,6 +23,7 @@ export const validateEmail = email => {
 
 export const validatePassword = password => {
     if (!password) return `Password is required.`;
+    if (password.length < 8) return `Password must be at least 8 characters long.`;
 };
 
 export const validateRepeatPassword = (password, repeatPassword) => {
