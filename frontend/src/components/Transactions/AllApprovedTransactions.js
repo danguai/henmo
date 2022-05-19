@@ -1,10 +1,11 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { readAllOutgoings } from '../../store/outgoing';
 import { UserIcon } from '../UserIcons/UserIcons';
+import LottieChickens from '../AnimatedChickens/LottieChickens';
 
 import UserName from '../Users/UserName';
 
@@ -13,21 +14,7 @@ import './Loading.css';
 
 const AllApprovedTransactions = () => {
     const dispatch = useDispatch();
-    // const history = useHistory();
-
-    // const [users, setUsers] = useState({});
-    // const [combined, setCombined] = useState({});
-
     const outgoings = useSelector(state => state.outgoing);
-
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const response = await fetch('/api/users/');
-    //         const responseData = await response.json();
-    //         setUsers(responseData.users);
-    //     }
-    //     fetchData();
-    // }, []);
 
     const allApproved = [];
     Object.values(outgoings).forEach(outgoing => {
@@ -37,49 +24,37 @@ const AllApprovedTransactions = () => {
     });
     allApproved.sort((a, b) => a.updated_at - b.updated_at);
 
-
-    console.log(allApproved);
-
-    // useEffect(() => {
-    //     (async (allApproved, users) => {
-    //         return await allApproved?.map(trans => {
-    //             return users?.filter(user => {
-    //                 if (trans.payer_id === user.id) {
-
-    //                     // console.log('TRANS:', trans);
-    //                     // console.log('USER:', user);
-    //                     setCombined({ ...trans, ...user });
-    //                 }
-    //                 // }
-    //             });
-    //         });
-    //     })(allApproved, users);
-    // }, [allApproved, users]);
-
-    // console.log('COMBINED: ', combined);
-
     useEffect(() => {
         dispatch(readAllOutgoings());
     }, [dispatch]);
 
     if (!outgoings) return null;
-    // if (!users) return null;
 
     return (
         <div className='transactions__container' >
             <div className='transaction__title'>ALL TRANSACTIONS</div>
-            <div>
-                <img
-                    id='chicken__7__orange__approved'
-                    src='static/chicken-7-orange.png'
-                    alt='chicken__7__orange__approved' />
+            <div className='chicken__img__container__lottie__approved__bottom'>
+                <div className='LottieChicken__container__approved__bottom'>
+                    <LottieChickens size={335} />
+                </div>
             </div>
-            <div>
+            {/* <div>
+                <img
+                id='chicken__7__orange__approved'
+                src='static/chicken-7-orange.png'
+                alt='chicken__7__orange__approved' />
+            </div> */}
+            <div className='chicken__img__container__lottie__approved__top'>
+                <div className='LottieChicken__container__approved__top'>
+                    <LottieChickens size={210} rotate={210} />
+                </div>
+            </div>
+            {/* <div>
                 <img
                     id='chicken__2__black__approved'
                     src='static/chicken-2-black.png'
                     alt='chicken__2__black__approved' />
-            </div>
+            </div> */}
             <div className='transactions__list__container'>
                 {allApproved?.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>

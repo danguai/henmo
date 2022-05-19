@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import LogoutButton from '../auth/LogoutButton';
-
+import LottieChickens from '../AnimatedChickens/LottieChickens';
 import { avatars } from '../../context/Avatar';
 
 import './NavBar.css';
@@ -92,11 +92,14 @@ const NavBar = () => {
             {`OUTGOING (${pendingList.length})`}
           </Link>
         </li>
-        <div className='chicken__img__container'>
-          <img
+        <div className='chicken__img__container__lottie__navbar'>
+          <div className='LottieChicken__container__navbar'>
+            <LottieChickens size={800} rotate={-10} />
+          </div>
+          {/* <img
             id='big__chicken__navbar'
             src={randomAvatar}
-            alt='chicken__1__white' />
+            alt='chicken__1__white' /> */}
         </div>
         <li className='logout__button__placement'>
           <LogoutButton />

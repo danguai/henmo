@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import UserName from '../Users/UserName';
+import LottieChickens from '../AnimatedChickens/LottieChickens';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import { readAllOutgoings } from '../../store/outgoing';
@@ -38,17 +39,25 @@ const AllPending = () => {
     return (
         <div className='transactions__container' >
             <div className='transaction__title'>PENDING</div>
-            <div>
-                <img
-                    id='chicken__1__white__pending'
-                    src='static/chicken-1-white.png'
-                    alt='chicken__1__white__pending' />
+            <div className='chicken__img__container__lottie__pending__bottom__right'>
+                <div className='LottieChicken__container__pending__bottom__right'>
+                    <LottieChickens size={350} rotate={-120} />
+                </div>
             </div>
-            <div>
-                <img
-                    id='chicken__7__orange__pending'
-                    src='static/chicken-7-orange.png'
-                    alt='chicken__7__orange__pending' />
+            <div className='chicken__img__container__lottie__pending__top__left'>
+                <div className='LottieChicken__container__pending__top__left'>
+                    <LottieChickens size={210} rotate={45} />
+                </div>
+            </div>
+            <div className='chicken__img__container__lottie__pending__top__right'>
+                <div className='LottieChicken__container__pending__top__right'>
+                    <LottieChickens size={210} rotate={90} />
+                </div>
+            </div>
+            <div className='chicken__img__container__lottie__pending__bottom__left'>
+                <div className='LottieChicken__container__pending__bottom__left'>
+                    <LottieChickens size={210} rotate={45} />
+                </div>
             </div>
             <div>
                 <img
@@ -56,12 +65,12 @@ const AllPending = () => {
                     src='static/chicken-3-brown.png'
                     alt='chicken__3__brown__pending' />
             </div>
-            <div>
+            {/* <div>
                 <img
                     id='chicken__8__gray__pending'
                     src='static/chicken-8-dark-gray.png'
                     alt='chicken__8__gray__pending' />
-            </div>
+            </div> */}
             <div className='transactions__list__container'>
                 {pendingList.map((paid, i) =>
                     <div className='transactions__list__container' key={i}>

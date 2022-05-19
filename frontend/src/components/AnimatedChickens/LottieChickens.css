@@ -1,0 +1,78 @@
+/* N A V B A R */
+.chicken__img__container__lottie__navbar {
+    position: fixed;
+    bottom: 50px;
+    left: -360px;
+    width: 660px;
+    height: 500px;
+    overflow: hidden;
+}
+
+.LottieChicken__container__navbar {
+    /* height: 100px; */
+    position: relative;
+    bottom: -100px;
+    /* left: -355px; */
+}
+
+/* A L L   T R A N S A C T I O N S */
+.chicken__img__container__lottie__approved__bottom {
+    position: fixed;
+    bottom: -290px;
+    right: -180px;
+    transform: scalex(-1);
+    z-index: -1;
+    width: 310px;
+    height: 500px;
+}
+
+.chicken__img__container__lottie__approved__top {
+    position: fixed;
+    top: -80px;
+    left: 125px;
+    transform: scalex(-1);
+    z-index: -1;
+    width: 310px;
+    height: 500px;
+}
+
+/* P E N D I N G */
+.chicken__img__container__lottie__pending__top__left {
+    position: fixed;
+    top: -110px;
+    left: 145px;
+    transform: scalex(-1);
+    z-index: -1;
+    width: 310px;
+    height: 500px;
+}
+
+.chicken__img__container__lottie__pending__bottom__left {
+    position: fixed;
+    top: -110px;
+    left: 145px;
+    transform: scalex(-1);
+    z-index: -1;
+    width: 310px;
+    height: 500px;
+}
+
+.chicken__img__container__lottie__pending__bottom__right {
+    position: fixed;
+    bottom: -330px;
+    right: -200px;
+    transform: scalex(-1);
+    z-index: -1;
+    width: 310px;
+    height: 500px;
+}
+
+.chicken__img__container__lottie__pending__top__right {
+    position: fixed;
+    top: -105px;
+    right: -140px;
+    transform: scalex(-1);
+    z-index: -1;
+    width: 310px;
+    height: 500px;
+}
