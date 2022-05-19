@@ -98,7 +98,7 @@ const OnePaymentNew = () => {
                                 const error = validateEmailReceiver(receiver)
                                 if (error) setEmailError(error)
                             }}
-                            onFocus={() => { setEmailError('') }}
+                            onFocus={() => { setEmailError(''); setUserNotFoundError('') }}
                             value={receiver}
                         />
                     </div>
