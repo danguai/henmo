@@ -32,7 +32,7 @@ const LoginForm = () => {
   const updatePassword = (e) => setPassword(e.target.value);
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/all-approved' />;
   }
 
   return (

@@ -12,7 +12,7 @@ const Splashpage = () => {
 
     const demoLogin = async () => {
         await dispatch(login('demoone@aa.io', 'password'));
-        history.push('/');
+        history.push('/all-approved');
     };
 
     return (

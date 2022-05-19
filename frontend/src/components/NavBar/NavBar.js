@@ -68,7 +68,7 @@ const NavBar = () => {
             ALL TRANSACTIONS
           </div>
           <div className='line__division__all__tran' />
-          <Link className='outgoing__link' to='/'>
+          <Link className='outgoing__link' to='/all-approved'>
             {`ALL APPROVED (${allApproved.length})`}
           </Link>
         </li>
