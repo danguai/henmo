@@ -31,7 +31,7 @@ const OneApproved = () => {
             >
                 BACK
             </Link>
-            <div>
+            {/* <div>
                 <img
                     id='chicken__3__brown__pending'
                     src='static/chicken-3-brown.png'
@@ -42,7 +42,7 @@ const OneApproved = () => {
                     id='chicken__8__gray__pending'
                     src='static/chicken-8-dark-gray.png'
                     alt='chicken__8__gray__pending' />
-            </div>
+            </div> */}
             <div className='approved__tran__container'>
                 <div className='approved__tran__text__and__number'>
                     <div className='approved__tran__text'>
