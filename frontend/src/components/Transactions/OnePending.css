@@ -219,6 +219,26 @@
     position: relative;
 }
 
+#chicken__4__gray__one__pending {
+    position: relative;
+    width: 250px;
+    height: auto;
+    top: -550px;
+    left: -250px;
+    transform: rotate(-90deg);
+    z-index: -1;
+}
+
+#chicken__6__yellow__one__pending {
+    position: relative;
+    width: 150px;
+    height: auto;
+    top: -50px;
+    left: 210px;
+    transform: scalex(-1) rotate(210deg);
+    z-index: -1;
+}
+
 .displayed__pay__funds {
     display: block;
 }
