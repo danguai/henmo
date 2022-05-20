@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 
@@ -10,10 +10,16 @@ const Splashpage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const sessionUser = useSelector(state => state.session?.user)
+
     const demoLogin = async () => {
         await dispatch(login('demoone@aa.io', 'password'));
         history.push('/all-approved');
     };
+
+    if (sessionUser) {
+        history.push('/all-approved');
+    }
 
     return (
         <div id='splashpage'>
