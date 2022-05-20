@@ -257,6 +257,18 @@ const OnePending = () => {
                     </div>
                 </div>
             </div>
+            <div >
+                <img
+                    id='chicken__6__yellow__one__pending'
+                    src='/static/chicken-6-yellow.png'
+                    alt='chicken__6__yellow__one__pending' />
+            </div>
+            <div>
+                <img
+                    id='chicken__4__gray__one__pending'
+                    src='/static/chicken-4-light-gray.png'
+                    alt='chicken__4__gray__one__pending' />
+            </div>
         </div>
     )
 };

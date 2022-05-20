@@ -31,18 +31,6 @@ const OneApproved = () => {
             >
                 BACK
             </Link>
-            {/* <div>
-                <img
-                    id='chicken__3__brown__pending'
-                    src='static/chicken-3-brown.png'
-                    alt='chicken__3__brown__pending' />
-            </div>
-            <div>
-                <img
-                    id='chicken__8__gray__pending'
-                    src='static/chicken-8-dark-gray.png'
-                    alt='chicken__8__gray__pending' />
-            </div> */}
             <div className='approved__tran__container'>
                 <div className='approved__tran__text__and__number'>
                     <div className='approved__tran__text'>
@@ -85,6 +73,18 @@ const OneApproved = () => {
             </div>
             <div className='comments__container' >
                 <Comments approvedTran={approvedTran} />
+            </div>
+            <div >
+                <img
+                    id='chicken__7__orange__one__approved'
+                    src='/static/chicken-7-orange.png'
+                    alt='chicken__7__orange__one__approved' />
+            </div>
+            <div>
+                <img
+                    id='chicken__2__black__one__approved'
+                    src='/static/chicken-2-black.png'
+                    alt='chicken__2__black__one__approved' />
             </div>
         </div >
     )

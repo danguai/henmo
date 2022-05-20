@@ -153,3 +153,23 @@
     height: 1px;
     background-color: var(--blue-texts);
 }
+
+#chicken__7__orange__one__approved {
+    position: fixed;
+    width: 250px;
+    height: auto;
+    top: 85px;
+    left: 150px;
+    /* transform: rotate(45deg); */
+    z-index: -1;
+}
+
+#chicken__2__black__one__approved {
+    position: fixed;
+    width: 250px;
+    height: auto;
+    top: 85px;
+    right: -150px;
+    transform: scaleX(-1);
+    z-index: -1;
+}
