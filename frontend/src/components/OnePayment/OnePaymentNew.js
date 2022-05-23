@@ -62,8 +62,6 @@ const OnePaymentNew = () => {
                 paid: false
             };
 
-
-
             const createdPayment = await dispatch(createOutgoing(newPayment));
             if (!createdPayment) {
                 setEmptyFormError('You must complete the form');
@@ -150,6 +148,7 @@ const OnePaymentNew = () => {
                             className={checkingErrors ?
                                 'red__button__disabled login__btn__size send__btn__margin__bottom' :
                                 'red__button__basic login__btn__size send__btn__margin__bottom'}
+                            disabled={checkingErrors}
                             type='submit'>
                             SEND
                         </button>
