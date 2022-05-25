@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 
 from backend.api.outgoing_routes import outgoing_routes
+from backend.api.incoming_routes import incoming_routes
 from backend.api.comment_routes import comment_routes
 
 from .seeds import seed_commands
@@ -35,6 +36,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(outgoing_routes, url_prefix='/api/outgoings')
+app.register_blueprint(incoming_routes, url_prefix='/api/incomings')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
 db.init_app(app)
 Migrate(app, db)

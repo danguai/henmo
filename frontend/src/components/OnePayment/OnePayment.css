@@ -1,12 +1,16 @@
 .approved__payment__container {
     display: flex;
     flex-direction: column;
-    margin: 40px;
+    margin: 40px 20px;
     align-items: center;
     width: 500px;
     height: auto;
     background-color: var(--white);
     border: 1px var(--blue-texts) solid;
+}
+
+.send__or__request {
+    display: flex;
 }
 
 .send__btn__margin__bottom {

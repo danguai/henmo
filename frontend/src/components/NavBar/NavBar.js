@@ -58,7 +58,11 @@ const NavBar = () => {
                 <img src='/static/h.png' alt='h' />
               </div>
               <div>
-                SEND PAYMENT
+                SEND
+                <span className='or__payments'>
+                  OR
+                </span>
+                REQUEST
               </div>
             </button>
           </Link>

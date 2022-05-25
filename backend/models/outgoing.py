@@ -20,6 +20,8 @@ class Outgoing(db.Model):
 
     comments = db.relationship('Comment', back_populates='outgoing', cascade="all, delete")
 
+    # approved_incoming = db.relationship('Incoming', back_populates='approved_outgoing', secondary=approved_transactions)
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -30,6 +32,7 @@ class Outgoing(db.Model):
             'paid': self.paid,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            # 'approved_incoming': self.approved_incoming,
             'payer': self.payer.to_dict(),
             'receiver': self.receiver.to_dict()
         }

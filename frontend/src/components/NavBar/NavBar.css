@@ -54,6 +54,11 @@
     margin-right: 10px
 }
 
+.or__payments {
+    font-size: 8px;
+    padding: 0 4px;
+}
+
 .pending__transactions {
     display: flex;
     flex-direction: column;
