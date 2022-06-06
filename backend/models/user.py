@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
 
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
 
-    funds = db.relationship('Fund', back_populates='fund', cascade='all, delete')
+    capital = db.relationship('Fund', back_populates='user', cascade='all, delete')
 
     @property
     def password(self):

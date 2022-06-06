@@ -31,12 +31,12 @@ def create_funds():
     if form.validate_on_submit():
         fund = Fund(
             user_id=form.data['user_id'],
-            amount=form.data[amount]
+            capital=form.data['capital']
         )
         db.session.add(fund)
         db.session.commit()
 
-        retrun fund.to_dict()
+        return fund.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -55,7 +55,7 @@ def update_funds(id):
     funds = Funds.query.get(id)
 
     funds.user_id = request.json['user_id']
-    funds.amount = request.json['amount']
+    funds.capital = request.json['capital']
 
     db.session.commit()
     return funds.to_dict()
