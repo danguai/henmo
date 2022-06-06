@@ -64,6 +64,16 @@ const NavBar = () => {
             </button>
           </Link>
         </li>
+        <li>
+          {sessionUser.funds}
+          <Link to='/add-funds' style={{ textDecoration: 'none' }}>
+            <button className='red__button__v2 funds__btn__size' type='submit'>
+              <div>
+                ADD FUNDS
+              </div>
+            </button>
+          </Link>
+        </li>
         <li className='pending__transactions'>
           <div className='pending__label'>
             ALL TRANSACTIONS

@@ -1,6 +1,6 @@
 // constants
 const SET_USER = 'session/SET_USER';
-const READ_USERS = 'session/READ_USERS'
+const READ_USERS = 'session/READ_USERS';
 const REMOVE_USER = 'session/REMOVE_USER';
 
 const setUser = (user) => ({
@@ -71,7 +71,7 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (first_name, last_name, avatar_id, email, password) => async (dispatch) => {
+export const signUp = (first_name, last_name, avatar_id, funds, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -81,6 +81,7 @@ export const signUp = (first_name, last_name, avatar_id, email, password) => asy
       first_name,
       last_name,
       avatar_id,
+      funds,
       email,
       password,
     }),
