@@ -20,10 +20,14 @@ const AddFunds = () => {
 
     const sessionUser = useSelector(state => state.session?.user);
 
+    const [emailError, setEmailError] = useState('');
+    const [userNotFoundError, setUserNotFoundError] = useState('');
+    const [messageError, setMessageError] = useState('');
     const [amountError, setAmountError] = useState('');
     const [emptyFormError, setEmptyFormError] = useState('');
 
-    const checkingErrors = (amountError);
+
+    const checkingErrors = (emailError || messageError || amountError);
 
     const addFunds = e => setPayFunds(e.target.value);
 

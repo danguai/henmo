@@ -11,15 +11,14 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
     avatar_id = db.Column(db.Integer, nullable=False)
-    funds = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-
 
     transaction_payer = db.relationship('Transaction', foreign_keys='Transaction.payer_id', back_populates='payer', lazy='dynamic')
     transaction_receiver = db.relationship('Transaction', foreign_keys='Transaction.receiver_id', back_populates='receiver', lazy='dynamic')
 
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
+    funds = db.relationship('Fund',  back_populates='user', cascade='all, delete')
 
     @property
     def password(self):
@@ -38,6 +37,5 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'avatar_id': self.avatar_id,
-            'funds': self.funds,
             'email': self.email
         }

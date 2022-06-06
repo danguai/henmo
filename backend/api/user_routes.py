@@ -3,7 +3,6 @@ from flask_login import login_required
 
 from backend.models import User
 
-
 user_routes = Blueprint('users', __name__)
 
 
