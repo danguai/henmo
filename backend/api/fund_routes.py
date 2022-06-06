@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
 
-from backend.models import Fund
+from backend.models import db, User, Fund
 
 fund_routes = Blueprint('funds', __name__)
 
