@@ -4,7 +4,6 @@ import session from './session';
 import transactionReducer from './transaction';
 import commentReducer from './comment';
 
-
 const rootReducer = combineReducers({
   session,
   transaction: transactionReducer,

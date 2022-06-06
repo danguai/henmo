@@ -7,18 +7,21 @@ def seed_users():
         first_name='Demo',
         last_name='User',
         avatar_id=1,
+        funds=125,
         email='demoone@aa.io',
         password='password')
     user1 = User(
         first_name='Daniel',
         last_name='Blanco',
         avatar_id=2,
+        funds=57,
         email='daniel@aa.io',
         password='password')
     user2 = User(
         first_name='Brad',
         last_name='Simpson',
         avatar_id=3,
+        funds=34,
         email='simpson@aa.io',
         password='password')
 
