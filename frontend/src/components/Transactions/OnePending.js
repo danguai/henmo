@@ -7,7 +7,7 @@ import { validateAmount, validateMessage } from '../../utils/validation';
 
 import UserNameEmail from '../Users/UserNameEmail';
 
-import { readAllOutgoings, updateOutgoing, deleteOutgoing } from '../../store/outgoing';
+import { readAllTransactions, updateTransaction, deleteTransaction } from '../../store/transaction';
 
 import './OnePending.css';
 
@@ -17,15 +17,15 @@ const OnePending = () => {
     const { pending_id } = useParams();
 
     const sessionUser = useSelector(state => state.session?.user);
-    const outgoings = useSelector(state => state.outgoing);
+    const transactions = useSelector(state => state.transaction);
 
-    const pendingTran = outgoings[pending_id];
+    const pendingTran = transactions[pending_id];
 
     useEffect(() => {
-        dispatch(readAllOutgoings());
+        dispatch(readAllTransactions());
     }, [dispatch]);
 
-    const [newPayFunds, setNewPayFunds] = useState(pendingTran?.pay_funds);
+    const [newPayFunds, setNewPayFunds] = useState(pendingTran?.amount);
     const [newMessage, setNewMessage] = useState(pendingTran?.message);
     const [isPaid, setIsPaid] = useState(false);
 
@@ -42,12 +42,12 @@ const OnePending = () => {
             id: pendingTran.id,
             message: newMessage,
             paid: isPaid,
-            pay_funds: newPayFunds,
+            amount: newPayFunds,
             payer_id: pendingTran.payer_id,
             receiver_id: pendingTran.receiver_id
         };
 
-        await dispatch(updateOutgoing(oneTran, pending_id));
+        await dispatch(updateTransaction(oneTran, pending_id));
         setMessageDisplay('displayed__message');
         setMessageInputDisplay('not__displayed__message');
         setPayFundsDisplay('displayed__pay__funds');
@@ -59,7 +59,7 @@ const OnePending = () => {
     };
 
     const deletePending = async () => {
-        await dispatch(deleteOutgoing(pendingTran));
+        await dispatch(deleteTransaction(pendingTran));
         history.push('/');
     };
 
@@ -80,7 +80,7 @@ const OnePending = () => {
             setPayFundsDisplay('displayed__pay__funds');
             setPayFundsInputDisplay('not__displayed__pay__funds');
         }
-        setNewPayFunds(pendingTran.pay_funds);
+        setNewPayFunds(pendingTran.amount);
     };
 
     const messageAndInputDisplay = () => {
@@ -148,7 +148,7 @@ const OnePending = () => {
                                 Chickens
                             </div>
                             <div className='pending__tran__amount'>
-                                {pendingTran?.pay_funds}
+                                {pendingTran?.amount}
                             </div>
                             <div>
                                 <button

@@ -17,7 +17,7 @@ const Comments = ({ approvedTran }) => {
     const theseComments = [];
 
     Object.values(allComments).forEach(comment => {
-        if (comment?.outgoing_id === approvedTran?.id) {
+        if (comment?.transaction_id === approvedTran?.id) {
             theseComments.push(comment)
         }
     });

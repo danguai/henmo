@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import UserName from '../Users/UserName';
 
 import { UserIcon } from '../UserIcons/UserIcons';
-import { readAllOutgoings } from '../../store/outgoing';
+import { readAllTransactions } from '../../store/transaction';
 
 import './AllPending.css';
 
@@ -14,13 +14,13 @@ const AllPending = () => {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector(state => state.session?.user);
-    const outgoings = useSelector(state => state.outgoing);
+    const transactions = useSelector(state => state.transaction);
 
     const pendingList = [];
 
-    Object.values(outgoings).forEach(outgoing => {
-        if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === false) {
-            pendingList.push(outgoing);
+    Object.values(transactions).forEach(transaction => {
+        if (transaction?.payer_id === sessionUser.id && transaction?.paid === false) {
+            pendingList.push(transaction);
         }
     });
 
@@ -30,10 +30,10 @@ const AllPending = () => {
     }
 
     useEffect(() => {
-        dispatch(readAllOutgoings());
+        dispatch(readAllTransactions());
     }, [dispatch]);
 
-    if (!outgoings) return null;
+    if (!transactions) return null;
 
     return (
         <div className='transactions__container' >
@@ -92,7 +92,7 @@ const AllPending = () => {
                                     CHICKENS
                                 </div>
                                 <div className='chickens__number'>
-                                    {paid.pay_funds}
+                                    {paid.amount}
                                 </div>
                             </div>
                         </Link>

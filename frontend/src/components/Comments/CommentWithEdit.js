@@ -26,7 +26,7 @@ const CommentWithEdit = ({ comment }) => {
         let editComment = {
             id: comment.id,
             user_id: comment.user_id,
-            outgoing_id: comment.outgoing_id,
+            transaction_id: comment.transaction_id,
             message: editMessage
         };
         await dispatch(updateComment(editComment, editComment.id));

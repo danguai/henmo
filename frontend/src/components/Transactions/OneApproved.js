@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import UserName from '../Users/UserName';
 import UserNameEmail from '../Users/UserNameEmail';
 
-import { readAllOutgoings } from '../../store/outgoing';
+import { readAllTransactions } from '../../store/transaction';
 import Comments from '../Comments/Comments';
 
 import './OneApproved.css';
@@ -14,12 +14,12 @@ const OneApproved = () => {
     const dispatch = useDispatch();
     const { approved_id } = useParams();
 
-    const outgoings = useSelector(state => state.outgoing);
+    const transactions = useSelector(state => state.transaction);
 
-    const approvedTran = outgoings[approved_id];
+    const approvedTran = transactions[approved_id];
 
     useEffect(() => {
-        dispatch(readAllOutgoings());
+        dispatch(readAllTransactions());
     }, [dispatch]);
 
     if (!approvedTran) return null;
@@ -59,7 +59,7 @@ const OneApproved = () => {
                         Chickens
                     </div>
                     <div className='approved__tran__amount'>
-                        {approvedTran?.pay_funds}
+                        {approvedTran?.amount}
                     </div>
                 </div>
                 <div className='approved__tran__message__and__message'>

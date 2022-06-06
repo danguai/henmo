@@ -93,7 +93,7 @@
     background-color: var(--main-red);
 }
 
-.outgoing__link {
+.transaction__link {
     margin-top: 10px;
     font-size: 10px;
     letter-spacing: 3px;
@@ -102,12 +102,12 @@
     transition: .3s;
 }
 
-.outgoing__link:hover {
+.transaction__link:hover {
     letter-spacing: 9px;
     color: var(--rollover-color)
 }
 
-.outgoing__link__red {
+.transaction__link__red {
     margin-top: 10px;
     font-size: 12px;
     letter-spacing: 3px;
@@ -116,7 +116,7 @@
     transition: .3s;
 }
 
-.outgoing__link__red:hover {
+.transaction__link__red:hover {
     letter-spacing: 9px;
     color: var(--main-orange)
 }

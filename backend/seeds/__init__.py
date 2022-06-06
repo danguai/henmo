@@ -1,6 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .outgoings import seed_outgoings, undo_outgoings
+from .transactions import seed_transactions, undo_transactions
 from .comments import seed_comments, undo_comments
 
 # Creates a seed group to hold our commands
@@ -12,7 +12,7 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    seed_outgoings()
+    seed_transactions()
     seed_comments()
     # Add other seed functions here
 
@@ -21,6 +21,6 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
-    undo_outgoings()
+    undo_transactions()
     undo_comments()
     # Add other undo functions here

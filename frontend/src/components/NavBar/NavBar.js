@@ -12,23 +12,24 @@ import './NavBar.css';
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session?.user);
 
-  const outgoings = useSelector(state => state.outgoing);
+  const transactions = useSelector(state => state.transaction);
 
   const allApproved = [];
   const userApproved = [];
-  const pendingList = [];
+  const outgoingTrans = [];
+  const incomingTrans = [];
 
-  Object.values(outgoings).forEach(outgoing => {
-    if (outgoing?.paid === true) {
-      allApproved.push(outgoing);
+  Object.values(transactions).forEach(transaction => {
+    if (transaction?.paid === true) {
+      allApproved.push(transaction);
     }
 
-    if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === true) {
-      userApproved.push(outgoing);
+    if (transaction?.payer_id === sessionUser.id && transaction?.paid === true) {
+      userApproved.push(transaction);
     }
 
-    if (outgoing?.payer_id === sessionUser.id && outgoing?.paid === false) {
-      pendingList.push(outgoing);
+    if (transaction?.payer_id === sessionUser.id && transaction?.paid === false) {
+      outgoingTrans.push(transaction);
     }
   });
 
@@ -68,7 +69,7 @@ const NavBar = () => {
             ALL TRANSACTIONS
           </div>
           <div className='line__division__all__tran' />
-          <Link className='outgoing__link' to='/all-approved'>
+          <Link className='transaction__link' to='/all-approved'>
             {`ALL APPROVED (${allApproved.length})`}
           </Link>
         </li>
@@ -77,7 +78,7 @@ const NavBar = () => {
             MY TRANSACTIONS
           </div>
           <div className='line__division__approved' />
-          <Link className='outgoing__link' to='/approved'>
+          <Link className='transaction__link' to='/approved'>
             {`APPROVED (${userApproved.length})`}
           </Link>
         </li>
@@ -86,8 +87,11 @@ const NavBar = () => {
             PENDING
           </div>
           <div className='line__division__pending' />
-          <Link className='outgoing__link__red' to='/pending'>
-            {`OUTGOING (${pendingList.length})`}
+          <Link className='transaction__link__red' to='/pending'>
+            {`OUTGOING (${outgoingTrans.length})`}
+          </Link>
+          <Link className='transaction__link__red' to='/pending'>
+            {`INCOMING (${outgoingTrans.length})`}
           </Link>
         </li>
         <div className='chicken__img__container'>

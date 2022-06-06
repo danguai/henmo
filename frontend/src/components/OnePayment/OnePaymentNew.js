@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { validateEmailReceiver, validateMessage, validateAmount } from '../../utils/validation';
 
-import { createOutgoing, readAllOutgoings } from '../../store/outgoing';
+import { createTransaction, readAllTransactions } from '../../store/transaction';
 
 import './OnePayment.css';
 
@@ -43,7 +43,7 @@ const OnePaymentNew = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(readAllOutgoings());
+        dispatch(readAllTransactions());
     }, [dispatch]);
 
     const handleSubmit = async (e) => {
@@ -57,12 +57,12 @@ const OnePaymentNew = () => {
             const newPayment = {
                 payer_id: sessionUser.id,
                 receiver_id: receiverUser.id,
-                pay_funds: payFunds,
+                amount: payFunds,
                 message,
                 paid: false
             };
 
-            const createdPayment = await dispatch(createOutgoing(newPayment));
+            const createdPayment = await dispatch(createTransaction(newPayment));
             if (!createdPayment) {
                 setEmptyFormError('You must complete the form');
             } else {

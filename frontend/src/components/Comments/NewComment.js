@@ -19,7 +19,7 @@ const AddComment = ({ approvedTran }) => {
     const addComment = async () => {
         const newComment = {
             user_id: sessionUser.id,
-            outgoing_id: approvedTran.id,
+            transaction_id: approvedTran.id,
             message
         };
         await dispatch(createComment(newComment));
