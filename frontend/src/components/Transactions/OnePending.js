@@ -113,9 +113,6 @@ const OnePending = () => {
 
     const paymentReceiver = pendingTran.receiver_id === sessionUser.id;
 
-    console.log('SENDER: ', paymentSender);
-    console.log('RECEIVER: ', paymentReceiver);
-
     return (
         <div className='transactions__container'>
             <div className='back__all'>
@@ -143,15 +140,23 @@ const OnePending = () => {
                     <div className='pending__tran__from'>
                         From
                     </div>
-                    <div className='pending__tran__name'>
-                        {`${pendingTran.payer.last_name}, ${pendingTran.payer.first_name}`}
-                    </div>
+                    {paymentSender &&
+                        <div className='pending__tran__name'>
+                            {`${pendingTran.payer.last_name}, ${pendingTran.payer.first_name}`}
+                        </div>
+                    }
+                    {paymentReceiver && <UserNameEmail user={pendingTran?.receiver} />}
                 </div>
                 <div className='pending__tran__to__and__user'>
                     <div className='pending__tran__to'>
                         To
                     </div>
-                    <UserNameEmail user={pendingTran?.receiver} />
+                    {paymentSender && <UserNameEmail user={pendingTran?.receiver} />}
+                    {paymentReceiver &&
+                        <div className='pending__tran__name'>
+                            {`${pendingTran.payer.last_name}, ${pendingTran.payer.first_name}`}
+                        </div>
+                    }
                 </div>
                 <div>
                     <div className={`${payFundsDisplay}`}>

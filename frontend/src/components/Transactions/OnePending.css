@@ -165,6 +165,21 @@
     cursor: pointer;
 }
 
+.back__all__btn {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blue-texts);
+    margin-top: 40px;
+    padding: 10px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back__all__btn:hover {
+    color: var(--rollover-color);
+    cursor: pointer;
+}
+
 .pending__amount {
     display: flex;
 }

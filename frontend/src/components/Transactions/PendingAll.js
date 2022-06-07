@@ -11,7 +11,7 @@ import { readAllTransactions } from '../../store/transaction';
 import { Incoming } from './PendingIn';
 import { Outgoing } from './PendingOut';
 
-import './Pending.css';
+import './PendingAll.css';
 
 const PendingAll = () => {
     const dispatch = useDispatch();
@@ -21,14 +21,14 @@ const PendingAll = () => {
 
     const pendingList = [];
 
+    console.log(pendingList);
+
     Object.values(transactions).forEach(transaction => {
         if (transaction?.payer_id === sessionUser.id && transaction?.paid === false ||
             transaction?.receiver_id === sessionUser.id && transaction?.paid === false) {
             pendingList.push(transaction);
         }
     });
-
-    console.log('UNSORTED: ', pendingList);
 
     if (pendingList.length > 0) {
         pendingList.sort((a, b) => b.created_at - a.created_at);
@@ -37,8 +37,6 @@ const PendingAll = () => {
     if (pendingList?.update_at) {
         pendingList.sort((a, b) => b.update_at - a.update_at);
     }
-
-    console.log('SORTED: ', pendingList);
 
     useEffect(() => {
         dispatch(readAllTransactions());
@@ -74,42 +72,46 @@ const PendingAll = () => {
                     alt='chicken__8__gray__pending' />
             </div>
             <div className='transactions__list__container'>
-                {pendingList.map((paid, i) =>
-                    // <Incoming paid={paid} i={i} />
-                    // <Outgoing paid={paid} i={i} />
+                {pendingList.map((trans, i) =>
                     <div className='transactions__list__container' key={i}>
-                        <Link
-                            className='each__transaction'
-                            to={`/pending/${paid.id}`}>
-                            <div className='icon__with__message'>
-                                <div className='avatar__box__transactions'>
-                                    <UserIcon size={40} givenUser={paid.payer} />
-                                </div>
-                                <div>
-                                    <div className='you__sent'>
-                                        You'll send
-                                        <div className='receiver__name'>
-                                            <UserName user={paid.receiver} />
-                                        </div>
-                                        <div className='receiver__user'>
-                                            <UserIcon size={20} givenUser={paid.receiver} />
-                                        </div>
-                                    </div>
-                                    <div className='message__preview'>
-                                        {paid.message}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='number__of__chickens__green'>
-                                <div className='chickens__label'>
-                                    CHICKENS
-                                </div>
-                                <div className='chickens__number'>
-                                    {paid.amount}
-                                </div>
-                            </div>
-                        </Link>
+                        {sessionUser.id === trans.receiver_id ?
+                            <Incoming trans={trans} i={i} /> :
+                            <Outgoing trans={trans} i={i} />
+                        }
                     </div>
+                    // <div className='transactions__list__container' key={i}>
+                    //     <Link
+                    //         className='each__transaction'
+                    //         to={`/pending/${paid.id}`}>
+                    //         <div className='icon__with__message'>
+                    //             <div className='avatar__box__transactions'>
+                    //                 <UserIcon size={40} givenUser={paid.payer} />
+                    //             </div>
+                    //             <div>
+                    //                 <div className='you__sent'>
+                    //                     You'll send
+                    //                     <div className='receiver__name'>
+                    //                         <UserName user={paid.receiver} />
+                    //                     </div>
+                    //                     <div className='receiver__user'>
+                    //                         <UserIcon size={20} givenUser={paid.receiver} />
+                    //                     </div>
+                    //                 </div>
+                    //                 <div className='message__preview'>
+                    //                     {paid.message}
+                    //                 </div>
+                    //             </div>
+                    //         </div>
+                    //         <div className='number__of__chickens__green'>
+                    //             <div className='chickens__label'>
+                    //                 CHICKENS
+                    //             </div>
+                    //             <div className='chickens__number'>
+                    //                 {paid.amount}
+                    //             </div>
+                    //         </div>
+                    //     </Link>
+                    // </div>
                 )}
 
             </div>

@@ -8,30 +8,30 @@ import UserName from '../Users/UserName';
 import { UserIcon } from '../UserIcons/UserIcons';
 import { readAllTransactions } from '../../store/transaction';
 
-import './Pending.css';
+import './PendingAll.css';
 
-export const Outgoing = ({ paid, i }) => {
+export const Outgoing = ({ trans, i }) => {
     return (
         <div className='transactions__list__container' key={i}>
             <Link
                 className='each__transaction'
-                to={`/pending/${paid.id}`}>
+                to={`/pending/${trans.id}`}>
                 <div className='icon__with__message'>
                     <div className='avatar__box__transactions'>
-                        <UserIcon size={40} givenUser={paid.payer} />
+                        <UserIcon size={40} givenUser={trans.payer} />
                     </div>
                     <div>
                         <div className='you__sent'>
                             You'll send
                             <div className='receiver__name'>
-                                <UserName user={paid.receiver} />
+                                <UserName user={trans.receiver} />
                             </div>
                             <div className='receiver__user'>
-                                <UserIcon size={20} givenUser={paid.receiver} />
+                                <UserIcon size={20} givenUser={trans.receiver} />
                             </div>
                         </div>
                         <div className='message__preview'>
-                            {paid.message}
+                            {trans.message}
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@ export const Outgoing = ({ paid, i }) => {
                         CHICKENS
                     </div>
                     <div className='chickens__number'>
-                        {paid.amount}
+                        {trans.amount}
                     </div>
                 </div>
             </Link>
@@ -101,8 +101,8 @@ const PendingOut = () => {
                     alt='chicken__8__gray__pending' />
             </div>
             <div className='transactions__list__container'>
-                {pendingList.map((paid, i) =>
-                    <Outgoing paid={paid} i={i} />
+                {pendingList.map((trans, i) =>
+                    <Outgoing trans={trans} i={i} />
                 )}
 
             </div>
