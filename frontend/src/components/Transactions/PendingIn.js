@@ -22,11 +22,9 @@ export const Incoming = ({ paid, i }) => {
                     </div>
                     <div>
                         <div className='you__sent'>
-                            <div className='sender__name'>
+                            From
+                            <div className='receiver__name'>
                                 <UserName user={paid.payer} />
-                            </div>
-                            <div>
-                                is sending you...
                             </div>
                         </div>
                         <div className='message__preview'>

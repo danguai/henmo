@@ -20,7 +20,6 @@ const OnePending = () => {
     const transactions = useSelector(state => state.transaction);
 
     const pendingTran = transactions[pending_id];
-    console.log(pendingTran);
 
     useEffect(() => {
         dispatch(readAllTransactions());
@@ -110,6 +109,13 @@ const OnePending = () => {
 
     if (!pendingTran) return null;
 
+    const paymentSender = pendingTran.payer_id === sessionUser.id;
+
+    const paymentReceiver = pendingTran.receiver_id === sessionUser.id;
+
+    console.log('SENDER: ', paymentSender);
+    console.log('RECEIVER: ', paymentReceiver);
+
     return (
         <div className='transactions__container'>
             <div className='back__all'>
@@ -158,13 +164,15 @@ const OnePending = () => {
                             <div className='pending__tran__amount'>
                                 {pendingTran?.amount}
                             </div>
-                            <div>
-                                <button
-                                    onClick={payFundsAndInputDisplay}
-                                    className='white__button__v2 pending__edit__btn__size chicken__up'>
-                                    EDIT
-                                </button>
-                            </div>
+                            {paymentSender &&
+                                <div>
+                                    <button
+                                        onClick={payFundsAndInputDisplay}
+                                        className='white__button__v2 pending__edit__btn__size chicken__up'>
+                                        EDIT
+                                    </button>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className={`${payFundsInputDisplay}`}>
@@ -206,13 +214,15 @@ const OnePending = () => {
                             <div className='pending__tran__message__title'>
                                 Message
                             </div>
-                            <div>
-                                <button
-                                    onClick={messageAndInputDisplay}
-                                    className='white__button__v2 pending__edit__btn__size'>
-                                    EDIT
-                                </button>
-                            </div>
+                            {paymentSender &&
+                                <div>
+                                    <button
+                                        onClick={messageAndInputDisplay}
+                                        className='white__button__v2 pending__edit__btn__size'>
+                                        EDIT
+                                    </button>
+                                </div>
+                            }
                         </div>
                         <div className='pending__tran__message__content'>
                             {pendingTran?.message}
@@ -249,21 +259,34 @@ const OnePending = () => {
                         </div>
                     </div>
                 </div>
-                <div className='pending__approve__delete'>
-                    <div className='approve__delete__margin'>
-                        <button
-                            className='red__button__basic approve__btn__size'
-                            onMouseDown={approvePayment}
-                            onMouseUp={updatePending}
-                        >APPROVE</button>
+                {paymentSender &&
+                    <div className='pending__approve__delete'>
+                        <div className='approve__delete__margin'>
+                            <button
+                                className='red__button__basic approve__btn__size'
+                                onMouseDown={approvePayment}
+                                onMouseUp={updatePending}
+                            >APPROVE</button>
+                        </div>
+                        <div className='approve__delete__margin'>
+                            <button
+                                className='blue__button__basic approve__btn__size'
+                                onClick={() => deletePending(pendingTran)}
+                            >DELETE</button>
+                        </div>
                     </div>
-                    <div className='approve__delete__margin'>
-                        <button
-                            className='blue__button__basic approve__btn__size'
-                            onClick={() => deletePending(pendingTran)}
-                        >DELETE</button>
+                }
+                {paymentReceiver &&
+                    <div className='pending__approve__delete'>
+                        <div className='approve__delete__margin'>
+                            <button
+                                className='red__button__basic approve__solo__btn__size'
+                                onMouseDown={approvePayment}
+                                onMouseUp={updatePending}
+                            >APPROVE</button>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
             <div >
                 <img
