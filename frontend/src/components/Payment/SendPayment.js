@@ -16,7 +16,7 @@ const RequestPayment = () => {
     const [users, setUsers] = useState([]);
     const [payFunds, setPayFunds] = useState('');
     const [message, setMessage] = useState('');
-    const [receiver, setReceiver] = useState('');
+    const [email, setEmail] = useState('');
 
     const [click, setClick] = useState(false);
 
@@ -28,12 +28,11 @@ const RequestPayment = () => {
     const [amountError, setAmountError] = useState('');
     const [emptyFormError, setEmptyFormError] = useState('');
 
-
     const checkingErrors = (emailError || messageError || amountError);
 
     const addMessage = e => setMessage(e.target.value);
     const addFunds = e => setPayFunds(e.target.value);
-    const addReceiverByEmail = e => setReceiver(e.target.value);
+    const addReceiverByEmail = e => setEmail(e.target.value);
 
     useEffect(() => {
         async function fetchData() {
@@ -48,31 +47,48 @@ const RequestPayment = () => {
         dispatch(readAllTransactions());
     }, [dispatch]);
 
-    // const checkmarkClicked = () => {
-
-    // };
+    const checkbox = () => {
+        setClick(!click);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let receiverUser = users.find(user => user.email === receiver.toLowerCase());
+        let receiverUser = users.find(user => user.email === email.toLowerCase());
 
         if (receiverUser?.id === sessionUser.id) {
             setEmailError("You can't send chickens to yourself.");
         } else if (receiverUser) {
-            const newPayment = {
-                payer_id: sessionUser.id,
-                receiver_id: receiverUser.id,
-                amount: payFunds,
-                message,
-                paid: false
-            };
+            if (click === false) {
+                const sendPayment = {
+                    payer_id: sessionUser.id,
+                    receiver_id: receiverUser.id,
+                    amount: payFunds,
+                    message,
+                    paid: false
+                };
 
-            const createdPayment = await dispatch(createTransaction(newPayment));
-            if (!createdPayment) {
-                setEmptyFormError('You must complete the form');
+                const createdPayment = await dispatch(createTransaction(sendPayment));
+                if (!createdPayment) {
+                    setEmptyFormError('You must complete the form');
+                } else {
+                    history.push(`/pending/${createdPayment.id}`);
+                }
             } else {
-                history.push(`/pending/${createdPayment.id}`);
+                const requestPayment = {
+                    payer_id: receiverUser.id,
+                    receiver_id: sessionUser.id,
+                    amount: payFunds,
+                    message,
+                    paid: false
+                };
+
+                const createdPayment = await dispatch(createTransaction(requestPayment));
+                if (!createdPayment) {
+                    setEmptyFormError('You must complete the form');
+                } else {
+                    history.push(`/pending/${createdPayment.id}`);
+                }
             }
         } else {
             setUserNotFoundError('User not found');
@@ -99,11 +115,11 @@ const RequestPayment = () => {
                             type='email'
                             onChange={addReceiverByEmail}
                             onBlur={() => {
-                                const error = validateEmailReceiver(receiver)
+                                const error = validateEmailReceiver(email)
                                 if (error) setEmailError(error)
                             }}
                             onFocus={() => { setEmailError(''); setUserNotFoundError('') }}
-                            value={receiver}
+                            value={email}
                         />
                     </div>
                     {emailError && <div className='error_style email__receiver__error'>{emailError}</div>}
@@ -154,8 +170,11 @@ const RequestPayment = () => {
                             SEND OR REQUEST
                             <span> *</span>
                         </label>
-                        <div>
-                            <input type='checkbox'>
+                        <div className='send__or__req__check'>
+                            <input
+                                type='checkbox'
+                                onChange={checkbox}
+                            >
                             </input>
                         </div>
                     </div>
@@ -166,7 +185,7 @@ const RequestPayment = () => {
                                 'red__button__basic login__btn__size send__btn__margin__bottom'}
                             disabled={checkingErrors}
                             type='submit'>
-                            SEND
+                            {click ? 'REQUEST' : 'SEND'}
                         </button>
                     </div>
                     <div className='required'>* REQUIRED</div>

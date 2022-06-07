@@ -255,11 +255,6 @@
     display: none;
 }
 
-.chickens__number__green {
-    font-size: 30px;
-    font-weight: 800;
-}
-
 .number__of__chickens__green {
     display: flex;
     flex-direction: column;
@@ -267,9 +262,17 @@
     color: var(--selected-color);
 }
 
-.chickens__number__red {
+.chickens__number {
     font-size: 30px;
     font-weight: 800;
+}
+
+.chickens__label {
+    position: relative;
+    top: 4px;
+    /* padding: -15px; */
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .number__of__chickens__red {

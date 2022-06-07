@@ -80,15 +80,6 @@
     color: var(--selected-color);
 }
 
-.chickens__label {
-    position: relative;
-    top: 4px;
-    /* padding: -15px; */
-    font-size: 12px;
-    font-weight: 700;
-}
-
-
 #chicken__4__gray__one__approved {
     position: fixed;
     width: 250px;

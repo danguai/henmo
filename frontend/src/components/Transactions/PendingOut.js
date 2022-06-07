@@ -10,6 +10,44 @@ import { readAllTransactions } from '../../store/transaction';
 
 import './Pending.css';
 
+export const Outgoing = ({ paid, i }) => {
+    return (
+        <div className='transactions__list__container' key={i}>
+            <Link
+                className='each__transaction'
+                to={`/pending/${paid.id}`}>
+                <div className='icon__with__message'>
+                    <div className='avatar__box__transactions'>
+                        <UserIcon size={40} givenUser={paid.payer} />
+                    </div>
+                    <div>
+                        <div className='you__sent'>
+                            You'll send
+                            <div className='receiver__name'>
+                                <UserName user={paid.receiver} />
+                            </div>
+                            <div className='receiver__user'>
+                                <UserIcon size={20} givenUser={paid.receiver} />
+                            </div>
+                        </div>
+                        <div className='message__preview'>
+                            {paid.message}
+                        </div>
+                    </div>
+                </div>
+                <div className='number__of__chickens__red'>
+                    <div className='chickens__label'>
+                        CHICKENS
+                    </div>
+                    <div className='chickens__number'>
+                        {paid.amount}
+                    </div>
+                </div>
+            </Link>
+        </div>
+    )
+}
+
 const PendingOut = () => {
     const dispatch = useDispatch();
 
@@ -64,39 +102,7 @@ const PendingOut = () => {
             </div>
             <div className='transactions__list__container'>
                 {pendingList.map((paid, i) =>
-                    <div className='transactions__list__container' key={i}>
-                        <Link
-                            className='each__transaction'
-                            to={`/pending/${paid.id}`}>
-                            <div className='icon__with__message'>
-                                <div className='avatar__box__transactions'>
-                                    <UserIcon size={40} givenUser={paid.payer} />
-                                </div>
-                                <div>
-                                    <div className='you__sent'>
-                                        You'll send
-                                        <div className='receiver__name'>
-                                            <UserName user={paid.receiver} />
-                                        </div>
-                                        <div className='receiver__user'>
-                                            <UserIcon size={20} givenUser={paid.receiver} />
-                                        </div>
-                                    </div>
-                                    <div className='message__preview'>
-                                        {paid.message}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='number__of__chickens__red'>
-                                <div className='chickens__label__red'>
-                                    CHICKENS
-                                </div>
-                                <div className='chickens__number__red'>
-                                    {paid.amount}
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
+                    <Outgoing paid={paid} i={i} />
                 )}
 
             </div>

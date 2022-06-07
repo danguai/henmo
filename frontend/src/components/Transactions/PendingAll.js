@@ -8,6 +8,9 @@ import UserName from '../Users/UserName';
 import { UserIcon } from '../UserIcons/UserIcons';
 import { readAllTransactions } from '../../store/transaction';
 
+import { Incoming } from './PendingIn';
+import { Outgoing } from './PendingOut';
+
 import './Pending.css';
 
 const PendingAll = () => {
@@ -72,6 +75,8 @@ const PendingAll = () => {
             </div>
             <div className='transactions__list__container'>
                 {pendingList.map((paid, i) =>
+                    // <Incoming paid={paid} i={i} />
+                    // <Outgoing paid={paid} i={i} />
                     <div className='transactions__list__container' key={i}>
                         <Link
                             className='each__transaction'
@@ -99,7 +104,7 @@ const PendingAll = () => {
                                 <div className='chickens__label'>
                                     CHICKENS
                                 </div>
-                                <div className='chickens__number__green'>
+                                <div className='chickens__number'>
                                     {paid.amount}
                                 </div>
                             </div>
