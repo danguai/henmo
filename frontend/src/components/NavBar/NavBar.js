@@ -12,14 +12,14 @@ import './NavBar.css';
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session?.user);
 
-  const transactions = useSelector(state => state.transaction);
+  const allTransactions = useSelector(state => state.transaction);
 
   const allApproved = [];
   const userApproved = [];
   const outgoingTrans = [];
   const incomingTrans = [];
 
-  Object.values(transactions).forEach(transaction => {
+  Object.values(allTransactions).forEach(transaction => {
     if (transaction?.paid === true) {
       allApproved.push(transaction);
     }
@@ -30,6 +30,10 @@ const NavBar = () => {
 
     if (transaction?.payer_id === sessionUser.id && transaction?.paid === false) {
       outgoingTrans.push(transaction);
+    }
+
+    if (transaction?.receiver_id === sessionUser.id && transaction?.paid === false) {
+      incomingTrans.push(transaction);
     }
   });
 
@@ -53,18 +57,30 @@ const NavBar = () => {
           </div>
         </li>
         <li>
-          <Link to='/new-payment' style={{ textDecoration: 'none' }}>
+          <Link to='/send-payment' style={{ textDecoration: 'none' }}>
             <button className='red__button__v2 pay__btn__size' type='submit'>
               <div className='h__in__button'>
                 <img src='/static/h.png' alt='h' />
               </div>
               <div>
-                SEND PAYMENT
+                SEND PAY
               </div>
             </button>
           </Link>
         </li>
-        <li>
+        {/* <li>
+          <Link to='/request-payment' style={{ textDecoration: 'none' }}>
+            <button className='red__button__v2 pay__btn__size' type='submit'>
+              <div className='h__in__button'>
+                <img src='/static/h.png' alt='h' />
+              </div>
+              <div>
+                REQUEST PAY
+              </div>
+            </button>
+          </Link>
+        </li> */}
+        {/* <li>
           {sessionUser.funds}
           <Link to='/add-funds' style={{ textDecoration: 'none' }}>
             <button className='red__button__v2 funds__btn__size' type='submit'>
@@ -73,7 +89,7 @@ const NavBar = () => {
               </div>
             </button>
           </Link>
-        </li>
+        </li> */}
         <li className='pending__transactions'>
           <div className='pending__label'>
             ALL TRANSACTIONS
@@ -93,15 +109,15 @@ const NavBar = () => {
           </Link>
         </li>
         <li className='pending__transactions'>
-          <div className='pending__label__red'>
+          <Link className='pending_all__link__red pending__label__red' to='/pending'>
             PENDING
-          </div>
+          </Link>
           <div className='line__division__pending' />
-          <Link className='transaction__link__red' to='/pending'>
+          <Link className='transaction__link__red' to='/pending-out'>
             {`OUTGOING (${outgoingTrans.length})`}
           </Link>
-          <Link className='transaction__link__red' to='/pending'>
-            {`INCOMING (${outgoingTrans.length})`}
+          <Link className='transaction__link__red' to='/pending-in'>
+            {`INCOMING (${incomingTrans.length})`}
           </Link>
         </li>
         <div className='chicken__img__container'>

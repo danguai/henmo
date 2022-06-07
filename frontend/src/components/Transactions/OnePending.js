@@ -20,6 +20,7 @@ const OnePending = () => {
     const transactions = useSelector(state => state.transaction);
 
     const pendingTran = transactions[pending_id];
+    console.log(pendingTran);
 
     useEffect(() => {
         dispatch(readAllTransactions());
@@ -111,11 +112,18 @@ const OnePending = () => {
 
     return (
         <div className='transactions__container'>
-            <Link to='/pending'
-                className='back__btn'
-            >
-                BACK
-            </Link>
+            <div className='back__all'>
+                <Link to='/pending-out'
+                    className='back__all__btn'
+                >
+                    BACK
+                </Link>
+                <Link to='/pending'
+                    className='back__all__btn'
+                >
+                    ALL
+                </Link>
+            </div>
             <div className='pending__tran__container' >
                 <div className='pending__tran__text__and__number'>
                     <div className='pending__tran__text'>
@@ -130,7 +138,7 @@ const OnePending = () => {
                         From
                     </div>
                     <div className='pending__tran__name'>
-                        {`${sessionUser.last_name}, ${sessionUser.first_name}`}
+                        {`${pendingTran.payer.last_name}, ${pendingTran.payer.first_name}`}
                     </div>
                 </div>
                 <div className='pending__tran__to__and__user'>

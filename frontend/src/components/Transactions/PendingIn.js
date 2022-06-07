@@ -8,9 +8,9 @@ import UserName from '../Users/UserName';
 import { UserIcon } from '../UserIcons/UserIcons';
 import { readAllTransactions } from '../../store/transaction';
 
-import './AllPending.css';
+import './Pending.css';
 
-const AllPending = () => {
+const PendingIn = () => {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector(state => state.session?.user);
@@ -19,7 +19,7 @@ const AllPending = () => {
     const pendingList = [];
 
     Object.values(transactions).forEach(transaction => {
-        if (transaction?.payer_id === sessionUser.id && transaction?.paid === false) {
+        if (transaction?.receiver_id === sessionUser.id && transaction?.paid === false) {
             pendingList.push(transaction);
         }
     });
@@ -37,7 +37,7 @@ const AllPending = () => {
 
     return (
         <div className='transactions__container' >
-            <div className='transaction__title'>PENDING</div>
+            <div className='transaction__title'>INCOMING</div>
             <div>
                 <img
                     id='chicken__1__white__pending'
@@ -104,4 +104,4 @@ const AllPending = () => {
     );
 }
 
-export default AllPending;
+export default PendingIn;

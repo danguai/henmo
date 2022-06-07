@@ -7,14 +7,14 @@ import { validateEmailReceiver, validateMessage, validateAmount } from '../../ut
 
 import { createTransaction, readAllTransactions } from '../../store/transaction';
 
-import './OnePayment.css';
+import './Payment.css';
 
-const OnePaymentNew = () => {
+const SendPayment = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const [users, setUsers] = useState([]);
-    const [payFunds, setPayFunds] = useState('');
+    const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [receiver, setReceiver] = useState('');
 
@@ -30,7 +30,7 @@ const OnePaymentNew = () => {
     const checkingErrors = (emailError || messageError || amountError);
 
     const addMessage = e => setMessage(e.target.value);
-    const addFunds = e => setPayFunds(e.target.value);
+    const addAmount = e => setAmount(e.target.value);
     const addReceiverByEmail = e => setReceiver(e.target.value);
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const OnePaymentNew = () => {
             const newPayment = {
                 payer_id: sessionUser.id,
                 receiver_id: receiverUser.id,
-                amount: payFunds,
+                amount: amount,
                 message,
                 paid: false
             };
@@ -130,13 +130,13 @@ const OnePaymentNew = () => {
                             className='forms__input'
                             name='amount'
                             type='number'
-                            onChange={addFunds}
+                            onChange={addAmount}
                             onBlur={() => {
-                                const error = validateAmount(payFunds)
+                                const error = validateAmount(amount)
                                 if (error) setAmountError(error)
                             }}
                             onFocus={() => { setAmountError('') }}
-                            value={payFunds}
+                            value={amount}
                         />
                     </div>
                     {amountError && <div className='error_style amount__error'>{amountError}</div>}
@@ -150,7 +150,7 @@ const OnePaymentNew = () => {
                                 'red__button__basic login__btn__size send__btn__margin__bottom'}
                             disabled={checkingErrors}
                             type='submit'>
-                            SEND
+                            REQUEST
                         </button>
                     </div>
                     <div className='required'>* REQUIRED</div>
@@ -173,4 +173,4 @@ const OnePaymentNew = () => {
     )
 };
 
-export default OnePaymentNew;
+export default SendPayment;
