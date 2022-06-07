@@ -10,6 +10,7 @@ fund_routes = Blueprint('funds', __name__)
 @login_required
 def read_funds(id):
     fund = Fund.query.get(id)
+
     return fund.to_dict()
 
 
@@ -18,7 +19,8 @@ def read_funds(id):
 @login_required
 def update_funds(id):
     fund = Fund.query.get(id)
-    fund.user_id = request.json('user_id')
+
+    fund.user_id = request.json['user_id']
     fund.amount = request.json['amount']
     db.session.commit()
     return funds.to_dict()

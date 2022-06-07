@@ -48,13 +48,15 @@ const NavBar = () => {
         <li className='henmo__logo__navbar'>
           <img src='/static/henmo-logo.png' alt='henmo-logo' />
         </li>
-        <li className='avatar__and__name'>
-          <div className='avatar__box__user'>
-            <UserIcon size={100} />
-          </div>
-          <div className='user__name__display'>
-            Hi, {sessionUser.first_name}
-          </div>
+        <li>
+          <Link to='profile' className='avatar__and__name'>
+            <div className='avatar__box__user'>
+              <UserIcon size={100} />
+            </div>
+            <div className='user__name__display'>
+              Hi, {sessionUser.first_name}
+            </div>
+          </Link>
         </li>
         <li>
           <Link to='/send-payment' style={{ textDecoration: 'none' }}>

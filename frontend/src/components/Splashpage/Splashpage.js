@@ -10,7 +10,7 @@ const Splashpage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const sessionUser = useSelector(state => state.session?.user)
+    const sessionUser = useSelector(state => state.session?.user);
 
     const demoLogin = async () => {
         await dispatch(login('demoone@aa.io', 'password'));

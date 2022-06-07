@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     transaction_receiver = db.relationship('Transaction', foreign_keys='Transaction.receiver_id', back_populates='receiver', lazy='dynamic')
 
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
-    funds = db.relationship('Fund',  back_populates='user', cascade='all, delete')
+    funds = db.relationship('Fund', back_populates='user', cascade='all, delete')
 
     @property
     def password(self):

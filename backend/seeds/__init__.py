@@ -14,8 +14,8 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     seed_transactions()
-    seed_funds()
     seed_comments()
+    seed_funds()
     # Add other seed functions here
 
 
@@ -24,6 +24,6 @@ def seed():
 def undo():
     undo_users()
     undo_transactions()
-    undo_funds()
     undo_comments()
+    undo_funds()
     # Add other undo functions here

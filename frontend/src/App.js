@@ -6,6 +6,8 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Splashpage from './components/Splashpage/Splashpage';
 import NavBar from './components/NavBar/NavBar';
+import Profile from './components/Profile/Profile';
+
 import AllApprovedTransactions from './components/Transactions/AllApprovedTransactions';
 import OneApproved from './components/Transactions/OneApproved';
 import OneUserAllApproved from './components/Transactions/OneUserAllApproved';
@@ -54,6 +56,9 @@ function App() {
         <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/profile' exact={true} >
+          <Profile />
+        </ProtectedRoute>
         <ProtectedRoute path='/all-approved' exact={true} >
           <AllApprovedTransactions />
         </ProtectedRoute>

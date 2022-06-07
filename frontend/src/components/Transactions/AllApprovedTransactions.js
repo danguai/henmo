@@ -37,9 +37,6 @@ const AllApprovedTransactions = () => {
     });
     allApproved.sort((a, b) => a.updated_at - b.updated_at);
 
-
-    console.log(allApproved);
-
     // useEffect(() => {
     //     (async (allApproved, users) => {
     //         return await allApproved?.map(trans => {
