@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { UserIcon } from '../UserIcons/UserIcons';
@@ -8,11 +8,19 @@ import LogoutButton from '../auth/LogoutButton';
 import { avatars } from '../../context/Avatar';
 
 import './NavBar.css';
+import { readFunds } from '../../store/funds';
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session?.user);
 
   const allTransactions = useSelector(state => state.transaction);
+
+  const funds = useSelector(state => state.funds?.funds);
+
+  console.log(sessionUser);
+
+  console.log(funds);
 
   const allApproved = [];
   const userApproved = [];
@@ -36,6 +44,12 @@ const NavBar = () => {
       incomingTrans.push(transaction);
     }
   });
+
+
+  useEffect(() => {
+    dispatch(readFunds(sessionUser.id));
+
+  }, [dispatch]);
 
   const avatarPNGs = Object.values(avatars)
     .map(avatar => avatar.imageUrl);
@@ -70,28 +84,12 @@ const NavBar = () => {
             </button>
           </Link>
         </li>
-        {/* <li>
-          <Link to='/request-payment' style={{ textDecoration: 'none' }}>
-            <button className='red__button__v2 pay__btn__size' type='submit'>
-              <div className='h__in__button'>
-                <img src='/static/h.png' alt='h' />
-              </div>
-              <div>
-                REQUEST PAY
-              </div>
-            </button>
-          </Link>
-        </li> */}
-        {/* <li>
-          {sessionUser.funds}
-          <Link to='/add-funds' style={{ textDecoration: 'none' }}>
-            <button className='red__button__v2 funds__btn__size' type='submit'>
-              <div>
-                ADD FUNDS
-              </div>
-            </button>
-          </Link>
-        </li> */}
+        <li>
+          <div>
+            AVAILABLE CHICKENS
+            {funds?.amount}
+          </div>
+        </li>
         <li className='pending__transactions'>
           <div className='pending__label'>
             ALL TRANSACTIONS
