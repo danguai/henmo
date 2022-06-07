@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-import { readAllOutgoings } from '../../store/outgoing';
+import { readAllTransactions } from '../../store/transaction';
 import { UserIcon } from '../UserIcons/UserIcons';
 
 import UserName from '../Users/UserName';
@@ -18,7 +18,7 @@ const AllApprovedTransactions = () => {
     // const [users, setUsers] = useState({});
     // const [combined, setCombined] = useState({});
 
-    const outgoings = useSelector(state => state.outgoing);
+    const transactions = useSelector(state => state.transaction);
 
     // useEffect(() => {
     //     async function fetchData() {
@@ -30,9 +30,9 @@ const AllApprovedTransactions = () => {
     // }, []);
 
     const allApproved = [];
-    Object.values(outgoings).forEach(outgoing => {
-        if (outgoing?.paid === true) {
-            allApproved.push(outgoing);
+    Object.values(transactions).forEach(transaction => {
+        if (transaction?.paid === true) {
+            allApproved.push(transaction);
         }
     });
     allApproved.sort((a, b) => a.updated_at - b.updated_at);
@@ -59,10 +59,10 @@ const AllApprovedTransactions = () => {
     // console.log('COMBINED: ', combined);
 
     useEffect(() => {
-        dispatch(readAllOutgoings());
+        dispatch(readAllTransactions());
     }, [dispatch]);
 
-    if (!outgoings) return null;
+    if (!transactions) return null;
     // if (!users) return null;
 
     return (
@@ -113,7 +113,7 @@ const AllApprovedTransactions = () => {
                                     CHICKENS
                                 </div>
                                 <div className='chickens__number'>
-                                    {paid.pay_funds}
+                                    {paid.amount}
                                 </div>
                             </div>
                         </Link>

@@ -5,18 +5,20 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { validateEmailReceiver, validateMessage, validateAmount } from '../../utils/validation';
 
-import { createOutgoing, readAllOutgoings } from '../../store/outgoing';
+import { createTransaction, readAllTransactions } from '../../store/transaction';
 
-import './OnePayment.css';
+import './Payment.css';
 
-const OnePaymentNew = () => {
+const RequestPayment = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const [users, setUsers] = useState([]);
     const [payFunds, setPayFunds] = useState('');
     const [message, setMessage] = useState('');
-    const [receiver, setReceiver] = useState('');
+    const [email, setEmail] = useState('');
+
+    const [click, setClick] = useState(false);
 
     const sessionUser = useSelector(state => state.session?.user);
 
@@ -26,12 +28,11 @@ const OnePaymentNew = () => {
     const [amountError, setAmountError] = useState('');
     const [emptyFormError, setEmptyFormError] = useState('');
 
-
     const checkingErrors = (emailError || messageError || amountError);
 
     const addMessage = e => setMessage(e.target.value);
     const addFunds = e => setPayFunds(e.target.value);
-    const addReceiverByEmail = e => setReceiver(e.target.value);
+    const addReceiverByEmail = e => setEmail(e.target.value);
 
     useEffect(() => {
         async function fetchData() {
@@ -43,30 +44,51 @@ const OnePaymentNew = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(readAllOutgoings());
+        dispatch(readAllTransactions());
     }, [dispatch]);
+
+    const checkbox = () => {
+        setClick(!click);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let receiverUser = users.find(user => user.email === receiver.toLowerCase());
+        let receiverUser = users.find(user => user.email === email.toLowerCase());
 
         if (receiverUser?.id === sessionUser.id) {
             setEmailError("You can't send chickens to yourself.");
         } else if (receiverUser) {
-            const newPayment = {
-                payer_id: sessionUser.id,
-                receiver_id: receiverUser.id,
-                pay_funds: payFunds,
-                message,
-                paid: false
-            };
+            if (click === false) {
+                const sendPayment = {
+                    payer_id: sessionUser.id,
+                    receiver_id: receiverUser.id,
+                    amount: payFunds,
+                    message,
+                    paid: false
+                };
 
-            const createdPayment = await dispatch(createOutgoing(newPayment));
-            if (!createdPayment) {
-                setEmptyFormError('You must complete the form');
+                const createdPayment = await dispatch(createTransaction(sendPayment));
+                if (!createdPayment) {
+                    setEmptyFormError('You must complete the form');
+                } else {
+                    history.push(`/pending/${createdPayment.id}`);
+                }
             } else {
-                history.push(`/pending/${createdPayment.id}`);
+                const requestPayment = {
+                    payer_id: receiverUser.id,
+                    receiver_id: sessionUser.id,
+                    amount: payFunds,
+                    message,
+                    paid: false
+                };
+
+                const createdPayment = await dispatch(createTransaction(requestPayment));
+                if (!createdPayment) {
+                    setEmptyFormError('You must complete the form');
+                } else {
+                    history.push(`/pending/${createdPayment.id}`);
+                }
             }
         } else {
             setUserNotFoundError('User not found');
@@ -93,11 +115,11 @@ const OnePaymentNew = () => {
                             type='email'
                             onChange={addReceiverByEmail}
                             onBlur={() => {
-                                const error = validateEmailReceiver(receiver)
+                                const error = validateEmailReceiver(email)
                                 if (error) setEmailError(error)
                             }}
                             onFocus={() => { setEmailError(''); setUserNotFoundError('') }}
-                            value={receiver}
+                            value={email}
                         />
                     </div>
                     {emailError && <div className='error_style email__receiver__error'>{emailError}</div>}
@@ -143,6 +165,19 @@ const OnePaymentNew = () => {
                     <div className="result">
                     </div>
                     {emptyFormError && <div className='error_style amount__error'>{emptyFormError}</div>}
+                    <div className='forms__inputs__format' >
+                        <label className='forms__label'>
+                            SEND OR REQUEST
+                            <span> *</span>
+                        </label>
+                        <div className='send__or__req__check'>
+                            <input
+                                type='checkbox'
+                                onChange={checkbox}
+                            >
+                            </input>
+                        </div>
+                    </div>
                     <div>
                         <button
                             className={checkingErrors ?
@@ -150,7 +185,7 @@ const OnePaymentNew = () => {
                                 'red__button__basic login__btn__size send__btn__margin__bottom'}
                             disabled={checkingErrors}
                             type='submit'>
-                            SEND
+                            {click ? 'REQUEST' : 'SEND'}
                         </button>
                     </div>
                     <div className='required'>* REQUIRED</div>
@@ -173,4 +208,4 @@ const OnePaymentNew = () => {
     )
 };
 
-export default OnePaymentNew;
+export default RequestPayment;

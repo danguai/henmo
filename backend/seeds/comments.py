@@ -4,17 +4,17 @@ from backend.models import db, Comment
 def seed_comments():
     comment_01 = Comment(
         user_id=1,
-        outgoing_id=2,
+        transaction_id=2,
         message='This is comment 1'
     )
     comment_02 = Comment(
         user_id=2,
-        outgoing_id=3,
+        transaction_id=3,
         message='this is the second comment'
     )
     comment_03 = Comment(
         user_id=3,
-        outgoing_id=2,
+        transaction_id=2,
         message='this comment comes from the seeder'
     )
     db.session.add(comment_01)

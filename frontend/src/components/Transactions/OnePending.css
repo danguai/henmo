@@ -165,6 +165,21 @@
     cursor: pointer;
 }
 
+.back__all__btn {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blue-texts);
+    margin-top: 40px;
+    padding: 10px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back__all__btn:hover {
+    color: var(--rollover-color);
+    cursor: pointer;
+}
+
 .pending__amount {
     display: flex;
 }
@@ -193,6 +208,18 @@
     justify-content: center;
     align-items: center;
     width: 200px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 5px;
+    letter-spacing: 0px;
+}
+
+.approve__solo__btn__size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 410px;
     height: 40px;
     font-weight: bold;
     font-size: 14px;
@@ -253,4 +280,31 @@
 
 .not__displayed__message {
     display: none;
+}
+
+.number__of__chickens__green {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: var(--selected-color);
+}
+
+.chickens__number {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.chickens__label {
+    position: relative;
+    top: 4px;
+    /* padding: -15px; */
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.number__of__chickens__red {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: var(--main-red);
 }

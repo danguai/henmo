@@ -14,6 +14,19 @@
     margin-bottom: 30px;
 }
 
+.send__or__req__check {
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
+.sender__name {
+    display: flex;
+    margin-top: -3px;
+    margin-right: 10px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
 .message__error {
     margin-top: 5px;
     position: relative;

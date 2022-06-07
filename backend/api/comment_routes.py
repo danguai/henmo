@@ -17,7 +17,7 @@ def create_comment():
     if form.validate_on_submit():
         comment = Comment(
             user_id=form.data['user_id'],
-            outgoing_id=form.data['outgoing_id'],
+            transaction_id=form.data['transaction_id'],
             message=form.data['message'],
         )
 
@@ -46,7 +46,7 @@ def update_comment(id):
     comment = Comment.query.get(id)
 
     comment.user_id = request.json['user_id']
-    comment.outgoing_id = request.json['outgoing_id']
+    comment.transaction_id = request.json['transaction_id']
     comment.message = request.json['message']
 
     db.session.commit()

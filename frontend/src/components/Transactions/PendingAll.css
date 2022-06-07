@@ -23,6 +23,17 @@
     /* border: blue 1px solid; */
 }
 
+.back__all {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blue-texts);
+    position: relative;
+    left: -195px;
+    margin-top: 40px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
 #chicken__1__white__pending {
     position: fixed;
     width: 250px;

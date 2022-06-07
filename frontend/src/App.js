@@ -9,10 +9,15 @@ import NavBar from './components/NavBar/NavBar';
 import AllApprovedTransactions from './components/Transactions/AllApprovedTransactions';
 import OneApproved from './components/Transactions/OneApproved';
 import OneUserAllApproved from './components/Transactions/OneUserAllApproved';
-import AllPending from './components/Transactions/AllPending';
+import PendingOut from './components/Transactions/PendingOut';
+import PendingIn from './components/Transactions/PendingIn';
+import PendingAll from './components/Transactions/PendingAll';
 import OnePending from './components/Transactions/OnePending';
 
-import OnePaymentNew from './components/OnePayment/OnePaymentNew';
+import SendPayment from './components/Payment/SendPayment';
+import RequestPayment from './components/Payment/RequestPayment';
+
+import AddFunds from './components/AddFunds/AddFunds';
 
 // import AddComments from './components/Comments/AddComment';
 
@@ -56,10 +61,22 @@ function App() {
           <OneUserAllApproved />
         </ProtectedRoute>
         <ProtectedRoute path='/pending' exact={true} >
-          <AllPending />
+          <PendingAll />
         </ProtectedRoute>
-        <ProtectedRoute path='/new-payment' exact={true} >
-          <OnePaymentNew />
+        <ProtectedRoute path='/pending-out' exact={true} >
+          <PendingOut />
+        </ProtectedRoute>
+        <ProtectedRoute path='/pending-in' exact={true} >
+          <PendingIn />
+        </ProtectedRoute>
+        <ProtectedRoute path='/send-payment' exact={true} >
+          <SendPayment />
+        </ProtectedRoute>
+        <ProtectedRoute path='/request-payment' exact={true} >
+          <RequestPayment />
+        </ProtectedRoute>
+        <ProtectedRoute path='/add-funds' exact={true} >
+          <AddFunds />
         </ProtectedRoute>
         <ProtectedRoute path='/approved/:approved_id' exact={true} >
           <OneApproved />

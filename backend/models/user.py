@@ -14,10 +14,11 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    outgoing_payer = db.relationship('Outgoing', foreign_keys='Outgoing.payer_id', back_populates='payer', lazy='dynamic')
-    outgoing_receiver = db.relationship('Outgoing', foreign_keys='Outgoing.receiver_id', back_populates='receiver', lazy='dynamic')
+    transaction_payer = db.relationship('Transaction', foreign_keys='Transaction.payer_id', back_populates='payer', lazy='dynamic')
+    transaction_receiver = db.relationship('Transaction', foreign_keys='Transaction.receiver_id', back_populates='receiver', lazy='dynamic')
 
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
+    funds = db.relationship('Fund',  back_populates='user', cascade='all, delete')
 
     @property
     def password(self):
