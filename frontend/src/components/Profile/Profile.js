@@ -12,14 +12,13 @@ const Profile = () => {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector(state => state.session?.user);
-    const userFunds = useSelector(state => state.funds?.funds);
+    const userFunds = useSelector(state => state.funds[sessionUser.id]);
 
     useEffect(() => {
         dispatch(readFunds(sessionUser.id));
     }, [dispatch]);
 
-    console.log(userFunds?.amount);
-    const [newAmount, setNewAmount] = useState(userFunds?.amount);
+    const [newAmount, setNewAmount] = useState(userFunds.amount);
 
     // const [fundDisplay, setFundDisplay] = useState('displayed__funds');
     // const [fundInputDisplay, setFundInputDisplay] = useState('input__funds');

@@ -45,13 +45,15 @@ export const updateFunds = (funds, id) => async dispatch => {
 };
 
 // REDUCER
-let initialState = { funds: null };
+let initialState = {};
 
 const fundsReducer = (state = initialState, action) => {
     let newState = { ...state };
     switch (action.type) {
         case READ_FUNDS:
-            return { funds: action.funds };
+            newState[action.funds.id] = action.funds;
+            return newState;
+        // return { funds: action.funds };
         case UPDATE_FUNDS:
             newState[action.funds.id] = action.funds;
             return newState;
