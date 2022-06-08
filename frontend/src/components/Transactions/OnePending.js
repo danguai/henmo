@@ -110,7 +110,6 @@ const OnePending = () => {
     if (!pendingTran) return null;
 
     const paymentSender = pendingTran.payer_id === sessionUser.id;
-
     const paymentReceiver = pendingTran.receiver_id === sessionUser.id;
 
     return (

@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, session, request
 from flask_login import login_required
 
 from backend.models import db, User, Fund
@@ -16,11 +16,12 @@ def read_funds(id):
 
 # U P D A T E   F U N D S
 @fund_routes.route('/<int:id>', methods = [ 'PUT' ])
-@login_required
+# @login_required
 def update_funds(id):
-    fund = Fund.query.get(id)
+    funds = Fund.query.get(id)
 
-    fund.user_id = request.json['user_id']
-    fund.amount = request.json['amount']
+    funds.user_id = request.json['user_id']
+    funds.amount = request.json['amount']
+
     db.session.commit()
     return funds.to_dict()

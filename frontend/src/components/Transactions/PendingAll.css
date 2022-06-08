@@ -34,6 +34,12 @@
     transition: 0.2s;
 }
 
+.no__transactions {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--blue-texts);
+}
+
 #chicken__1__white__pending {
     position: fixed;
     width: 250px;

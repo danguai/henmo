@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import LogoutButton from '../auth/LogoutButton';
+import { readFunds } from '../../store/funds';
 
 import { avatars } from '../../context/Avatar';
 
 import './NavBar.css';
-import { readFunds } from '../../store/funds';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -17,10 +17,6 @@ const NavBar = () => {
   const allTransactions = useSelector(state => state.transaction);
 
   const funds = useSelector(state => state.funds?.funds);
-
-  console.log(sessionUser);
-
-  console.log(funds);
 
   const allApproved = [];
   const userApproved = [];
@@ -67,8 +63,14 @@ const NavBar = () => {
             <div className='avatar__box__user'>
               <UserIcon size={100} />
             </div>
-            <div className='user__name__display'>
-              Hi, {sessionUser.first_name}
+            <div>
+              <div className='user__name__display'>
+                Hi, {sessionUser.first_name}
+              </div>
+              <div>
+                CHICKENS
+                {funds?.amount}
+              </div>
             </div>
           </Link>
         </li>
@@ -84,12 +86,12 @@ const NavBar = () => {
             </button>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <div>
             AVAILABLE CHICKENS
             {funds?.amount}
           </div>
-        </li>
+        </li> */}
         <li className='pending__transactions'>
           <div className='pending__label'>
             ALL TRANSACTIONS

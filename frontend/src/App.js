@@ -19,8 +19,6 @@ import OnePending from './components/Transactions/OnePending';
 import SendPayment from './components/Payment/SendPayment';
 import RequestPayment from './components/Payment/RequestPayment';
 
-import AddFunds from './components/AddFunds/AddFunds';
-
 // import AddComments from './components/Comments/AddComment';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -79,9 +77,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/request-payment' exact={true} >
           <RequestPayment />
-        </ProtectedRoute>
-        <ProtectedRoute path='/add-funds' exact={true} >
-          <AddFunds />
         </ProtectedRoute>
         <ProtectedRoute path='/approved/:approved_id' exact={true} >
           <OneApproved />
