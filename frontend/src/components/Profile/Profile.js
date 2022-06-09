@@ -22,6 +22,7 @@ const Profile = () => {
 
     const [newAmount, setNewAmount] = useState(userFunds.amount);
 
+
     const [fundDisplay, setFundDisplay] = useState('displayed__funds');
     const [fundInputDisplay, setFundInputDisplay] = useState('input__funds');
 

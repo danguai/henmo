@@ -1,11 +1,16 @@
 // constants
 const SET_USER = 'session/SET_USER';
-const READ_USERS = 'session/READ_USERS';
+const UPDATE_USER = 'session/UPDATE_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
+});
+
+const updateUser = user => ({
+  type: UPDATE_USER,
+  user
 });
 
 const removeUser = () => ({
@@ -70,26 +75,24 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-
 export const signUp = (first_name, last_name, avatar_id, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       first_name,
       last_name,
       avatar_id,
       email,
       password,
-    }),
+    })
   });
 
+  const data = await response.json();
+
   if (response.ok) {
-    const data = await response.json();
     dispatch(setUser(data));
-    return null;
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -98,7 +101,11 @@ export const signUp = (first_name, last_name, avatar_id, email, password) => asy
   } else {
     return ['An error occurred. Please try again.']
   }
-}
+};
+
+// export const usersUpdate = user => async dispatch => {
+
+// };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

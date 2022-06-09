@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { createFunds } from '../../store/funds';
 
 import { Icons } from '../UserIcons/Icons';
 
@@ -50,6 +51,15 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(signUp(firstName, lastName, avatarId, email, password));
+
+      console.log('DATA: ', data);
+
+      const startingFunds = {
+        user_id: data.id,
+        funds: 0
+      };
+      await dispatch(createFunds(startingFunds));
+
       if (data) {
         setErrors(data);
       }
