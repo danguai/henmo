@@ -1,9 +1,36 @@
+.profile__container {
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile__edges {
+    width: 420px;
+    padding: 10px 20px;
+
+    border: 1px solid var(--blue-texts);
+}
+
 .profile__label {
     font-size: 15px;
     letter-spacing: 1.2px;
     color: var(--blue-texts);
-    margin-top: 25px;
     white-space: nowrap;
+}
+
+.label__and__button {
+    /* margin-top: 25px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit__profile__btn__size {
+    width: 100px;
+    margin-bottom: 5px;
+    margin-left: 20px;
 }
 
 .profile__user__name {
@@ -11,7 +38,7 @@
     font-size: 20px;
     letter-spacing: 4px;
     color: var(--blue-texts);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .profile__user__email {

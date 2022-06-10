@@ -1,14 +1,19 @@
 .radio__div {
     width: 410px;
     margin-top: 15px;
-    /* border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid; */
-    /* border-radius: var(--main-border-radius); */
-    /* padding: 5px; */
-    /* border: blue 2px solid; */
+}
 
+.update__avatar {
+    width: 410px;
+    margin-top: 10px;
 }
 
 .icon__loop {
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon__two__lines {
     display: flex;
     justify-content: space-around;
 }

@@ -8,7 +8,7 @@ import { updateUser } from '../../store/session';
 import { avatars } from '../../context/Avatar';
 
 import './Profile.css';
-import { Icons } from '../UserIcons/Icons';
+import { IconsTwoLines } from '../UserIcons/IconsTwoLines';
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -120,19 +120,35 @@ const Profile = () => {
     if (!userFunds) return null;
 
     return (
-        <div className='transactions__container'>
-            <div>
-                <div className='forms__name'>
-                    USER PROFILE
+        <div className='profile__container'>
+            <div className='forms__name'>
+                USER PROFILE
+            </div>
+            <div className='profile__edges'>
+                <div className='label__and__button'>
+                    <label className='profile__label'>
+                        NAME
+                    </label>
+                    <div className={`${namesDisplay}`}>
+                        <button
+                            onClick={changeNameAndDisplay}
+                            className='white__button__v2 edit__profile__btn__size'>
+                            EDIT
+                        </button>
+                    </div>
+                    <div className={`${namesInputDisplay}`}>
+                        <button
+                            onClick={changeUserName}
+                            className='red__button__v2 edit__profile__btn__size'>
+                            UPDATE
+                        </button>
+                        <button
+                            onClick={changeNameAndDisplay}
+                            className='white__button__v2 edit__profile__btn__size'>
+                            CANCEL
+                        </button>
+                    </div>
                 </div>
-                <label className='profile__label'>
-                    NAME
-                    <button
-                        onClick={changeNameAndDisplay}
-                        className='white__button__v2 pending__edit__btn__size chicken__up'>
-                        EDIT
-                    </button>
-                </label>
                 <div className={`${namesDisplay}`}>
                     <div onClick={changeNameAndDisplay}>
                         <div className='profile__user__name'>
@@ -158,34 +174,42 @@ const Profile = () => {
                                 onChange={(e) => setNewLastName(e.target.value)}
                             ></input>
                         </div>
-                        <div>
-                            <button
-                                onClick={changeUserName}
-                                className='red__button__v2 comment__U__C__btn__size'>
-                                UPDATE
-                            </button>
-                            <button
-                                onClick={changeNameAndDisplay}
-                                className='white__button__v2 comment__U__C__btn__size'>
-                                CANCEL
-                            </button>
-                        </div>
                     </div>
                 </div>
+            </div>
+            <div className='profile__edges'>
                 <label className='profile__label'>
                     EMAIL
                 </label>
                 <div className='profile__user__email'>
                     {`${sessionUser.email}`}
                 </div>
-                <label className='profile__label'>
-                    AVATAR
-                    <button
-                        onClick={changeAvatarAndDisplay}
-                        className='white__button__v2 pending__edit__btn__size chicken__up'>
-                        EDIT
-                    </button>
-                </label>
+            </div>
+            <div className='profile__edges'>
+                <div className='label__and__button'>
+                    <label className='profile__label'>
+                        AVATAR
+                    </label>
+                    <div className={`${avatarDisplay}`}>
+                        <button
+                            onClick={changeAvatarAndDisplay}
+                            className='white__button__v2 edit__profile__btn__size'>
+                            EDIT
+                        </button>
+                    </div>
+                    <div className={`${avatarInputDisplay}`}>
+                        <button
+                            onClick={addFunds}
+                            className='red__button__v2 edit__profile__btn__size'>
+                            UPDATE
+                        </button>
+                        <button
+                            onClick={changeAvatarAndDisplay}
+                            className='white__button__v2 edit__profile__btn__size'>
+                            CANCEL
+                        </button>
+                    </div>
+                </div>
                 <div className={`${avatarDisplay}`}>
                     <div onClick={changeAvatarAndDisplay}>
                         <div className='avatar__profile'>
@@ -195,17 +219,36 @@ const Profile = () => {
                 </div>
                 <div className={`${avatarInputDisplay}`}>
                     <div className='edit__content__position'>
-                        <Icons avatarId={newAvatarId} setAvatarId={setNewAvatarId} />
+                        <IconsTwoLines avatarId={newAvatarId} setAvatarId={setNewAvatarId} />
                     </div>
                 </div>
-                <label className='profile__label'>
-                    FUNDS
-                    <button
-                        onClick={addFundsAndDisplay}
-                        className='white__button__v2 pending__edit__btn__size chicken__up'>
-                        EDIT
-                    </button>
-                </label>
+            </div>
+            <div className='profile__edges'>
+
+                <div className='label__and__button'>
+                    <label className='profile__label'>
+                        FUNDS
+                    </label>
+                    <div className={`${fundDisplay}`}>
+                        <button
+                            onClick={addFundsAndDisplay}
+                            className='white__button__v2 edit__profile__btn__size'>
+                            EDIT
+                        </button>
+                    </div>
+                    <div className={`${fundInputDisplay}`}>
+                        <button
+                            onClick={addFunds}
+                            className='red__button__v2 edit__profile__btn__size'>
+                            UPDATE
+                        </button>
+                        <button
+                            onClick={addFundsAndDisplay}
+                            className='white__button__v2 edit__profile__btn__size'>
+                            CANCEL
+                        </button>
+                    </div>
+                </div>
                 <div className={`${fundDisplay}`}>
                     <div
                         className='pending__tran__chickens__and__amount'
@@ -228,18 +271,6 @@ const Profile = () => {
                                 value={newAmount}
                                 onChange={(e) => setNewAmount(e.target.value)}
                             ></input>
-                        </div>
-                        <div>
-                            <button
-                                onClick={addFunds}
-                                className='red__button__v2 comment__U__C__btn__size'>
-                                UPDATE
-                            </button>
-                            <button
-                                onClick={addFundsAndDisplay}
-                                className='white__button__v2 comment__U__C__btn__size'>
-                                CANCEL
-                            </button>
                         </div>
                     </div>
                 </div>
