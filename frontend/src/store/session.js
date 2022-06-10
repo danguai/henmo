@@ -106,7 +106,7 @@ export const signUp = (first_name, last_name, avatar_id, email, password) => asy
 export const updateUser = (user, id) => async dispatch => {
   const response = await fetch(`/api/users/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/jason' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user)
   });
 
@@ -121,16 +121,18 @@ export const updateUser = (user, id) => async dispatch => {
 };
 
 export default function reducer(state = initialState, action) {
+  // let newState = { ...state };
   let newState;
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload }
+      return { user: action.payload };
     case UPDATE_USER:
+      // newState[action.user.id] = action.user;
       newState = Object.assign({}, state);
       newState.user = action.user;
       return newState;
     case REMOVE_USER:
-      return { user: null }
+      return { user: null };
     default:
       return state;
   }

@@ -7,6 +7,12 @@ import { updateUser } from '../../store/session';
 
 import { avatars } from '../../context/Avatar';
 
+import {
+    validateFirstName,
+    validateLastName,
+    validateEmail,
+} from '../../utils/validation';
+
 import './Profile.css';
 import { Icons } from '../UserIcons/Icons';
 
@@ -35,6 +41,10 @@ const Profile = () => {
     const [avatarDisplay, setAvatarDisplay] = useState('displayed__avatars');
     const [avatarInputDisplay, setAvatarInputDisplay] = useState('input__avatars');
 
+    const [firstNameError, setFirstNameError] = useState('');
+    const [lastNameError, setLastNameError] = useState('');
+    const [avatarError, setAvatarError] = useState('');
+
     const addFunds = async () => {
         let newFund = {
             id: userFunds.id,
@@ -47,14 +57,14 @@ const Profile = () => {
         setFundInputDisplay('input__funds');
     };
 
-    const changeUserName = async () => {
-        let editUserName = {
+    const changeUser = async () => {
+        let editUser = {
             first_name: sessionUser.first_name,
             last_name: sessionUser.last_name,
             avatar_id: sessionUser.avatar_id,
         };
 
-        await dispatch(updateUser(editUserName, editUserName.id));
+        await dispatch(updateUser(editUser, sessionUser.id));
         setNamesDisplay('displayed__names');
         setNamesInputDisplay('input__names');
     };
@@ -138,7 +148,7 @@ const Profile = () => {
                     </div>
                     <div className={`${namesInputDisplay}`}>
                         <button
-                            onClick={changeUserName}
+                            onClick={changeUser}
                             className='red__button__v2 edit__profile__btn__size'>
                             UPDATE
                         </button>
@@ -172,6 +182,8 @@ const Profile = () => {
                                 onChange={(e) => setNewLastName(e.target.value)}
                             />
                         </div>
+                        {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
+                        {lastNameError && <div className='error_style last__name__error'>{lastNameError}</div>}
                     </div>
                 </div>
             </div>
@@ -197,7 +209,7 @@ const Profile = () => {
                     </div>
                     <div className={`${avatarInputDisplay}`}>
                         <button
-                            onClick={addFunds}
+                            onClick={changeUser}
                             className='red__button__v2 edit__profile__btn__size'>
                             UPDATE
                         </button>
@@ -217,7 +229,9 @@ const Profile = () => {
                 </div>
                 <div className={`${avatarInputDisplay}`}>
                     <div className='edit__content__position'>
-                        <Icons avatarId={newAvatarId} setAvatarId={setNewAvatarId} />
+                        <Icons avatarId={newAvatarId} setAvatarId={setNewAvatarId}
+                            avatarError={avatarError} setAvatarError={setAvatarError}
+                        />
                     </div>
                 </div>
             </div>
