@@ -17,9 +17,8 @@ import PendingAll from './components/Transactions/PendingAll';
 import OnePending from './components/Transactions/OnePending';
 
 import SendPayment from './components/Payment/SendPayment';
-import RequestPayment from './components/Payment/RequestPayment';
 
-// import AddComments from './components/Comments/AddComment';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
@@ -45,6 +44,9 @@ function App() {
     <BrowserRouter>
       {sessionUser && <NavBar />}
       <Switch>
+        {/* <Route path='*'>
+          <PageNotFound />
+        </Route> */}
         <Route path='/' exact={true}>
           <Splashpage />
         </Route>
@@ -74,9 +76,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/send-payment' exact={true} >
           <SendPayment />
-        </ProtectedRoute>
-        <ProtectedRoute path='/request-payment' exact={true} >
-          <RequestPayment />
         </ProtectedRoute>
         <ProtectedRoute path='/approved/:approved_id' exact={true} >
           <OneApproved />

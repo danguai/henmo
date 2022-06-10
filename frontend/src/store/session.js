@@ -8,7 +8,7 @@ const setUser = (user) => ({
   payload: user
 });
 
-const updateUser = user => ({
+const updateUserAction = user => ({
   type: UPDATE_USER,
   user
 });
@@ -103,14 +103,32 @@ export const signUp = (first_name, last_name, avatar_id, email, password) => asy
   }
 };
 
-// export const usersUpdate = user => async dispatch => {
+export const updateUser = (user, id) => async dispatch => {
+  const response = await fetch(`/api/users/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/jason' },
+    body: JSON.stringify(user)
+  });
 
-// };
+  const data = await response.json();
+
+  if (response.ok) {
+    await dispatch(updateUserAction(data));
+    return data;
+  } else {
+    console.log(data.error);
+  }
+};
 
 export default function reducer(state = initialState, action) {
+  let newState;
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
+    case UPDATE_USER:
+      newState = Object.assign({}, state);
+      newState.user = action.user;
+      return newState;
     case REMOVE_USER:
       return { user: null }
     default:

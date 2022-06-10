@@ -49,44 +49,49 @@ const OneUserAllApproved = () => {
                     src='static/chicken-6-yellow.png'
                     alt='chicken__6__yellow__one__approved' />
             </div>
-            <div className='transactions__list__container'>
-                {userApproved.map((paid, i) =>
-                    <div className='transactions__list__container' key={i}>
-                        <Link
-                            className='each__transaction'
-                            to={`/approved/${paid.id}`}
-                        >
-                            <div className='icon__with__message'>
-                                <div className='avatar__box__transactions'>
-                                    <UserIcon size={40} givenUser={paid.payer} />
-                                </div>
-                                <div>
-                                    <div className='you__sent'>
-                                        You sent
-                                        <div className='receiver__name'>
-                                            <UserName user={paid.receiver} />
+            {userApproved.length > 0 ?
+                <div className='transactions__list__container'>
+                    {userApproved.map((paid, i) =>
+                        <div className='transactions__list__container' key={i}>
+                            <Link
+                                className='each__transaction'
+                                to={`/approved/${paid.id}`}
+                            >
+                                <div className='icon__with__message'>
+                                    <div className='avatar__box__transactions'>
+                                        <UserIcon size={40} givenUser={paid.payer} />
+                                    </div>
+                                    <div>
+                                        <div className='you__sent'>
+                                            You sent
+                                            <div className='receiver__name'>
+                                                <UserName user={paid.receiver} />
+                                            </div>
+                                            <div className='receiver__user'>
+                                                <UserIcon size={20} givenUser={paid.receiver} />
+                                            </div>
                                         </div>
-                                        <div className='receiver__user'>
-                                            <UserIcon size={20} givenUser={paid.receiver} />
+                                        <div className='message__preview'>
+                                            {paid.message}
                                         </div>
                                     </div>
-                                    <div className='message__preview'>
-                                        {paid.message}
+                                </div>
+                                <div className='number__of__chickens'>
+                                    <div className='chickens__label'>
+                                        CHICKENS
+                                    </div>
+                                    <div className='chickens__number'>
+                                        {paid.amount}
                                     </div>
                                 </div>
-                            </div>
-                            <div className='number__of__chickens'>
-                                <div className='chickens__label'>
-                                    CHICKENS
-                                </div>
-                                <div className='chickens__number'>
-                                    {paid.amount}
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                )}
-            </div>
+                            </Link>
+                        </div>
+                    )}
+                </div> :
+                <div className='no__transactions'>
+                    You have NO approved transaction.
+                </div>
+            }
         </div >
     );
 }
