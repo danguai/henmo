@@ -9,7 +9,7 @@
 .profile__edges {
     width: 420px;
     padding: 10px 20px;
-
+    margin: 5px 0;
     border: 1px solid var(--blue-texts);
 }
 
@@ -25,6 +25,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.edit__profile__inputs {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.edit__profile__input__name {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.edit__profile__input__name>input {
+    height: 40px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px var(--blue-texts) solid;
 }
 
 .edit__profile__btn__size {

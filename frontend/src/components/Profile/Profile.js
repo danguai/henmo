@@ -8,7 +8,7 @@ import { updateUser } from '../../store/session';
 import { avatars } from '../../context/Avatar';
 
 import './Profile.css';
-import { IconsTwoLines } from '../UserIcons/IconsTwoLines';
+import { Icons } from '../UserIcons/Icons';
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -158,21 +158,19 @@ const Profile = () => {
                 </div>
                 <div className={`${namesInputDisplay}`}>
                     <div className='edit__content__position'>
-                        <div>
+                        <div className='edit__profile__inputs'>
                             <input
-                                className="edit__amount__content"
+                                // className="edit__profile__input__name"
                                 type="text"
                                 value={newFirstName}
                                 onChange={(e) => setNewFirstName(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
+                            />
                             <input
-                                className="edit__amount__content"
+                                // className="edit__profile__input__name"
                                 type="text"
                                 value={newLastName}
                                 onChange={(e) => setNewLastName(e.target.value)}
-                            ></input>
+                            />
                         </div>
                     </div>
                 </div>
@@ -219,12 +217,11 @@ const Profile = () => {
                 </div>
                 <div className={`${avatarInputDisplay}`}>
                     <div className='edit__content__position'>
-                        <IconsTwoLines avatarId={newAvatarId} setAvatarId={setNewAvatarId} />
+                        <Icons avatarId={newAvatarId} setAvatarId={setNewAvatarId} />
                     </div>
                 </div>
             </div>
             <div className='profile__edges'>
-
                 <div className='label__and__button'>
                     <label className='profile__label'>
                         FUNDS
@@ -249,14 +246,14 @@ const Profile = () => {
                         </button>
                     </div>
                 </div>
-                <div className={`${fundDisplay}`}>
-                    <div
-                        className='pending__tran__chickens__and__amount'
-                        onClick={addFundsAndDisplay}
-                    >
-                        <div className='pending__tran__chickens'>
-                            Chickens
-                        </div>
+                <div
+                    className='pending__tran__chickens__and__amount'
+                    onClick={addFundsAndDisplay}
+                >
+                    <div className='pending__tran__chickens'>
+                        Chickens
+                    </div>
+                    <div className={`${fundDisplay}`}>
                         <div className='pending__tran__amount'>
                             {userFunds?.amount}
                         </div>
