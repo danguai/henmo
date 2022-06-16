@@ -10,11 +10,10 @@ const Splashpage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const sessionUser = useSelector(state => state.session?.user)
+    const sessionUser = useSelector(state => state.session?.user);
 
     const demoLogin = async () => {
         await dispatch(login('demoone@aa.io', 'password'));
-        history.push('/all-approved');
     };
 
     if (sessionUser) {
@@ -64,7 +63,7 @@ const Splashpage = () => {
                     <img src='static/henmo-logo.png' alt='henmo-logo' />
                 </div>
                 <div className="splash__btns__container">
-                    <Link>
+                    <Link to='/all-approved'>
                         <button className='splash__btn orange__button__v2' onClick={demoLogin}>Demo User</button>
                     </Link>
                     <Link to='/login'>

@@ -100,12 +100,16 @@ const PendingOut = () => {
                     src='static/chicken-8-dark-gray.png'
                     alt='chicken__8__gray__pending' />
             </div>
-            <div className='transactions__list__container'>
-                {pendingList.map((trans, i) =>
-                    <Outgoing trans={trans} i={i} />
-                )}
-
-            </div>
+            {pendingList.length > 0 ?
+                <div className='transactions__list__container'>
+                    {pendingList.map((trans, i) =>
+                        <Outgoing trans={trans} i={i} />
+                    )}
+                </div> :
+                <div className='no__transactions'>
+                    You have NO outgoing transaction.
+                </div>
+            }
         </div>
     );
 }

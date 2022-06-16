@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { avatars } from '../../context/Avatar';
-// import { AvatarContext } from '../../context/Avatar';
 
 import './UserIcons.css';
 
 export const UserIcon = ({ givenUser, size }) => {
-    // const { avatars } = useContext(AvatarContext);
 
     const sessionUser = useSelector(state => state.session?.user);
 

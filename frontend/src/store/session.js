@@ -1,11 +1,16 @@
 // constants
 const SET_USER = 'session/SET_USER';
-const READ_USERS = 'session/READ_USERS';
+const UPDATE_USER = 'session/UPDATE_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
+});
+
+const updateUserAction = user => ({
+  type: UPDATE_USER,
+  user
 });
 
 const removeUser = () => ({
@@ -70,27 +75,24 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-
-export const signUp = (first_name, last_name, avatar_id, funds, email, password) => async (dispatch) => {
+export const signUp = (first_name, last_name, avatar_id, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       first_name,
       last_name,
       avatar_id,
-      funds,
       email,
       password,
-    }),
+    })
   });
 
+  const data = await response.json();
+
   if (response.ok) {
-    const data = await response.json();
-    dispatch(setUser(data))
-    return null;
+    dispatch(setUser(data));
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
@@ -99,14 +101,38 @@ export const signUp = (first_name, last_name, avatar_id, funds, email, password)
   } else {
     return ['An error occurred. Please try again.']
   }
-}
+};
+
+export const updateUser = (user, id) => async dispatch => {
+  const response = await fetch(`/api/users/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user)
+  });
+
+  const data = await response.json();
+
+  if (response.ok) {
+    await dispatch(updateUserAction(data));
+    return data;
+  } else {
+    console.log(data.error);
+  }
+};
 
 export default function reducer(state = initialState, action) {
+  // let newState = { ...state };
+  let newState;
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload }
+      return { user: action.payload };
+    case UPDATE_USER:
+      // newState[action.user.id] = action.user;
+      newState = Object.assign({}, state);
+      newState.user = action.user;
+      return newState;
     case REMOVE_USER:
-      return { user: null }
+      return { user: null };
     default:
       return state;
   }

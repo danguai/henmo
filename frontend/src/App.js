@@ -6,6 +6,8 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Splashpage from './components/Splashpage/Splashpage';
 import NavBar from './components/NavBar/NavBar';
+import Profile from './components/Profile/Profile';
+
 import AllApprovedTransactions from './components/Transactions/AllApprovedTransactions';
 import OneApproved from './components/Transactions/OneApproved';
 import OneUserAllApproved from './components/Transactions/OneUserAllApproved';
@@ -15,11 +17,8 @@ import PendingAll from './components/Transactions/PendingAll';
 import OnePending from './components/Transactions/OnePending';
 
 import SendPayment from './components/Payment/SendPayment';
-import RequestPayment from './components/Payment/RequestPayment';
 
-import AddFunds from './components/AddFunds/AddFunds';
-
-// import AddComments from './components/Comments/AddComment';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
@@ -45,6 +44,9 @@ function App() {
     <BrowserRouter>
       {sessionUser && <NavBar />}
       <Switch>
+        {/* <Route path='*'>
+          <PageNotFound />
+        </Route> */}
         <Route path='/' exact={true}>
           <Splashpage />
         </Route>
@@ -54,6 +56,9 @@ function App() {
         <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/profile' exact={true} >
+          <Profile />
+        </ProtectedRoute>
         <ProtectedRoute path='/all-approved' exact={true} >
           <AllApprovedTransactions />
         </ProtectedRoute>
@@ -71,12 +76,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/send-payment' exact={true} >
           <SendPayment />
-        </ProtectedRoute>
-        <ProtectedRoute path='/request-payment' exact={true} >
-          <RequestPayment />
-        </ProtectedRoute>
-        <ProtectedRoute path='/add-funds' exact={true} >
-          <AddFunds />
         </ProtectedRoute>
         <ProtectedRoute path='/approved/:approved_id' exact={true} >
           <OneApproved />
