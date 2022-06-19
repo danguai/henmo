@@ -41,16 +41,15 @@ const NavBar = () => {
     }
   });
 
-
   useEffect(() => {
     dispatch(readFunds(sessionUser.id));
-
   }, [dispatch]);
 
   const avatarPNGs = Object.values(avatars)
     .map(avatar => avatar.imageUrl);
 
-  const randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
+  let randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
+
 
   return (
     <nav id='nav__bar' >
@@ -59,7 +58,7 @@ const NavBar = () => {
           <img src='/static/henmo-logo.png' alt='henmo-logo' />
         </li>
         <li>
-          <Link to='profile' className='avatar__and__name'>
+          <Link to='/profile' className='avatar__and__name'>
             <div className='avatar__box__user'>
               <UserIcon size={100} />
             </div>
@@ -126,7 +125,7 @@ const NavBar = () => {
           <img
             id='big__chicken__navbar'
             src={randomAvatar}
-            alt='chicken__1__white' />
+            alt='chicken' />
         </div>
         <li className='logout__button__placement'>
           <LogoutButton />
