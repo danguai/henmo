@@ -30,7 +30,7 @@ def create_funds():
 @fund_routes.route('/<int:id>', methods = [ 'GET' ])
 @login_required
 def read_funds(id):
-    fund = Fund.query.get(id)
+    fund = Fund.query.where(Fund.user_id == id).limit(1).one()
 
     return fund.to_dict()
 

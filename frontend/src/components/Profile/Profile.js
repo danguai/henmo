@@ -22,7 +22,7 @@ const Profile = () => {
     const sessionUser = useSelector(state => state.session?.user);
     const funds = useSelector(state => state.funds);
 
-    const userFunds = funds[sessionUser?.id];
+    const userFunds = Object.values(funds)[0];
 
     useEffect(() => {
         dispatch(readFunds(sessionUser.id));
@@ -59,14 +59,16 @@ const Profile = () => {
 
     const changeUser = async () => {
         let editUser = {
-            first_name: sessionUser.first_name,
-            last_name: sessionUser.last_name,
-            avatar_id: sessionUser.avatar_id,
+            first_name: newFirstName,
+            last_name: newLastName,
+            avatar_id: newAvatarId,
         };
 
         await dispatch(updateUser(editUser, sessionUser.id));
         setNamesDisplay('displayed__names');
         setNamesInputDisplay('input__names');
+        setAvatarDisplay('displayed__avatars');
+        setAvatarInputDisplay('input__avatars');
     };
 
     const addFundsAndDisplay = () => {
@@ -127,6 +129,7 @@ const Profile = () => {
         setNewAvatarId(sessionUser.avatar_id);
     };
 
+    console.log(userFunds);
     if (!userFunds) return null;
 
     return (

@@ -7,7 +7,7 @@ import { validateAmount, validateMessage } from '../../utils/validation';
 
 import UserNameEmail from '../Users/UserNameEmail';
 
-import { readAllTransactions, updateTransaction, deleteTransaction } from '../../store/transaction';
+import { readAllTransactions, readOneTransaction, updateTransaction, deleteTransaction } from '../../store/transaction';
 
 import './OnePending.css';
 
@@ -21,12 +21,8 @@ const OnePending = () => {
 
     const pendingTran = transactions[pending_id];
 
-    useEffect(() => {
-        dispatch(readAllTransactions());
-    }, [dispatch]);
-
-    const [newPayFunds, setNewPayFunds] = useState(pendingTran?.amount);
-    const [newMessage, setNewMessage] = useState(pendingTran?.message);
+    const [newPayFunds, setNewPayFunds] = useState('');
+    const [newMessage, setNewMessage] = useState('');
     const [isPaid, setIsPaid] = useState(false);
 
     const [amountError, setAmountError] = useState('');
@@ -36,6 +32,12 @@ const OnePending = () => {
     const [payFundsInputDisplay, setPayFundsInputDisplay] = useState('not__displayed__pay__funds');
     const [messageDisplay, setMessageDisplay] = useState('displayed__message');
     const [messageInputDisplay, setMessageInputDisplay] = useState('not__displayed__message');
+
+    useEffect(async () => {
+        const transact = await dispatch(readOneTransaction(pending_id));
+        setNewPayFunds(transact.amount);
+        setNewMessage(transact.message);
+    }, [dispatch]);
 
     const updatePending = async () => {
         let oneTran = {

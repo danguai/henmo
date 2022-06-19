@@ -58,7 +58,7 @@ const NavBar = () => {
           <img src='/static/henmo-logo.png' alt='henmo-logo' />
         </li>
         <li>
-          <Link to='profile' className='avatar__and__name'>
+          <Link to='/profile' className='avatar__and__name'>
             <div className='avatar__box__user'>
               <UserIcon size={100} />
             </div>
