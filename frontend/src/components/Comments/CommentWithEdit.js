@@ -37,9 +37,7 @@ const CommentWithEdit = ({ comment }) => {
         setEditEnabled(false);
     };
 
-    const removeComment = async (comment) => {
-        await dispatch(deleteComment(comment));
-    };
+    const removeComment = async (comment) => await dispatch(deleteComment(comment));
 
     const toggleEditCommentForm = () => {
         // if (commentsDisplay === 'displayed__comments') {
@@ -63,66 +61,69 @@ const CommentWithEdit = ({ comment }) => {
 
     const isOwnerOfComment = comment.user_id === sessionUser?.id;
 
-
     const renderComment = (editEnabled) => {
-
-        return (<div style={{ display: 'flex', padding: 10 }}>
-            <UserIcon givenUser={comment.user} />
-            {!editEnabled && <div style={{ marginLeft: 10 }}>
-                <span style={{ fontWeight: 'bold' }}>
-                    <UserInitials user={comment.user} />
-                </span>
-                {comment.message}
-            </div>}
-        </div>);
+        return (
+            <div style={{ display: 'flex', padding: 5 }}>
+                <UserIcon givenUser={comment.user} />
+                {!editEnabled && <div style={{ marginLeft: 5 }}>
+                    <span style={{ fontWeight: 'bold' }}>
+                        <UserInitials user={comment.user} />
+                    </span>
+                    {comment.message}
+                </div>}
+            </div>
+        );
     }
 
-
     const renderEditCommentForm = () => {
-        return (<div>
-            <textarea
-                type="text"
-                onChange={(e) => setEditMessage(e.target.value)}
-                onBlur={() => {
-                    const error = validateComment(editMessage)
-                    if (error) setCommentError(error)
-                }}
-                onFocus={() => { setCommentError('') }}
-                value={editMessage}
-            ></textarea>
+        return (
             <div>
-                <button
-                    className='red__button__basic'
-                    onClick={() => editedComment(comment)}
-                >
-                    UPDATE
-                </button>
-                <button
-                    className='red__button__basic'
+                <textarea
+                    className='textarea__add__comment__margin'
+                    type="text"
+                    onChange={(e) => setEditMessage(e.target.value)}
+                    onBlur={() => {
+                        const error = validateComment(editMessage)
+                        if (error) setCommentError(error)
+                    }}
                     onFocus={() => { setCommentError('') }}
-                    onClick={toggleEditCommentForm}
-                >
-                    CANCEL
-                </button>
-            </div>
-        </div>);
+                    value={editMessage}
+                ></textarea>
+                <div className='comment__update__cancel'>
+                    <button
+                        className='red__button__basic'
+                        onClick={() => editedComment(comment)}
+                    >
+                        UPDATE
+                    </button>
+                    <button
+                        className='red__button__basic'
+                        onFocus={() => { setCommentError('') }}
+                        onClick={toggleEditCommentForm}
+                    >
+                        CANCEL
+                    </button>
+                </div>
+            </div>);
     }
 
     const renderEditActionButtons = () => {
-        return (<div>
-            <button
-                className='red__button__basic'
-                onClick={toggleEditCommentForm}
-            >
-                EDIT
-            </button>
-            <button
-                className='red__button__basic'
-                onClick={() => removeComment(comment)}
-            >
-                DELETE
-            </button>
-        </div>);
+        return (
+            <div className='comment__edit__del'>
+                <button
+                    className='red__button__basic'
+                    onClick={toggleEditCommentForm}
+                >
+                    EDIT
+                </button>
+                <button
+                    className='red__button__basic'
+                    onClick={() => removeComment(comment)}
+                >
+                    DELETE
+                </button>
+            </div>
+        );
     }
 
     return (
@@ -131,7 +132,6 @@ const CommentWithEdit = ({ comment }) => {
             <div className='comment__user__message'>
                 {renderComment(editEnabled)}
                 {isOwnerOfComment && editEnabled && renderEditCommentForm()}
-
             </div>
             {isOwnerOfComment && !editEnabled && renderEditActionButtons()}
         </div>

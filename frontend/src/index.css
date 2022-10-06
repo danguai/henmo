@@ -32,14 +32,14 @@ ul {
 .red__button__basic {
     color: var(--white);
     background-color: var(--main-red);
-    border: none;
+    border: var(--main-red) 1px solid;
     transition: .2s;
 }
 
 .red__button__disabled {
     color: var(--white);
     background-color: var(--main-red-disabled);
-    border: none;
+    border: var(--main-red-disabled) 1px solid;
 }
 
 .red__button__basic:hover {
@@ -52,7 +52,7 @@ ul {
 .red__button__v2 {
     color: var(--white);
     background-color: var(--main-red);
-    border: none;
+    border: var(--main-red) 1px solid;
     transition: .2s;
 }
 
