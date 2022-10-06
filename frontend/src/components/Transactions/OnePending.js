@@ -28,6 +28,8 @@ const OnePending = () => {
     const [amountError, setAmountError] = useState('');
     const [messageError, setMessageError] = useState('');
 
+    const [editEnable, setEditEnable] = useState(false);
+
     const [payFundsDisplay, setPayFundsDisplay] = useState('displayed__pay__funds');
     const [payFundsInputDisplay, setPayFundsInputDisplay] = useState('not__displayed__pay__funds');
     const [messageDisplay, setMessageDisplay] = useState('displayed__message');
@@ -50,14 +52,14 @@ const OnePending = () => {
         };
 
         await dispatch(updateTransaction(oneTran, pending_id));
-        setMessageDisplay('displayed__message');
-        setMessageInputDisplay('not__displayed__message');
-        setPayFundsDisplay('displayed__pay__funds');
-        setPayFundsInputDisplay('not__displayed__pay__funds');
 
-        if (isPaid) {
-            history.push('/');
-        }
+        setEditEnable(false);
+        // setMessageDisplay('displayed__message');
+        // setMessageInputDisplay('not__displayed__message');
+        // setPayFundsDisplay('displayed__pay__funds');
+        // setPayFundsInputDisplay('not__displayed__pay__funds');
+
+        if (isPaid) history.push('/');
     };
 
     const deletePending = async () => {
@@ -66,56 +68,56 @@ const OnePending = () => {
     };
 
     const payFundsAndInputDisplay = () => {
-        if (payFundsDisplay === 'displayed__pay__funds') {
-            setPayFundsDisplay('not__displayed__pay__funds');
-            setPayFundsInputDisplay('displayed__pay__funds');
-            setAmountError('');
-        } else {
-            setPayFundsDisplay('displayed__pay__funds');
-            setPayFundsInputDisplay('not__displayed__pay__funds');
-        }
+        // if (payFundsDisplay === 'displayed__pay__funds') {
+        //     setPayFundsDisplay('not__displayed__pay__funds');
+        //     setPayFundsInputDisplay('displayed__pay__funds');
+        //     setAmountError('');
+        // } else {
+        //     setPayFundsDisplay('displayed__pay__funds');
+        //     setPayFundsInputDisplay('not__displayed__pay__funds');
+        // }
 
-        if (payFundsInputDisplay === 'not__displayed__pay__funds') {
-            setPayFundsDisplay('not__displayed__pay__funds');
-            setPayFundsInputDisplay('displayed__pay__funds');
-        } else {
-            setPayFundsDisplay('displayed__pay__funds');
-            setPayFundsInputDisplay('not__displayed__pay__funds');
-        }
+        // if (payFundsInputDisplay === 'not__displayed__pay__funds') {
+        //     setPayFundsDisplay('not__displayed__pay__funds');
+        //     setPayFundsInputDisplay('displayed__pay__funds');
+        // } else {
+        //     setPayFundsDisplay('displayed__pay__funds');
+        //     setPayFundsInputDisplay('not__displayed__pay__funds');
+        // }
+        setEditEnable(!editEnable);
         setNewPayFunds(pendingTran.amount);
     };
 
     const messageAndInputDisplay = () => {
-        if (messageDisplay === 'displayed__message') {
-            setMessageDisplay('not__displayed__message');
-            setMessageInputDisplay('displayed__message');
-            setMessageError('');
-        } else {
-            setMessageDisplay('displayed__message');
-            setMessageInputDisplay('not__displayed__message');
-        }
+        // if (messageDisplay === 'displayed__message') {
+        //     setMessageDisplay('not__displayed__message');
+        //     setMessageInputDisplay('displayed__message');
+        //     setMessageError('');
+        // } else {
+        //     setMessageDisplay('displayed__message');
+        //     setMessageInputDisplay('not__displayed__message');
+        // }
 
-        if (messageInputDisplay === 'not__displayed__message') {
-            setMessageDisplay('not__displayed__message');
-            setMessageInputDisplay('displayed__message');
-        } else {
-            setMessageDisplay('displayed__message');
-            setMessageInputDisplay('not__displayed__message');
-        }
+        // if (messageInputDisplay === 'not__displayed__message') {
+        //     setMessageDisplay('not__displayed__message');
+        //     setMessageInputDisplay('displayed__message');
+        // } else {
+        //     setMessageDisplay('displayed__message');
+        //     setMessageInputDisplay('not__displayed__message');
+        // }
+        setEditEnable(!editEnable);
         setNewMessage(pendingTran.message);
     };
 
-    const approvePayment = () => {
-        setIsPaid(!isPaid);
-    };
+    const approvePayment = () => setIsPaid(!isPaid);
 
     if (!pendingTran) return null;
 
     const paymentSender = pendingTran.payer_id === sessionUser.id;
     const paymentReceiver = pendingTran.receiver_id === sessionUser.id;
 
-    return (
-        <div className='transactions__container'>
+    const backAndAll = () => {
+        return (
             <div className='back__all'>
                 <Link to='/pending-out'
                     className='back__all__btn'
@@ -128,15 +130,25 @@ const OnePending = () => {
                     ALL
                 </Link>
             </div>
-            <div className='pending__tran__container' >
-                <div className='pending__tran__text__and__number'>
-                    <div className='pending__tran__text'>
-                        Transaction
-                    </div>
-                    <div className='pending__tran__number'>
-                        {`#${pendingTran?.id}`}
-                    </div>
+        )
+    }
+
+    const transactionNumber = () => {
+        return (
+            <div className='pending__tran__text__and__number'>
+                <div className='pending__tran__text'>
+                    Transaction
                 </div>
+                <div className='pending__tran__number'>
+                    {`#${pendingTran?.id}`}
+                </div>
+            </div>
+        )
+    }
+
+    const senderReceiver = () => {
+        return (
+            <div>
                 <div className='pending__tran__from__and__name'>
                     <div className='pending__tran__from'>
                         From
@@ -159,8 +171,83 @@ const OnePending = () => {
                         </div>
                     }
                 </div>
+            </div>
+        )
+    }
+
+    const renderFundsEndEditButton = () => {
+        return (
+            <div className={`${payFundsDisplay}`}>
+                {!editEnable && <div
+                    className='pending__tran__chickens__and__amount'
+                    onClick={payFundsAndInputDisplay}>
+                    <div className='pending__tran__chickens'>
+                        Chickens
+                    </div>
+                    <div className='pending__tran__amount'>
+                        {pendingTran?.amount}
+                    </div>
+                    {paymentSender &&
+                        <div>
+                            <button
+                                onClick={payFundsAndInputDisplay}
+                                className='white__button__v2 pending__edit__btn__size chicken__up'>
+                                EDIT
+                            </button>
+                        </div>
+                    }
+                </div>}
+            </div>
+        )
+    }
+
+    const renderEditFundsForm = () => {
+        return (
+            <div>
+                {editEnable && <div className='edit__content__position'>
+                    <div>
+                        <input
+                            className="edit__amount__content"
+                            type="number"
+                            onChange={(e) => setNewPayFunds(e.target.value)}
+                            onBlur={() => {
+                                const error = validateAmount(newPayFunds)
+                                if (error) setAmountError(error)
+                            }}
+                            onFocus={() => { setAmountError('') }}
+                            value={newPayFunds}
+                        ></input>
+                        {amountError && <div className='error_style amount__error'>{amountError}</div>}
+                    </div>
+                    <div>
+                        <button
+                            onClick={updatePending}
+                            className='red__button__v2 comment__U__C__btn__size'>
+                            UPDATE
+                        </button>
+                        <button
+                            onClick={payFundsAndInputDisplay}
+                            className='white__button__v2 comment__U__C__btn__size'>
+                            CANCEL
+                        </button>
+                    </div>
+                </div>}
+            </div>
+        )
+    }
+
+
+
+    return (
+        <div className='transactions__container'>
+            {backAndAll()}
+            <div className='pending__tran__container' >
+                {transactionNumber()}
+                {senderReceiver()}
                 <div>
-                    <div className={`${payFundsDisplay}`}>
+                    {renderFundsEndEditButton()}
+                    {renderEditFundsForm()}
+                    {/* <div className={`${payFundsDisplay}`}>
                         <div
                             className='pending__tran__chickens__and__amount'
                             onClick={payFundsAndInputDisplay}>
@@ -180,8 +267,8 @@ const OnePending = () => {
                                 </div>
                             }
                         </div>
-                    </div>
-                    <div className={`${payFundsInputDisplay}`}>
+                    </div> */}
+                    {/* <div className={`${payFundsInputDisplay}`}>
                         <div className='edit__content__position'>
                             <div>
                                 <input
@@ -210,7 +297,7 @@ const OnePending = () => {
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div>
                     <div className={`${messageDisplay}`}>
