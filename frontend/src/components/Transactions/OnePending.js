@@ -258,6 +258,39 @@ const OnePending = () => {
         )
     }
 
+    const approvedBySender = () => {
+        return (
+            <div className='pending__approve__delete'>
+                <div className='approve__delete__margin'>
+                    <button
+                        className='red__button__basic approve__btn__size'
+                        onMouseDown={approvePayment}
+                        onMouseUp={updatePending}
+                    >APPROVE</button>
+                </div>
+                <div className='approve__delete__margin'>
+                    <button
+                        className='blue__button__basic approve__btn__size'
+                        onClick={() => deletePending(pendingTran)}
+                    >DELETE</button>
+                </div>
+            </div>
+        )
+    }
+
+    const approvedByReceiver = () => {
+        return (
+            <div className='pending__approve__delete'>
+                <div className='approve__delete__margin'>
+                    <button
+                        className='red__button__basic approve__solo__btn__size'
+                        onMouseDown={approvePayment}
+                        onMouseUp={updatePending}
+                    >APPROVE</button>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className='transactions__container'>
@@ -273,34 +306,8 @@ const OnePending = () => {
                     {renderMessageAndEditButton()}
                     {displayEditMessageForm()}
                 </div>
-                {paymentSender &&
-                    <div className='pending__approve__delete'>
-                        <div className='approve__delete__margin'>
-                            <button
-                                className='red__button__basic approve__btn__size'
-                                onMouseDown={approvePayment}
-                                onMouseUp={updatePending}
-                            >APPROVE</button>
-                        </div>
-                        <div className='approve__delete__margin'>
-                            <button
-                                className='blue__button__basic approve__btn__size'
-                                onClick={() => deletePending(pendingTran)}
-                            >DELETE</button>
-                        </div>
-                    </div>
-                }
-                {paymentReceiver &&
-                    <div className='pending__approve__delete'>
-                        <div className='approve__delete__margin'>
-                            <button
-                                className='red__button__basic approve__solo__btn__size'
-                                onMouseDown={approvePayment}
-                                onMouseUp={updatePending}
-                            >APPROVE</button>
-                        </div>
-                    </div>
-                }
+                {paymentSender && approvedBySender()}
+                {paymentReceiver && approvedByReceiver()}
             </div>
             <div >
                 <img
