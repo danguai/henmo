@@ -35,7 +35,7 @@ export const validateRepeatPassword = (password, repeatPassword) => {
 export const validateAmount = amount => {
     if (!amount) return `You must add a number of chickens.`;
     if (amount < 0) return `You can't send negative chickens.`;
-    if (amount == 0) return `You have to send some chickens.`;
+    if (amount === 0) return `You have to send some chickens.`;
     if (amount > 500) return `You can't send more than 500 chickens.`;
 };
 

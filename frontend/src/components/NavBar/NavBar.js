@@ -16,7 +16,11 @@ const NavBar = () => {
 
   const allTransactions = useSelector(state => state.transaction);
 
-  const funds = useSelector(state => state.funds?.funds);
+  const funds = useSelector(state => state.funds);
+
+  // console.log('USER', sessionUser);
+  // console.log('TRANS', allTransactions);
+  // console.log('FUNDS', funds);
 
   const allApproved = [];
   const userApproved = [];
@@ -45,11 +49,9 @@ const NavBar = () => {
     dispatch(readFunds(sessionUser.id));
   }, [dispatch]);
 
-  const avatarPNGs = Object.values(avatars)
-    .map(avatar => avatar.imageUrl);
+  const avatarPNGs = Object.values(avatars).map(avatar => avatar.imageUrl);
 
   let randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
-
 
   return (
     <nav id='nav__bar' >
@@ -85,12 +87,12 @@ const NavBar = () => {
             </button>
           </Link>
         </li>
-        {/* <li>
+        <li>
           <div>
             AVAILABLE CHICKENS
-            {funds?.amount}
+            <span>{funds?.amount}</span>
           </div>
-        </li> */}
+        </li>
         <li className='pending__transactions'>
           <div className='pending__label'>
             ALL TRANSACTIONS

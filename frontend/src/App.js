@@ -44,9 +44,6 @@ function App() {
     <BrowserRouter>
       {sessionUser && <NavBar />}
       <Switch>
-        {/* <Route path='*'>
-          <PageNotFound />
-        </Route> */}
         <Route path='/' exact={true}>
           <Splashpage />
         </Route>
@@ -83,6 +80,8 @@ function App() {
         <ProtectedRoute path='/pending/:pending_id' exact={true} >
           <OnePending />
         </ProtectedRoute>
+
+        <Route path='*'><PageNotFound /></Route>
       </Switch>
     </BrowserRouter>
   );

@@ -1,11 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-
-import UserName from '../Users/UserName';
-
-import { UserIcon } from '../UserIcons/UserIcons';
 import { readAllTransactions } from '../../store/transaction';
 
 import { Incoming } from './PendingIn';
