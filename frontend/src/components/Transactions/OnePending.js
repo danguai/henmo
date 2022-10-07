@@ -28,12 +28,8 @@ const OnePending = () => {
     const [amountError, setAmountError] = useState('');
     const [messageError, setMessageError] = useState('');
 
-    const [editEnable, setEditEnable] = useState(false);
-
-    const [payFundsDisplay, setPayFundsDisplay] = useState('displayed__pay__funds');
-    const [payFundsInputDisplay, setPayFundsInputDisplay] = useState('not__displayed__pay__funds');
-    const [messageDisplay, setMessageDisplay] = useState('displayed__message');
-    const [messageInputDisplay, setMessageInputDisplay] = useState('not__displayed__message');
+    const [editFundsEnable, setEditFundsEnable] = useState(false);
+    const [editMessageEnable, setEditMessageEnable] = useState(false);
 
     useEffect(async () => {
         const transact = await dispatch(readOneTransaction(pending_id));
@@ -52,13 +48,8 @@ const OnePending = () => {
         };
 
         await dispatch(updateTransaction(oneTran, pending_id));
-
-        setEditEnable(false);
-        // setMessageDisplay('displayed__message');
-        // setMessageInputDisplay('not__displayed__message');
-        // setPayFundsDisplay('displayed__pay__funds');
-        // setPayFundsInputDisplay('not__displayed__pay__funds');
-
+        setEditFundsEnable(false);
+        setEditMessageEnable(false);
         if (isPaid) history.push('/');
     };
 
@@ -67,45 +58,13 @@ const OnePending = () => {
         history.push('/');
     };
 
-    const payFundsAndInputDisplay = () => {
-        // if (payFundsDisplay === 'displayed__pay__funds') {
-        //     setPayFundsDisplay('not__displayed__pay__funds');
-        //     setPayFundsInputDisplay('displayed__pay__funds');
-        //     setAmountError('');
-        // } else {
-        //     setPayFundsDisplay('displayed__pay__funds');
-        //     setPayFundsInputDisplay('not__displayed__pay__funds');
-        // }
-
-        // if (payFundsInputDisplay === 'not__displayed__pay__funds') {
-        //     setPayFundsDisplay('not__displayed__pay__funds');
-        //     setPayFundsInputDisplay('displayed__pay__funds');
-        // } else {
-        //     setPayFundsDisplay('displayed__pay__funds');
-        //     setPayFundsInputDisplay('not__displayed__pay__funds');
-        // }
-        setEditEnable(!editEnable);
+    const payFundsOrFormDisplay = () => {
+        setEditFundsEnable(!editFundsEnable);
         setNewPayFunds(pendingTran.amount);
     };
 
-    const messageAndInputDisplay = () => {
-        // if (messageDisplay === 'displayed__message') {
-        //     setMessageDisplay('not__displayed__message');
-        //     setMessageInputDisplay('displayed__message');
-        //     setMessageError('');
-        // } else {
-        //     setMessageDisplay('displayed__message');
-        //     setMessageInputDisplay('not__displayed__message');
-        // }
-
-        // if (messageInputDisplay === 'not__displayed__message') {
-        //     setMessageDisplay('not__displayed__message');
-        //     setMessageInputDisplay('displayed__message');
-        // } else {
-        //     setMessageDisplay('displayed__message');
-        //     setMessageInputDisplay('not__displayed__message');
-        // }
-        setEditEnable(!editEnable);
+    const messageOrFormDisplay = () => {
+        setEditMessageEnable(!editMessageEnable);
         setNewMessage(pendingTran.message);
     };
 
@@ -175,12 +134,12 @@ const OnePending = () => {
         )
     }
 
-    const renderFundsEndEditButton = () => {
+    const renderFundsAndEditButton = () => {
         return (
-            <div className={`${payFundsDisplay}`}>
-                {!editEnable && <div
+            <>
+                {!editFundsEnable && <div
                     className='pending__tran__chickens__and__amount'
-                    onClick={payFundsAndInputDisplay}>
+                    onClick={payFundsOrFormDisplay}>
                     <div className='pending__tran__chickens'>
                         Chickens
                     </div>
@@ -190,21 +149,21 @@ const OnePending = () => {
                     {paymentSender &&
                         <div>
                             <button
-                                onClick={payFundsAndInputDisplay}
+                                onClick={payFundsOrFormDisplay}
                                 className='white__button__v2 pending__edit__btn__size chicken__up'>
                                 EDIT
                             </button>
                         </div>
                     }
                 </div>}
-            </div>
+            </>
         )
     }
 
-    const renderEditFundsForm = () => {
+    const displayEditFundsForm = () => {
         return (
-            <div>
-                {editEnable && <div className='edit__content__position'>
+            <>
+                {editFundsEnable && <div className='edit__content__position'>
                     <div>
                         <input
                             className="edit__amount__content"
@@ -226,131 +185,93 @@ const OnePending = () => {
                             UPDATE
                         </button>
                         <button
-                            onClick={payFundsAndInputDisplay}
+                            onClick={payFundsOrFormDisplay}
                             className='white__button__v2 comment__U__C__btn__size'>
                             CANCEL
                         </button>
                     </div>
                 </div>}
-            </div>
+            </>
         )
     }
 
+    const renderMessageAndEditButton = () => {
+        return (
+            <>
+                {!editMessageEnable && <div>
+                    <div
+                        className='pending__tran__message__and__message'
+                        onClick={messageOrFormDisplay}>
+                        <div className='pending__tran__message__title'>
+                            Message
+                        </div>
+                        {paymentSender &&
+                            <div>
+                                <button
+                                    onClick={messageOrFormDisplay}
+                                    className='white__button__v2 pending__edit__btn__size'>
+                                    EDIT
+                                </button>
+                            </div>
+                        }
+                    </div>
+                    <div className='pending__tran__message__content'>
+                        {pendingTran?.message}
+                    </div>
+                </div>}
+            </>
+        )
+    }
+
+    const displayEditMessageForm = () => {
+        return (
+            <>
+                {editMessageEnable && <div className='edit__content__position'>
+                    <div>
+                        <textarea
+                            className="edit__message__content"
+                            type="text"
+                            onChange={(e) => setNewMessage(e.target.value)}
+                            onBlur={() => {
+                                const error = validateMessage(newMessage)
+                                if (error) setMessageError(error)
+                            }}
+                            onFocus={() => { setMessageError('') }}
+                            value={newMessage}
+                        />
+                    </div>
+                    {messageError && <div className='error_style message__error__pending'>{messageError}</div>}
+                    <div className='comment__edit__del'>
+                        <button
+                            onClick={updatePending}
+                            className='red__button__v2 comment__U__C__btn__size'>
+                            UPDATE
+                        </button>
+                        <button
+                            onClick={messageOrFormDisplay}
+                            className='white__button__v2 comment__U__C__btn__size'>
+                            CANCEL
+                        </button>
+                    </div>
+                </div>}
+            </>
+        )
+    }
 
 
     return (
         <div className='transactions__container'>
             {backAndAll()}
-            <div className='pending__tran__container' >
+            <div className='pending__tran__container'>
                 {transactionNumber()}
                 {senderReceiver()}
                 <div>
-                    {renderFundsEndEditButton()}
-                    {renderEditFundsForm()}
-                    {/* <div className={`${payFundsDisplay}`}>
-                        <div
-                            className='pending__tran__chickens__and__amount'
-                            onClick={payFundsAndInputDisplay}>
-                            <div className='pending__tran__chickens'>
-                                Chickens
-                            </div>
-                            <div className='pending__tran__amount'>
-                                {pendingTran?.amount}
-                            </div>
-                            {paymentSender &&
-                                <div>
-                                    <button
-                                        onClick={payFundsAndInputDisplay}
-                                        className='white__button__v2 pending__edit__btn__size chicken__up'>
-                                        EDIT
-                                    </button>
-                                </div>
-                            }
-                        </div>
-                    </div> */}
-                    {/* <div className={`${payFundsInputDisplay}`}>
-                        <div className='edit__content__position'>
-                            <div>
-                                <input
-                                    className="edit__amount__content"
-                                    type="number"
-                                    onChange={(e) => setNewPayFunds(e.target.value)}
-                                    onBlur={() => {
-                                        const error = validateAmount(newPayFunds)
-                                        if (error) setAmountError(error)
-                                    }}
-                                    onFocus={() => { setAmountError('') }}
-                                    value={newPayFunds}
-                                ></input>
-                                {amountError && <div className='error_style amount__error'>{amountError}</div>}
-                            </div>
-                            <div>
-                                <button
-                                    onClick={updatePending}
-                                    className='red__button__v2 comment__U__C__btn__size'>
-                                    UPDATE
-                                </button>
-                                <button
-                                    onClick={payFundsAndInputDisplay}
-                                    className='white__button__v2 comment__U__C__btn__size'>
-                                    CANCEL
-                                </button>
-                            </div>
-                        </div>
-                    </div> */}
+                    {renderFundsAndEditButton()}
+                    {displayEditFundsForm()}
                 </div>
                 <div>
-                    <div className={`${messageDisplay}`}>
-                        <div
-                            className='pending__tran__message__and__message'
-                            onClick={messageAndInputDisplay}>
-                            <div className='pending__tran__message__title'>
-                                Message
-                            </div>
-                            {paymentSender &&
-                                <div>
-                                    <button
-                                        onClick={messageAndInputDisplay}
-                                        className='white__button__v2 pending__edit__btn__size'>
-                                        EDIT
-                                    </button>
-                                </div>
-                            }
-                        </div>
-                        <div className='pending__tran__message__content'>
-                            {pendingTran?.message}
-                        </div>
-                    </div>
-                    <div className={`${messageInputDisplay}`}>
-                        <div className='edit__content__position'>
-                            <div>
-                                <textarea
-                                    className="edit__message__content"
-                                    type="text"
-                                    onChange={(e) => setNewMessage(e.target.value)}
-                                    onBlur={() => {
-                                        const error = validateMessage(newMessage)
-                                        if (error) setMessageError(error)
-                                    }}
-                                    onFocus={() => { setMessageError('') }}
-                                    value={newMessage}
-                                />
-                            </div>
-                            {messageError && <div className='error_style message__error__pending'>{messageError}</div>}
-                            <div className='comment__edit__del'>
-                                <button
-                                    onClick={updatePending}
-                                    className='red__button__v2 comment__U__C__btn__size'>
-                                    UPDATE
-                                </button>
-                                <button
-                                    onClick={messageAndInputDisplay}
-                                    className='white__button__v2 comment__U__C__btn__size'>
-                                    CANCEL
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    {renderMessageAndEditButton()}
+                    {displayEditMessageForm()}
                 </div>
                 {paymentSender &&
                     <div className='pending__approve__delete'>
