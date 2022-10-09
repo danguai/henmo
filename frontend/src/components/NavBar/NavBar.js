@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import LogoutButton from '../auth/LogoutButton';
@@ -12,15 +12,22 @@ import './NavBar.css';
 
 const NavBar = () => {
   const dispatch = useDispatch();
+
   const sessionUser = useSelector(state => state.session?.user);
 
   const allTransactions = useSelector(state => state.transaction);
 
   const funds = useSelector(state => state.funds);
 
+  const userFunds = Object.values(funds)[0];
+
   // console.log('USER', sessionUser);
   // console.log('TRANS', allTransactions);
   // console.log('FUNDS', funds);
+
+  // const location = useLocation();
+
+  // if (location.pathname === '/404') return null;
 
   const allApproved = [];
   const userApproved = [];
@@ -90,7 +97,7 @@ const NavBar = () => {
         <li>
           <div>
             AVAILABLE CHICKENS
-            <span>{funds?.amount}</span>
+            <span>{userFunds?.amount}</span>
           </div>
         </li>
         <li className='pending__transactions'>

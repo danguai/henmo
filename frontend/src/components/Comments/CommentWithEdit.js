@@ -35,7 +35,6 @@ const CommentWithEdit = ({ comment }) => {
     const removeComment = async (comment) => await dispatch(deleteComment(comment));
 
     const toggleEditCommentForm = () => {
-
         setEditEnabled(!editEnabled);
         setEditMessage(comment.message);
     };

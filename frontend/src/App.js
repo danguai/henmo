@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import LoginForm from './components/auth/LoginForm';
@@ -24,6 +24,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 
 function App() {
+
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -36,9 +37,7 @@ function App() {
     })();
   }, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+  if (!loaded) return null;
 
   return (
     <BrowserRouter>
@@ -80,7 +79,6 @@ function App() {
         <ProtectedRoute path='/pending/:pending_id' exact={true} >
           <OnePending />
         </ProtectedRoute>
-
         <Route path='*'><PageNotFound /></Route>
       </Switch>
     </BrowserRouter>

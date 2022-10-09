@@ -1,5 +1,17 @@
 .page__not__found__container {
-    margin-left: 300px;
+    /* margin-left: 300px; */
     position: relative;
-    max-width: 80%;
+    width: 100%;
+    z-index: 100;
+}
+
+.back__404__btn {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blue-texts);
+    position: relative;
+    left: -370px;
+    margin-top: 40px;
+    text-decoration: none;
+    transition: 0.2s;
 }
