@@ -34,12 +34,10 @@ const Profile = () => {
     const [newLastName, setNewLastName] = useState(sessionUser.last_name);
     const [newAvatarId, setNewAvatarId] = useState(sessionUser.avatar_id);
 
-    const [fundDisplay, setFundDisplay] = useState('displayed__funds');
-    const [fundInputDisplay, setFundInputDisplay] = useState('input__funds');
-    const [namesDisplay, setNamesDisplay] = useState('displayed__names');
-    const [namesInputDisplay, setNamesInputDisplay] = useState('input__names');
-    const [avatarDisplay, setAvatarDisplay] = useState('displayed__avatars');
-    const [avatarInputDisplay, setAvatarInputDisplay] = useState('input__avatars');
+    const [editFundsEnable, setEditFundsEnable] = useState(false);
+    const [editFirstNameEnable, setEditFirstNameEnable] = useState(false);
+    const [editLastNameEnable, setEditLastNameEnable] = useState(false);
+    const [editAvatarEnable, setEditAvatarEnable] = useState(false);
 
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
@@ -53,8 +51,7 @@ const Profile = () => {
         };
 
         await dispatch(updateFunds(newFund, newFund.id));
-        setFundDisplay('displayed__funds');
-        setFundInputDisplay('input__funds');
+        setEditFundsEnable(false);
     };
 
     const changeUser = async () => {
@@ -65,91 +62,71 @@ const Profile = () => {
         };
 
         await dispatch(updateUser(editUser, sessionUser.id));
-        setNamesDisplay('displayed__names');
-        setNamesInputDisplay('input__names');
-        setAvatarDisplay('displayed__avatars');
-        setAvatarInputDisplay('input__avatars');
+        setEditFirstNameEnable(false);
+        setEditLastNameEnable(false);
+        setEditAvatarEnable(false);
     };
 
     const addFundsAndDisplay = () => {
-        if (fundDisplay === 'displayed__funds') {
-            setFundDisplay('input__funds');
-            setFundInputDisplay('displayed__funds');
-        } else {
-            setFundDisplay('displayed__funds');
-            setFundInputDisplay('input__funds');
-        }
-
-        if (fundInputDisplay === 'input__funds') {
-            setFundDisplay('input__funds');
-            setFundInputDisplay('displayed__funds');
-        } else {
-            setFundDisplay('displayed__funds');
-            setFundInputDisplay('input__funds');
-        }
+        setEditFundsEnable(!editFundsEnable);
         setNewAmount(userFunds.amount);
     };
 
     const changeNameAndDisplay = () => {
-        if (namesDisplay === 'displayed__names') {
-            setNamesDisplay('input__names');
-            setNamesInputDisplay('displayed__names');
-        } else {
-            setNamesDisplay('displayed__names');
-            setNamesInputDisplay('input__names');
-        }
-
-        if (namesInputDisplay === 'input__names') {
-            setNamesDisplay('input__names');
-            setNamesInputDisplay('displayed__names');
-        } else {
-            setNamesDisplay('displayed__names');
-            setNamesInputDisplay('input__names');
-        }
+        setEditFirstNameEnable(!editFirstNameEnable);
         setNewFirstName(sessionUser.first_name);
+
+        setEditLastNameEnable(!editLastNameEnable);
         setNewLastName(sessionUser.last_name);
     };
 
     const changeAvatarAndDisplay = () => {
-        if (avatarDisplay === 'displayed__avatars') {
-            setAvatarDisplay('input__avatars');
-            setAvatarInputDisplay('displayed__avatars');
-        } else {
-            setAvatarDisplay('displayed__avatars');
-            setAvatarInputDisplay('input__avatars');
-        }
-
-        if (avatarInputDisplay === 'input__avatars') {
-            setAvatarDisplay('input__avatars');
-            setAvatarInputDisplay('displayed__avatars');
-        } else {
-            setAvatarDisplay('displayed__avatars');
-            setAvatarInputDisplay('input__avatars');
-        }
+        setEditAvatarEnable(!editAvatarEnable);
         setNewAvatarId(sessionUser.avatar_id);
     };
 
-    console.log(userFunds);
     if (!userFunds) return null;
 
-    return (
-        <div className='profile__container'>
-            <div className='forms__name'>
-                USER PROFILE
-            </div>
-            <div className='profile__edges'>
-                <div className='label__and__button'>
-                    <label className='profile__label'>
-                        NAME
-                    </label>
-                    <div className={`${namesDisplay}`}>
+    const renderNameAndEditButtons = () => {
+        return (
+            <>
+                <label className='profile__label'>
+                    NAME
+                </label>
+                {!editFirstNameEnable && !editLastNameEnable && <div>
+                    <div onClick={changeNameAndDisplay}>
+                        <div className='profile__user__name'>
+                            {`${sessionUser.first_name} ${sessionUser.last_name}`}
+                        </div>
                         <button
-                            onClick={changeNameAndDisplay}
                             className='white__button__v2 edit__profile__btn__size'>
                             EDIT
                         </button>
                     </div>
-                    <div className={`${namesInputDisplay}`}>
+                </div>}
+            </>
+        )
+    }
+
+    const displayEditNamesForm = () => {
+        return (
+            <>
+                {editFirstNameEnable && editLastNameEnable && <div>
+                    <div className='edit__profile__inputs'>
+                        <input
+                            type="text"
+                            value={newFirstName}
+                            onChange={(e) => setNewFirstName(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            value={newLastName}
+                            onChange={(e) => setNewLastName(e.target.value)}
+                        />
+                    </div>
+                    {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
+                    {lastNameError && <div className='error_style last__name__error'>{lastNameError}</div>}
+                    <div>
                         <button
                             onClick={changeUser}
                             className='red__button__v2 edit__profile__btn__size'>
@@ -161,34 +138,19 @@ const Profile = () => {
                             CANCEL
                         </button>
                     </div>
-                </div>
-                <div className={`${namesDisplay}`}>
-                    <div onClick={changeNameAndDisplay}>
-                        <div className='profile__user__name'>
-                            {`${sessionUser.first_name} ${sessionUser.last_name}`}
-                        </div>
-                    </div>
-                </div>
-                <div className={`${namesInputDisplay}`}>
-                    <div className='edit__content__position'>
-                        <div className='edit__profile__inputs'>
-                            <input
-                                // className="edit__profile__input__name"
-                                type="text"
-                                value={newFirstName}
-                                onChange={(e) => setNewFirstName(e.target.value)}
-                            />
-                            <input
-                                // className="edit__profile__input__name"
-                                type="text"
-                                value={newLastName}
-                                onChange={(e) => setNewLastName(e.target.value)}
-                            />
-                        </div>
-                        {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
-                        {lastNameError && <div className='error_style last__name__error'>{lastNameError}</div>}
-                    </div>
-                </div>
+                </div>}
+            </>
+        )
+    }
+
+    return (
+        <div className='profile__container'>
+            <div className='forms__name'>
+                USER PROFILE
+            </div>
+            <div className='profile__edges'>
+                {renderNameAndEditButtons()}
+                {displayEditNamesForm()}
             </div>
             <div className='profile__edges'>
                 <label className='profile__label'>
@@ -203,14 +165,14 @@ const Profile = () => {
                     <label className='profile__label'>
                         AVATAR
                     </label>
-                    <div className={`${avatarDisplay}`}>
+                    <div>
                         <button
                             onClick={changeAvatarAndDisplay}
                             className='white__button__v2 edit__profile__btn__size'>
                             EDIT
                         </button>
                     </div>
-                    <div className={`${avatarInputDisplay}`}>
+                    <div>
                         <button
                             onClick={changeUser}
                             className='red__button__v2 edit__profile__btn__size'>
@@ -223,14 +185,14 @@ const Profile = () => {
                         </button>
                     </div>
                 </div>
-                <div className={`${avatarDisplay}`}>
+                <div>
                     <div onClick={changeAvatarAndDisplay}>
                         <div className='avatar__profile'>
                             <UserIcon size={100} />
                         </div>
                     </div>
                 </div>
-                <div className={`${avatarInputDisplay}`}>
+                <div>
                     <div className='edit__content__position'>
                         <Icons avatarId={newAvatarId} setAvatarId={setNewAvatarId}
                             avatarError={avatarError} setAvatarError={setAvatarError}
@@ -243,14 +205,14 @@ const Profile = () => {
                     <label className='profile__label'>
                         FUNDS
                     </label>
-                    <div className={`${fundDisplay}`}>
+                    <div>
                         <button
                             onClick={addFundsAndDisplay}
                             className='white__button__v2 edit__profile__btn__size'>
                             EDIT
                         </button>
                     </div>
-                    <div className={`${fundInputDisplay}`}>
+                    <div>
                         <button
                             onClick={addFunds}
                             className='red__button__v2 edit__profile__btn__size'>
@@ -270,13 +232,13 @@ const Profile = () => {
                     <div className='pending__tran__chickens'>
                         Chickens
                     </div>
-                    <div className={`${fundDisplay}`}>
+                    <div>
                         <div className='pending__tran__amount'>
                             {userFunds?.amount}
                         </div>
                     </div>
                 </div>
-                <div className={`${fundInputDisplay}`}>
+                <div>
                     <div className='edit__content__position'>
                         <div>
                             <input

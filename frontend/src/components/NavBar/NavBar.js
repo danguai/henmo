@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { UserIcon } from '../UserIcons/UserIcons';
 import LogoutButton from '../auth/LogoutButton';
@@ -12,11 +12,22 @@ import './NavBar.css';
 
 const NavBar = () => {
   const dispatch = useDispatch();
+
   const sessionUser = useSelector(state => state.session?.user);
 
   const allTransactions = useSelector(state => state.transaction);
 
-  const funds = useSelector(state => state.funds?.funds);
+  const funds = useSelector(state => state.funds);
+
+  const userFunds = Object.values(funds)[0];
+
+  // console.log('USER', sessionUser);
+  // console.log('TRANS', allTransactions);
+  // console.log('FUNDS', funds);
+
+  // const location = useLocation();
+
+  // if (location.pathname === '/404') return null;
 
   const allApproved = [];
   const userApproved = [];
@@ -45,11 +56,9 @@ const NavBar = () => {
     dispatch(readFunds(sessionUser.id));
   }, [dispatch]);
 
-  const avatarPNGs = Object.values(avatars)
-    .map(avatar => avatar.imageUrl);
+  const avatarPNGs = Object.values(avatars).map(avatar => avatar.imageUrl);
 
   let randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
-
 
   return (
     <nav id='nav__bar' >
@@ -85,12 +94,12 @@ const NavBar = () => {
             </button>
           </Link>
         </li>
-        {/* <li>
+        <li>
           <div>
             AVAILABLE CHICKENS
-            {funds?.amount}
+            <span>{userFunds?.amount}</span>
           </div>
-        </li> */}
+        </li>
         <li className='pending__transactions'>
           <div className='pending__label'>
             ALL TRANSACTIONS

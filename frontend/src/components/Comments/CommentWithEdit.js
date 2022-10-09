@@ -16,9 +16,6 @@ const CommentWithEdit = ({ comment }) => {
 
     const sessionUser = useSelector(state => state.session?.user);
 
-    // const [commentsDisplay, setCommentsDisplay] = useState('displayed__comments');
-    // const [commentsInputDisplay, setCommentsInputDisplay] = useState('not__displayed__comments');
-
     const [editMessage, setEditMessage] = useState(comment?.message);
     const [commentError, setCommentError] = useState('');
     const [editEnabled, setEditEnabled] = useState(false);
@@ -31,8 +28,6 @@ const CommentWithEdit = ({ comment }) => {
             message: editMessage
         };
         await dispatch(updateComment(editComment, editComment.id));
-        // setCommentsDisplay('displayed__comments');
-        // setCommentsInputDisplay('not__displayed__comments');
 
         setEditEnabled(false);
     };
@@ -40,21 +35,6 @@ const CommentWithEdit = ({ comment }) => {
     const removeComment = async (comment) => await dispatch(deleteComment(comment));
 
     const toggleEditCommentForm = () => {
-        // if (commentsDisplay === 'displayed__comments') {
-        //     setCommentsDisplay('not__displayed__comments');
-        //     setCommentsInputDisplay('displayed__comments');
-        // } else {
-        //     setCommentsDisplay('displayed__comments');
-        //     setCommentsInputDisplay('not__displayed__comments');
-        // }
-
-        // if (commentsInputDisplay === 'not__displayed__comments') {
-        //     setCommentsDisplay('not__displayed__comments');
-        //     setCommentsInputDisplay('displayed__comments');
-        // } else {
-        //     setCommentsDisplay('displayed__comments');
-        //     setCommentsInputDisplay('not__displayed__comments');
-        // }
         setEditEnabled(!editEnabled);
         setEditMessage(comment.message);
     };

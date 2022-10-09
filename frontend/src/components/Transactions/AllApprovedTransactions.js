@@ -13,54 +13,22 @@ import './Loading.css';
 
 const AllApprovedTransactions = () => {
     const dispatch = useDispatch();
-    // const history = useHistory();
-
-    // const [users, setUsers] = useState({});
-    // const [combined, setCombined] = useState({});
 
     const transactions = useSelector(state => state.transaction);
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const response = await fetch('/api/users/');
-    //         const responseData = await response.json();
-    //         setUsers(responseData.users);
-    //     }
-    //     fetchData();
-    // }, []);
-
     const allApproved = [];
+
     Object.values(transactions).forEach(transaction => {
-        if (transaction?.paid === true) {
-            allApproved.push(transaction);
-        }
+        if (transaction?.paid === true) allApproved.push(transaction);
     });
+
     allApproved.sort((a, b) => a.updated_at - b.updated_at);
-
-    // useEffect(() => {
-    //     (async (allApproved, users) => {
-    //         return await allApproved?.map(trans => {
-    //             return users?.filter(user => {
-    //                 if (trans.payer_id === user.id) {
-
-    //                     // console.log('TRANS:', trans);
-    //                     // console.log('USER:', user);
-    //                     setCombined({ ...trans, ...user });
-    //                 }
-    //                 // }
-    //             });
-    //         });
-    //     })(allApproved, users);
-    // }, [allApproved, users]);
-
-    // console.log('COMBINED: ', combined);
 
     useEffect(() => {
         dispatch(readAllTransactions());
     }, [dispatch]);
 
     if (!transactions) return null;
-    // if (!users) return null;
 
     return (
         <div className='transactions__container' >
