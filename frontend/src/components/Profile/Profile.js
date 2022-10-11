@@ -87,23 +87,31 @@ const Profile = () => {
 
     if (!userFunds) return null;
 
-    const renderNameAndEditButtons = () => {
+    const renderEmail = () => {
         return (
             <>
                 <label className='profile__label'>
-                    NAME
+                    EMAIL
                 </label>
-                {!editFirstNameEnable && !editLastNameEnable && <div>
-                    <div onClick={changeNameAndDisplay}>
-                        <div className='profile__user__name'>
-                            {`${sessionUser.first_name} ${sessionUser.last_name}`}
-                        </div>
-                        <button
-                            className='white__button__v2 edit__profile__btn__size'>
-                            EDIT
-                        </button>
+                <div className='profile__user__email'>
+                    {`${sessionUser.email}`}
+                </div>
+            </>
+        )
+    }
+
+    const renderNameAndEditButtons = () => {
+        return (
+            <>
+                <div onClick={changeNameAndDisplay}>
+                    <div className='profile__user__name'>
+                        {`${sessionUser.first_name} ${sessionUser.last_name}`}
                     </div>
-                </div>}
+                    <button
+                        className='white__button__v2 edit__profile__btn__size'>
+                        EDIT
+                    </button>
+                </div>
             </>
         )
     }
@@ -111,120 +119,76 @@ const Profile = () => {
     const displayEditNamesForm = () => {
         return (
             <>
-                {editFirstNameEnable && editLastNameEnable && <div>
-                    <div className='edit__profile__inputs'>
-                        <input
-                            type="text"
-                            value={newFirstName}
-                            onChange={(e) => setNewFirstName(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            value={newLastName}
-                            onChange={(e) => setNewLastName(e.target.value)}
-                        />
-                    </div>
-                    {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
-                    {lastNameError && <div className='error_style last__name__error'>{lastNameError}</div>}
-                    <div>
-                        <button
-                            onClick={changeUser}
-                            className='red__button__v2 edit__profile__btn__size'>
-                            UPDATE
-                        </button>
-                        <button
-                            onClick={changeNameAndDisplay}
-                            className='white__button__v2 edit__profile__btn__size'>
-                            CANCEL
-                        </button>
-                    </div>
-                </div>}
+                <div className='edit__profile__inputs'>
+                    <input
+                        type="text"
+                        value={newFirstName}
+                        onChange={(e) => setNewFirstName(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        value={newLastName}
+                        onChange={(e) => setNewLastName(e.target.value)}
+                    />
+                </div>
+                {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
+                {lastNameError && <div className='error_style last__name__error'>{lastNameError}</div>}
+                <button
+                    onClick={changeUser}
+                    className='red__button__v2 edit__profile__btn__size'>
+                    UPDATE
+                </button>
+                <button
+                    onClick={changeNameAndDisplay}
+                    className='white__button__v2 edit__profile__btn__size'>
+                    CANCEL
+                </button>
             </>
         )
     }
 
-    return (
-        <div className='profile__container'>
-            <div className='forms__name'>
-                USER PROFILE
-            </div>
-            <div className='profile__edges'>
-                {renderNameAndEditButtons()}
-                {displayEditNamesForm()}
-            </div>
-            <div className='profile__edges'>
-                <label className='profile__label'>
-                    EMAIL
-                </label>
-                <div className='profile__user__email'>
-                    {`${sessionUser.email}`}
-                </div>
-            </div>
-            <div className='profile__edges'>
-                <div className='label__and__button'>
-                    <label className='profile__label'>
-                        AVATAR
-                    </label>
-                    <div>
-                        <button
-                            onClick={changeAvatarAndDisplay}
-                            className='white__button__v2 edit__profile__btn__size'>
-                            EDIT
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            onClick={changeUser}
-                            className='red__button__v2 edit__profile__btn__size'>
-                            UPDATE
-                        </button>
-                        <button
-                            onClick={changeAvatarAndDisplay}
-                            className='white__button__v2 edit__profile__btn__size'>
-                            CANCEL
-                        </button>
+    const renderUserIconAndEditButton = () => {
+        return (
+            <>
+                <div onClick={changeAvatarAndDisplay}>
+                    <div className='avatar__profile'>
+                        <UserIcon size={100} />
                     </div>
                 </div>
-                <div>
-                    <div onClick={changeAvatarAndDisplay}>
-                        <div className='avatar__profile'>
-                            <UserIcon size={100} />
-                        </div>
-                    </div>
+                <button
+                    onClick={changeAvatarAndDisplay}
+                    className='white__button__v2 edit__profile__btn__size'>
+                    EDIT
+                </button>
+            </>
+        )
+    }
+
+    const displayEditAvatarOptions = () => {
+        return (
+            <>
+                <div className='edit__content__position'>
+                    <Icons avatarId={newAvatarId} setAvatarId={setNewAvatarId}
+                        avatarError={avatarError} setAvatarError={setAvatarError}
+                    />
                 </div>
-                <div>
-                    <div className='edit__content__position'>
-                        <Icons avatarId={newAvatarId} setAvatarId={setNewAvatarId}
-                            avatarError={avatarError} setAvatarError={setAvatarError}
-                        />
-                    </div>
-                </div>
-            </div>
-            <div className='profile__edges'>
-                <div className='label__and__button'>
-                    <label className='profile__label'>
-                        FUNDS
-                    </label>
-                    <div>
-                        <button
-                            onClick={addFundsAndDisplay}
-                            className='white__button__v2 edit__profile__btn__size'>
-                            EDIT
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            onClick={addFunds}
-                            className='red__button__v2 edit__profile__btn__size'>
-                            UPDATE
-                        </button>
-                        <button
-                            onClick={addFundsAndDisplay}
-                            className='white__button__v2 edit__profile__btn__size'>
-                            CANCEL
-                        </button>
-                    </div>
-                </div>
+                <button
+                    onClick={changeUser}
+                    className='red__button__v2 edit__profile__btn__size'>
+                    UPDATE
+                </button>
+                <button
+                    onClick={changeAvatarAndDisplay}
+                    className='white__button__v2 edit__profile__btn__size'>
+                    CANCEL
+                </button>
+            </>
+        )
+    }
+
+    const renderFundsAndEditButton = () => {
+        return (
+            <>
                 <div
                     className='pending__tran__chickens__and__amount'
                     onClick={addFundsAndDisplay}
@@ -232,26 +196,73 @@ const Profile = () => {
                     <div className='pending__tran__chickens'>
                         Chickens
                     </div>
-                    <div>
-                        <div className='pending__tran__amount'>
-                            {userFunds?.amount}
-                        </div>
+                    <div className='pending__tran__amount'>
+                        {userFunds?.amount}
                     </div>
                 </div>
-                <div>
-                    <div className='edit__content__position'>
-                        <div>
-                            <input
-                                className="edit__amount__content"
-                                type="number"
-                                value={newAmount}
-                                onChange={(e) => setNewAmount(e.target.value)}
-                            ></input>
-                        </div>
-                    </div>
+                <button
+                    onClick={addFundsAndDisplay}
+                    className='white__button__v2 edit__profile__btn__size'>
+                    EDIT
+                </button>
+            </>
+        )
+    }
+
+    const displayEditFundsForm = () => {
+        return (
+            <>
+                <div className='edit__content__position'>
+                    <input
+                        className="edit__amount__content"
+                        type="number"
+                        value={newAmount}
+                        onChange={(e) => setNewAmount(e.target.value)}
+                    />
                 </div>
+                <button
+                    onClick={addFunds}
+                    className='red__button__v2 edit__profile__btn__size'>
+                    UPDATE
+                </button>
+                <button
+                    onClick={addFundsAndDisplay}
+                    className='white__button__v2 edit__profile__btn__size'>
+                    CANCEL
+                </button>
+            </>
+        )
+    }
+    return (
+        <div className='profile__container'>
+            <div className='forms__name'>
+                USER PROFILE
             </div>
-        </ div>
+            <div className='profile__edges'>
+                <label className='profile__label'>
+                    NAME
+                </label>
+                {!editFirstNameEnable && !editLastNameEnable && renderNameAndEditButtons()}
+                {editFirstNameEnable && editLastNameEnable && displayEditNamesForm()}
+            </div>
+            <div className='profile__edges'>
+                {renderEmail()}
+            </div>
+            <div className='profile__edges'>
+                <label className='profile__label'>
+                    AVATAR
+                </label>
+                {!editAvatarEnable && renderUserIconAndEditButton()}
+                {editAvatarEnable && displayEditAvatarOptions()}
+            </div>
+            <div className='profile__edges'>
+                <label className='profile__label'>
+                    FUNDS
+                </label>
+                {!editFundsEnable && renderFundsAndEditButton()}
+                {editFundsEnable && displayEditFundsForm()}
+            </div>
+        </div>
     )
 };
 
