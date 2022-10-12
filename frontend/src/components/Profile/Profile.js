@@ -10,7 +10,7 @@ import { avatars } from '../../context/Avatar';
 import {
     validateFirstName,
     validateLastName,
-    validateEmail,
+    validateAmount
 } from '../../utils/validation';
 
 import './Profile.css';
@@ -42,6 +42,7 @@ const Profile = () => {
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
     const [avatarError, setAvatarError] = useState('');
+    const [amountError, setAmountError] = useState('');
 
     const addFunds = async () => {
         let newFund = {
@@ -124,11 +125,21 @@ const Profile = () => {
                         type="text"
                         value={newFirstName}
                         onChange={(e) => setNewFirstName(e.target.value)}
+                        onBlur={() => {
+                            const error = validateFirstName(newFirstName)
+                            if (error) setFirstNameError(error)
+                        }}
+                        onFocus={() => { setFirstNameError('') }}
                     />
                     <input
                         type="text"
                         value={newLastName}
                         onChange={(e) => setNewLastName(e.target.value)}
+                        onBlur={() => {
+                            const error = validateLastName(newLastName)
+                            if (error) setLastNameError(error)
+                        }}
+                        onFocus={() => { setLastNameError('') }}
                     />
                 </div>
                 {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
@@ -216,9 +227,15 @@ const Profile = () => {
                     <input
                         className="edit__amount__content"
                         type="number"
-                        value={newAmount}
                         onChange={(e) => setNewAmount(e.target.value)}
+                        onBlur={() => {
+                            const error = validateAmount(newAmount)
+                            if (error) setAmountError(error)
+                        }}
+                        onFocus={() => { setAmountError('') }}
+                        value={newAmount}
                     />
+                    {amountError && <div className='error_style amount__error'>{amountError}</div>}
                 </div>
                 <button
                     onClick={addFunds}
