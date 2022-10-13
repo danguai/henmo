@@ -175,7 +175,7 @@ const OnePending = () => {
                             }}
                             onFocus={() => { setAmountError('') }}
                             value={newPayFunds}
-                        ></input>
+                        />
                         {amountError && <div className='error_style amount__error'>{amountError}</div>}
                     </div>
                     <div>
