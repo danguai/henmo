@@ -29,8 +29,16 @@
 
 .edit__profile__inputs {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 15px;
+}
+
+.edit__profile__inputs>input {
+    height: 40px;
+    width: 390px;
+    border: none;
+    margin: 5px;
+    border-bottom: 1px var(--blue-texts) solid;
 }
 
 .edit__profile__input__name {
@@ -73,6 +81,7 @@
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
+    background-color: white;
 }
 
 .avatar__profile__edit {

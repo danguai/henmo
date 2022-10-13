@@ -122,7 +122,7 @@ const SignUpForm = () => {
               value={firstName}
             ></input>
           </div>
-          {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
+          {firstNameError && <div className='error_style names__error'>{firstNameError}</div>}
           <div className='forms__inputs__format last__name'>
             <label className='forms__label'>
               LAST NAME
@@ -141,7 +141,7 @@ const SignUpForm = () => {
               value={lastName}
             ></input>
           </div>
-          {lastNameError && <div className='error_style last__name__error'>{lastNameError}</div>}
+          {lastNameError && <div className='error_style names__error'>{lastNameError}</div>}
           <Icons avatarId={avatarId} setAvatarId={setAvatarId}
             avatarError={avatarError} setAvatarError={setAvatarError}
           />

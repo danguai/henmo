@@ -67,17 +67,21 @@ const NavBar = () => {
           <img src='/static/henmo-logo.png' alt='henmo-logo' />
         </li>
         <li>
-          <Link to='/profile' className='avatar__and__name'>
+          <Link
+            to='/profile'
+            className='avatar__and__name'
+            style={{ textDecoration: 'none' }}
+          >
             <div className='avatar__box__user'>
               <UserIcon size={100} />
             </div>
             <div>
               <div className='user__name__display'>
-                Hi, {sessionUser.first_name}
+                Hi, {sessionUser.first_name} {sessionUser.last_name}
               </div>
-              <div>
-                CHICKENS
-                {funds?.amount}
+              <div className='chickens__avail__display'>
+                CHICKENS:
+                <span className='available__chickens'>{userFunds?.amount}</span>
               </div>
             </div>
           </Link>
@@ -93,12 +97,6 @@ const NavBar = () => {
               </div>
             </button>
           </Link>
-        </li>
-        <li>
-          <div>
-            AVAILABLE CHICKENS
-            <span>{userFunds?.amount}</span>
-          </div>
         </li>
         <li className='pending__transactions'>
           <div className='pending__label'>

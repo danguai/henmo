@@ -14,9 +14,6 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
                     CHOOSE YOUR CHICKEN
                     <span> *</span>
                 </div>
-                {/* <div>
-                    <i className="fa-solid fa-circle-check avatar-check" id={avatarError}></i>
-                </div> */}
             </div>
             <div className='icon__loop'>
                 {Object.values(avatars).map((avatar, i) => (
@@ -32,10 +29,10 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
                                 }}
                                 onFocus={() => { setAvatarError('') }}
                                 value={i + 1}
-                            ></input>
+                            />
                             <div
                                 className="mouse__change__avatars"
-                                style={{ backgroundColor: +avatarId === i + 1 ? 'var(--selected-color)' : '' }}>
+                                style={{ backgroundColor: +avatarId === i + 1 ? 'var(--selected-color)' : 'white' }}>
                                 <img
                                     src={`${avatar.imageUrl}`}
                                     id="radio__icon"
@@ -43,7 +40,7 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
                                     alt="avatar"
                                 />
                             </div>
-                            {avatarError && <div className='error_style first__name__error'>{avatarError}</div>}
+                            {avatarError && <div className='error_style names__error'>{avatarError}</div>}
                         </label>
                     </div>
                 ))}

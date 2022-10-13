@@ -150,7 +150,7 @@ const OnePending = () => {
                         <div>
                             <button
                                 onClick={payFundsOrFormDisplay}
-                                className='white__button__v2 pending__edit__btn__size chicken__up'>
+                                className='white__button pending__edit__btn__size chicken__up'>
                                 EDIT
                             </button>
                         </div>
@@ -186,7 +186,7 @@ const OnePending = () => {
                         </button>
                         <button
                             onClick={payFundsOrFormDisplay}
-                            className='white__button__v2 comment__U__C__btn__size'>
+                            className='white__button comment__U__C__btn__size'>
                             CANCEL
                         </button>
                     </div>
@@ -209,7 +209,7 @@ const OnePending = () => {
                             <div>
                                 <button
                                     onClick={messageOrFormDisplay}
-                                    className='white__button__v2 pending__edit__btn__size'>
+                                    className='white__button pending__edit__btn__size'>
                                     EDIT
                                 </button>
                             </div>
@@ -249,7 +249,7 @@ const OnePending = () => {
                         </button>
                         <button
                             onClick={messageOrFormDisplay}
-                            className='white__button__v2 comment__U__C__btn__size'>
+                            className='white__button comment__U__C__btn__size'>
                             CANCEL
                         </button>
                     </div>

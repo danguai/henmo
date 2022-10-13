@@ -2,14 +2,14 @@
 export const validateFirstName = firstName => {
     if (!firstName) return `Please provide a First Name.`;
 
-    if (firstName.length > 100) return `First Name should be less than 100 characters`;
+    if (firstName.length > 20) return `First Name should be less than 20 characters`;
     return '';
 };
 
 export const validateLastName = lastName => {
     if (!lastName) return `Please provide a Last Name.`;
 
-    if (lastName.length > 100) return `Last Name should be less than 100 characters`;
+    if (lastName.length > 20) return `Last Name should be less than 20 characters`;
     return '';
 };
 
