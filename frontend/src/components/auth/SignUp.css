@@ -148,16 +148,10 @@
     color: var(--main-red)
 }
 
-.first__name__error {
+.names__error {
     margin-top: 5px;
     position: relative;
     left: 80px;
-}
-
-.last__name__error {
-    margin-top: 5px;
-    position: relative;
-    left: 75px;
 }
 
 .email__error {

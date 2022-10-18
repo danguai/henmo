@@ -12,7 +12,7 @@ const LogoutButton = () => {
     history.push('/');
   };
 
-  return <button className='white__button__basic pay__btn__size' onClick={onLogout}>LOGOUT</button>;
+  return <button className='white__button pay__btn__size' onClick={onLogout}>LOGOUT</button>;
 };
 
 export default LogoutButton;

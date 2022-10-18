@@ -76,9 +76,11 @@ const Profile = () => {
     const changeNameAndDisplay = () => {
         setEditFirstNameEnable(!editFirstNameEnable);
         setNewFirstName(sessionUser.first_name);
+        setFirstNameError('');
 
         setEditLastNameEnable(!editLastNameEnable);
         setNewLastName(sessionUser.last_name);
+        setLastNameError('');
     };
 
     const changeAvatarAndDisplay = () => {
@@ -101,18 +103,23 @@ const Profile = () => {
         )
     }
 
-    const renderNameAndEditButtons = () => {
+    const editNameButton = () => {
+        return (
+            <button onClick={changeNameAndDisplay}
+                className='white__button edit__profile__btn__size'>
+                EDIT
+            </button>
+        )
+    }
+
+    const renderFirstAndLastNames = () => {
         return (
             <>
-                <div onClick={changeNameAndDisplay}>
+                {!editFirstNameEnable && !editLastNameEnable &&
                     <div className='profile__user__name'>
                         {`${sessionUser.first_name} ${sessionUser.last_name}`}
                     </div>
-                    <button
-                        className='white__button__v2 edit__profile__btn__size'>
-                        EDIT
-                    </button>
-                </div>
+                }
             </>
         )
     }
@@ -120,40 +127,42 @@ const Profile = () => {
     const displayEditNamesForm = () => {
         return (
             <>
-                <div className='edit__profile__inputs'>
-                    <input
-                        type="text"
-                        value={newFirstName}
-                        onChange={(e) => setNewFirstName(e.target.value)}
-                        onBlur={() => {
-                            const error = validateFirstName(newFirstName)
-                            if (error) setFirstNameError(error)
-                        }}
-                        onFocus={() => { setFirstNameError('') }}
-                    />
-                    <input
-                        type="text"
-                        value={newLastName}
-                        onChange={(e) => setNewLastName(e.target.value)}
-                        onBlur={() => {
-                            const error = validateLastName(newLastName)
-                            if (error) setLastNameError(error)
-                        }}
-                        onFocus={() => { setLastNameError('') }}
-                    />
-                </div>
-                {firstNameError && <div className='error_style first__name__error'>{firstNameError}</div>}
-                {lastNameError && <div className='error_style last__name__error'>{lastNameError}</div>}
-                <button
-                    onClick={changeUser}
-                    className='red__button__v2 edit__profile__btn__size'>
-                    UPDATE
-                </button>
-                <button
-                    onClick={changeNameAndDisplay}
-                    className='white__button__v2 edit__profile__btn__size'>
-                    CANCEL
-                </button>
+                {editFirstNameEnable && editLastNameEnable && <div>
+                    <div className='edit__profile__inputs'>
+                        <input
+                            type="text"
+                            value={newFirstName}
+                            onChange={(e) => setNewFirstName(e.target.value)}
+                            onBlur={() => {
+                                const error = validateFirstName(newFirstName)
+                                if (error) setFirstNameError(error)
+                            }}
+                            onFocus={() => { setFirstNameError('') }}
+                        />
+                        {firstNameError && <div className='error_style names__error'>{firstNameError}</div>}
+                        <input
+                            type="text"
+                            value={newLastName}
+                            onChange={(e) => setNewLastName(e.target.value)}
+                            onBlur={() => {
+                                const error = validateLastName(newLastName)
+                                if (error) setLastNameError(error)
+                            }}
+                            onFocus={() => { setLastNameError('') }}
+                        />
+                        {lastNameError && <div className='error_style names__error'>{lastNameError}</div>}
+                    </div>
+                    <button
+                        onClick={changeUser}
+                        className='red__button__v2 edit__profile__btn__size'>
+                        UPDATE
+                    </button>
+                    <button
+                        onClick={changeNameAndDisplay}
+                        className='white__button edit__profile__btn__size'>
+                        CANCEL
+                    </button>
+                </div>}
             </>
         )
     }
@@ -168,7 +177,7 @@ const Profile = () => {
                 </div>
                 <button
                     onClick={changeAvatarAndDisplay}
-                    className='white__button__v2 edit__profile__btn__size'>
+                    className='white__button edit__profile__btn__size'>
                     EDIT
                 </button>
             </>
@@ -190,7 +199,7 @@ const Profile = () => {
                 </button>
                 <button
                     onClick={changeAvatarAndDisplay}
-                    className='white__button__v2 edit__profile__btn__size'>
+                    className='white__button edit__profile__btn__size'>
                     CANCEL
                 </button>
             </>
@@ -213,7 +222,7 @@ const Profile = () => {
                 </div>
                 <button
                     onClick={addFundsAndDisplay}
-                    className='white__button__v2 edit__profile__btn__size'>
+                    className='white__button edit__profile__btn__size'>
                     EDIT
                 </button>
             </>
@@ -244,7 +253,7 @@ const Profile = () => {
                 </button>
                 <button
                     onClick={addFundsAndDisplay}
-                    className='white__button__v2 edit__profile__btn__size'>
+                    className='white__button edit__profile__btn__size'>
                     CANCEL
                 </button>
             </>
@@ -259,8 +268,9 @@ const Profile = () => {
                 <label className='profile__label'>
                     NAME
                 </label>
-                {!editFirstNameEnable && !editLastNameEnable && renderNameAndEditButtons()}
-                {editFirstNameEnable && editLastNameEnable && displayEditNamesForm()}
+                {!editFirstNameEnable && !editLastNameEnable && editNameButton()}
+                {renderFirstAndLastNames()}
+                {displayEditNamesForm()}
             </div>
             <div className='profile__edges'>
                 {renderEmail()}
