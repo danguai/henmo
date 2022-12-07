@@ -1,7 +1,7 @@
 # Start with the python:3.9 image
 FROM python:3.9
 
-ENV REACT_APP_BASE_URL=https://henmo.herokuapp.com/
+ENV REACT_APP_BASE_URL=https://henmo.onrender.com
 ENV FLASK_APP=backend
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
