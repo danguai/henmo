@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-   <a href="https://henmo.herokuapp.com/home">Henmo</a> is a clone of venmo where chickens are the currency.
+   <a href="https://henmo.onrender.com">Henmo</a> is a clone of venmo where chickens are the currency.
 </p>
 
 
