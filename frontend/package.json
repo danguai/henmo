@@ -23,7 +23,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "frontend"
+    "extends": [
+      "react-app",
+      "frontend"
+    ]
   },
   "browserslist": {
     "production": [
