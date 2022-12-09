@@ -72,9 +72,11 @@ def sign_up():
             password=form.data['password'],
             funds=[Fund(amount=0)]
         )
-        db.session.add(user)
 
-        db.session.flush()
+        try:
+            with db.session.begin_nested():
+                db.session.add(user)
+                db.session.flush()
         except exc.IntegrityError:
             pass
 
