@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_user, logout_user, login_required
-from sqlalchemy import exc
 
 from backend.models import User, db, Fund
 from backend.forms import LoginForm
@@ -72,14 +71,7 @@ def sign_up():
             password=form.data['password'],
             funds=[Fund(amount=0)]
         )
-
-        try:
-            with db.session.begin_nested():
-                db.session.add(user)
-                db.session.flush()
-        except exc.IntegrityError:
-            pass
-
+        db.session.add(user)
         db.session.commit()
 
         login_user(user)
